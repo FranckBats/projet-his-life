@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+<h1>Mon compte</h1>
+
+<dl class="row">
+    <dt class="col-3">Nom d'utilisateur</dt>
+    <dd class="col-9">{{ people.firstname }}</dd>
+    <dt class="col-3">Adresse e-mail</dt>
+    <dd class="col-9">{{ people.email }}</dd>
+</dl>
+
+{# edition people
+edition mot de passe  
+edition famille ? #}
+
+{% endblock %}
