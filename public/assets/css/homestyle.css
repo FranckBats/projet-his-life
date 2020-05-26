@@ -3,9 +3,9 @@ body{
     padding: 0px;
 }
 
-main {
-    display: flex; 
-    padding-top: 90px;
+.main {
+    color:yellow;
+    padding-top: 85px;
 }
 
 .header {
@@ -17,9 +17,6 @@ main {
     color: white;
     text-transform: uppercase;
     justify-content: space-between;
-    position: abs !important;
-    overflow: auto !important;
-    
 }
 
 .header img{
