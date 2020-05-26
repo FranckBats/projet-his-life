@@ -22,11 +22,10 @@
 
 </head>
 
-<body class="row" style="max-width: 100%;">
-    <div class="d-none d-lg-block col-lg-12 border border-dark">
-        <div>
-            <h1 class="d-inline">HIS LIFE LOGO</h1>
-        </div>
+<body class="row" style="max-width: 100%; margin: 0px;">
+
+    <div class="navConnexionDesktop d-none d-lg-flex justify-content-between align-items-center col-lg-12 border border-dark">
+        <img class="m-2" src="images/HisLifeDesktopLogo.jpg" width="12%" alt="hislife-logo">
         <div>
             <ul class="d-inline">
                 <li class="d-inline">Prénom</li>
@@ -34,9 +33,10 @@
             </ul>
         </div>
     </div>
-        <div class="wrapper col-lg-2">
+        <div class="WrapperAndCentralBoxes">
+        <div class="wrapper">
             <!-- LEFT SIDEBAR  -->
-                <nav class="" id="sidebar">
+                <nav class="CustomScrollbar pl-2" id="sidebar">
                     <div id="dismiss">
                         <i class="d-lg-none gg-close-o"></i>
                     </div>
@@ -52,6 +52,9 @@
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i class="gg-boy mr-4"></i>Profil
                                     Enfant</a>
+                                <ul>
+                                    <li class="d-none d-lg-block">Gérer le Profil de mon Enfant</li>
+                                </ul>
                             </li>
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i
@@ -60,12 +63,23 @@
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i class="gg-ruler mr-4"></i>Vie
                                     Scolaire</a>
+                                    <ul>
+                                        <li class="d-none d-lg-block">Bulletin de Note</li>
+                                        <li class="d-none d-lg-block">Mots des Professeurs</li>
+                                    </ul>
                             </li>
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i class="gg-swiss mr-4"></i>Santé</a>
+                                <ul>
+                                    <li class="d-none d-lg-block">Carnet de Santé</li>
+                                 </ul>
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i
                                         class="gg-calendar-dates mr-4"></i>Calendrier</a>
+                                <ul>
+                                     <li class="d-none d-lg-block">Rendez-Vous</li>
+                                     <li class="d-none d-lg-block">Tâches</li>
+                                </ul>
                             </li>
                             <li>
                                 <a class="d-flex align-items-center" href="#"><i class="gg-mail mr-4"></i>Message</a>
@@ -89,7 +103,7 @@
     <!--  -->
 
     <!-- Page Content  -->
-    <div class="m-md-0 p-0 p-md-3 col-lg-9 m-" id="content">
+    <div class="m-md-0 p-0 p-md-3" id="content">
         <nav class="navbar navbar-light  m-0 d-lg-none">
             <div class="container-fluid">
                 <!-- BURGER MENU LOGO OF LEFT SIDEBAR -->
@@ -138,7 +152,7 @@
         <!-- WARNING ! DESKTOP HTML NOW!  -->
         <div class="desktop-container d-none d-lg-flex row">
 
-            <div class="col-6 border border-dark p-5 mr-2">
+            <div class="col-6 border border-dark mr-0">
                 <h2>Profil de l'enfant</h2>
                     <ul>
                         <li>Blabla</li>
@@ -147,25 +161,41 @@
                     </ul>
             </div>
             
-            <div class="col-6 border border-dark p-5">
+            <div class="col-6 border border-dark mr-0">
                 <h2>Santé</h2>
+                <ul>
+                    <li>Blabla</li>
+                    <li>Blibli</li>
+                    <li>Bloblo</li>
+                </ul>
             </div>
             
-            <div class="col-6 border border-dark p-5">
+            <div class="col-6 border border-dark">
                 <h2>Scolarité</h2>
+                <ul>
+                    <li>Blabla</li>
+                    <li>Blibli</li>
+                    <li>Bloblo</li>
+                </ul>
             </div>
             
-            <div class="col-6 border border-dark p-5">
+            <div class="col-6 border border-dark">
                 <h2>Photos</h2>
+                <ul>
+                    <li>Blabla</li>
+                    <li>Blibli</li>
+                    <li>Bloblo</li>
+                </ul>
             </div>
         </div>
         <!-- END OF DESKTOP HTML -->
 
     </div>
+    </div>
     </main>
 
-    <footer class="footer-nav d-flex">
-        <nav class="footer">    
+    <footer class="footer-nav d-flex m-lg-0">
+        <nav>    
             <ul> 
                 <li class= "d-inline">A propos</li>
                 <li class= "d-inline">Mentions légales</li>

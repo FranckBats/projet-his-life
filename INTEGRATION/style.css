@@ -4,6 +4,10 @@ body {
     font-family: 'Poppins', sans-serif;
     background: #e1e4ed;
 }
+.main{
+    display: flex;
+    justify-content: center;
+}
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -290,7 +294,10 @@ a.article:hover {
     color:white;
 }
 
-/* VERSION DESKTOP */
+/*                           VERSION DESKTOP                       */
+/*                           VERSION DESKTOP                       */
+/*                           VERSION DESKTOP                       */
+
 @media (min-width: 992px) {
     /*
     DEMO STYLE
@@ -344,20 +351,26 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-.wrapper {
+.WrapperAndCentralBoxes {
     display: flex;
     width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    width: 20%;
     align-items: stretch;
     margin-right: 0px;
     height: fit-content;
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    /* min-width: 250px; */
+    width: 500px;
     background: #838BC5;
     color: #fff;
     transition: all 0.3s;
+    margin-right: 30px;
 }
 
 #sidebar.active {
@@ -444,7 +457,7 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
+    width: 70%;
     padding: 20px;
     /* min-height: 100vh; */
     transition: all 0.3s;
@@ -456,7 +469,6 @@ a.article:hover {
 
 .footer-nav {
     display: block;
-    
     align-items: flex-end;
     background-color: #838BC5;
     width: 100%;
