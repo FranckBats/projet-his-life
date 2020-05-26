@@ -5,14 +5,24 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="testpage")
+     * @Route("/", name="home")
      */
     public function index()
     {
         return $this->render('home/index.html.twig', [
+            'controller_name' => 'TestController',
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function dashboard()
+    {
+        return $this->render('home/dashboard.html.twig', [
             'controller_name' => 'TestController',
         ]);
     }
