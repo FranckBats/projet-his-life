@@ -4,7 +4,8 @@ body{
 }
 
 main {
-    display: flex;
+    display: flex; 
+    padding-top: 90px;
 }
 
 .header {
@@ -15,14 +16,24 @@ main {
     justify-content: space-between;
     color: white;
     text-transform: uppercase;
-    justify-content: flex-end;
+    justify-content: space-between;
+    position: abs !important;
+    overflow: auto !important;
     
+}
+
+.header img{
+    width: 120px;
+    height: 100%;
+    margin: 10px 50px;
 }
 
 .header-nav {
     list-style:none;
     
 }
+
+
 
 .header-nav-item {
     display: inline;
@@ -39,18 +50,56 @@ main {
 }
 
 .logo {
-    text-align: center;
+    text-align: justify;
 }
 
 .logo img {
     max-width: 100%;
+    height: auto;
+    
 }
 
-.description {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+
+/* VERSION DESKTOP DE LA BANNIERE */
+@media (min-width: 992px) {
+    .banniere {
+        background: url('../images/fondV2.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        opacity: 0.60;
+        margin: 0px;
+        padding: 150px;
+        margin-bottom: 50px;
+    }
+
+    .banniere p{
+        color:black;
+        font-weight: bold;
+        margin-top: 50px;
+        margin-left: 200px;
+        text-align: justify;
+    }
+
 }
+/* VERSION MOBILE DE LA BANNIERE */
+@media (max-width: 991px) {
+    .banniere {
+        background: url('../images/fondV2.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        opacity: 0.60;
+        margin: 0px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .banniere img {
+       max-width: 10px; 
+    }
+}
+
 
 .footer {
     background-color: #858bc5;
