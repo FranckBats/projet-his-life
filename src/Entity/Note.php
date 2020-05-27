@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
+use App\Repository\NoteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @ORM\Entity(repositoryClass=NoteRepository::class)
  */
-class Contact
+class Note
 {
     /**
      * @ORM\Id()
@@ -25,27 +25,12 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $job;
+    private $file;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Child::class, inversedBy="notes")
      */
-    private $address;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $phone;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="phonebook")
-     */
-    private $family;
+    private $child;
 
     /**
      * @ORM\Column(type="datetime")
@@ -74,62 +59,26 @@ class Contact
         return $this;
     }
 
-    public function getJob(): ?string
+    public function getFile(): ?string
     {
-        return $this->job;
+        return $this->file;
     }
 
-    public function setJob(string $job): self
+    public function setFile(string $file): self
     {
-        $this->job = $job;
+        $this->file = $file;
 
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getChild(): ?Child
     {
-        return $this->address;
+        return $this->child;
     }
 
-    public function setAddress(string $address): self
+    public function setChild(?Child $child): self
     {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getFamily(): ?Family
-    {
-        return $this->family;
-    }
-
-    public function setFamily(?Family $family): self
-    {
-        $this->family = $family;
+        $this->child = $child;
 
         return $this;
     }

@@ -10,15 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    // /**
-    //  * @Route("/", name="home")
-    //  */
-    // public function index()
-    // {
-    //     return $this->render('home/index.html.twig', [
-    //         'controller_name' => 'TestController',
-    //     ]);
-    // }
+    /**
+     * @Route("/", name="home")
+     */
+    public function index()
+    {
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'TestController',
+        ]);
+    }
 
     // /**
     //  * @Route("/dashboard", name="dashboard")
