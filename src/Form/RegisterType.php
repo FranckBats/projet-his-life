@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\People;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,24 +25,29 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('lastname', null,  [
+                'label' => 'Nom',
                'constraints' => new NotBlank,
                ])
             ->add('firstname', null, [
+                'label' => 'Prénom',
                 'constraints' => new NotBlank,
             ])
             ->add('birthdate', BirthdayType::class, [
+                'label' => 'Date anniversaire',
                 'placeholder' => [
                     'day' => 'Day' , 'month' => 'Month', 'year' => 'Year',
                 ]
             ])
-            ->add('picture', FileType::class, [
-                'constraints' => [
-                    new Image([
-                        // on peut mettre une taille max ou min
-                    ])
-                ]
+           
+            ->add('role', ChoiceType::class, [
+                'label' => 'Rôle',
+                'choices' => [
+                    'Père' => 'Père',
+                    'Mère' => 'Mère',
+                ],
+                'expanded' => true,
             ])
-            ->add('role')
+            
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -51,6 +58,7 @@ class RegisterType extends AbstractType
                 ],
             ])
             ->add('password', PasswordType::class, [
+                'label' => 'Mot de passe',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -66,6 +74,7 @@ class RegisterType extends AbstractType
                     ]),
                 ],
             ])
+           
         ;
     }
 

@@ -4,8 +4,7 @@ body{
 }
 
 .main {
-    color:yellow;
-    padding-top: 85px;
+   padding-top: 85px;
 }
 
 .header {
@@ -40,10 +39,19 @@ body{
 .header a {
     text-decoration: none;
     color: white;
+    font-weight: 600;
+    margin: 0 15px;
 }
 
 .header-login {
     padding: 10px 50px 0 0;
+    
+}
+
+.header-login a:hover {
+    color: #65C8D0;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .logo {
@@ -55,6 +63,8 @@ body{
     height: auto;
     
 }
+
+
 
 
 /* VERSION DESKTOP DE LA BANNIERE */
@@ -130,12 +140,20 @@ body{
     font-weight: bold;
     text-transform: uppercase;
     color: #B49BC9;
-    text-decoration: underline;
+    
+}
+
+.card-btn{
+    display: flex !important;
+    justify-content: flex-end;
+    
 }
 
 .btn {
     background-color:#B49BC9 !important;
     border: none !important;
+    margin: 40px 0;
+   
     
 }
 

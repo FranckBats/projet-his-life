@@ -1,6 +1,6 @@
 @media(max-width: 991px) {
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
+/* body {
     font-family: 'Poppins', sans-serif;
     background: #e1e4ed;
 }
@@ -19,7 +19,8 @@ p {
 
 h4{
     font-size: 15px;
-}
+} */
+
 a,
 a:hover,
 a:focus {
@@ -168,6 +169,7 @@ a:focus {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+    
 }
 
 #dismiss:hover {
@@ -191,7 +193,7 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20p#838BC5;
+    padding: 20px;
     background:#838BC5 ;
     line-height:10px;
 }
@@ -304,7 +306,7 @@ a.article:hover {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
+/* body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
 }
@@ -315,8 +317,68 @@ p {
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
+} */
+body{
+    margin: 0px;
+    padding: 0px;
 }
 
+
+
+.header {
+    background-color: #858bc5;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    text-transform: uppercase;
+    justify-content: space-between;
+}
+
+.header img{
+    width: 120px;
+    height: 100%;
+    margin: 10px 50px;
+}
+
+.header-nav {
+    list-style:none;
+   
+}
+
+.header-nav-item {
+    display: inline;
+    
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+.header-login {
+    padding: 10px 50px 0 0;
+    
+}
+
+.header-login a:hover {
+    color: #65C8D0;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.logo {
+    text-align: justify;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+    
+}
 a,
 a:hover,
 a:focus {
@@ -343,10 +405,26 @@ a:focus {
 .line {
     width: 100%;
     height: 1px;
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px dashed #ddd; 
     margin: 40px 0;
 }
 
+.arrow i {
+    color: #B49BC9; 
+}
+
+.gg-arrow-left {
+    --ggs: 2;
+}
+.gg-arrow-right{
+    --ggs: 2;
+}
+
+.name-child{
+    color: #65C8D0;
+    font-weight: 600 ;
+    font-size: 30px;
+}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -361,7 +439,7 @@ a:focus {
     width: 20%;
     align-items: stretch;
     margin-right: 0px;
-    height: fit-content;
+    height: 100%;
 }
 
 #sidebar {
@@ -380,11 +458,13 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #838BC5;
+    
 }
+
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    margin: 0 20px;
 }
 
 #sidebar ul p {
@@ -396,6 +476,7 @@ a:focus {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    margin:10px 0;
 }
 
 #sidebar ul li a:hover {
@@ -452,6 +533,31 @@ a.article:hover {
     color: #fff !important;
 }
 
+.desktop-container{
+    display: flex;
+    justify-content: center;
+}
+.card{
+   
+    border:none !important;
+    box-shadow:1px 1px 10px #838bc5;
+    margin: 30px 30px;
+    text-align: right;
+}
+
+.card-title{
+ text-align: center;
+ text-transform: uppercase;
+ font-weight: bold;
+ color: #838BC5;
+}
+
+.btn{
+    
+    background-color:#B49BC9 !important;
+    border: none !important;
+    margin: 40px 10px;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -466,13 +572,21 @@ a.article:hover {
 /* ---------------------------------------------------
     FOOTER 
 ----------------------------------------------------- */
+.footer {
+    background-color: #858bc5;
+    width: 100%;
+    padding: 15px;
+    display: flex !important;
+    justify-content: space-between;
+    color: white ;
+}
 
 .footer-nav {
-    display: block;
-    align-items: flex-end;
-    background-color: #838BC5;
-    width: 100%;
-    color: white;
+    list-style:none;
+}
+
+.footer-nav-item {
+    display: inline;
 }
 
 /* ---------------------------------------------------
@@ -491,3 +605,5 @@ a.article:hover {
     }
 }
 }
+
+
