@@ -9,12 +9,14 @@
 {% endblock %}
 
 {% block body %}
-<body>
 
     <header>
             <div class="header">
             <img src="assets/images/logo-texte-blanc-fond-transparent.png" alt="logo">
-           <div class="header-login"><a href=""> Se Connecter</a></div>
+        <div class="header-login">
+        
+            <a href="{{ path('app_login') }}"> Se Connecter</a>
+            <a href="{{ path('app_register') }}"> S'inscrire</a></div>
         </div> 
     </header>
     <main class="">
