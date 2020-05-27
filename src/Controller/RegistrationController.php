@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\People;
-use App\Form\RegisterType;
+// use App\Entity\People;
+// use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('testpage');
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('registration/register.html.twig', [

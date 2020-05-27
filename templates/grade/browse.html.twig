@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GradeController!{% endblock %}
+
+{% block body %}
+<div class="row">
+    <h1>Bulletins de note</h1>
+</div>
+
+<div class="row">
+
+{% for grade in grades %}
+    <div class="card col-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ grade.name }}</h5>
+        <img src="{{asset(grade.file)}}" alt="">
+        {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
+    </div>
+    </div>
+{% endfor %}
+
+</div>
+{% endblock %}
