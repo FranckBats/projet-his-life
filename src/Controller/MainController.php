@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 
-// use App\Repository\GradeRepository;
-// use App\Repository\NoteRepository;;
+use App\Repository\GradeRepository;
+use App\Repository\NoteRepository;;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,20 +20,20 @@ class MainController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/dashboard", name="dashboard")
-    //  */
-    // public function dashboard(GradeRepository $gradeRepository, NoteRepository $noteRepository)
-    // {
-    //     $lastGrade = $gradeRepository->getLastUploaded();
-    //     $lastNote = $noteRepository->getLastUploaded();
+    /**
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function dashboard()
+    {
+        // $lastGrade = $gradeRepository->getLastUploaded();
+        // $lastNote = $noteRepository->getLastUploaded();
 
-    //     return $this->render('home/dashboard.html.twig', [
-    //         'controller_name' => 'TestController',
-    //         'lastGrade' => $lastGrade,
-    //         'lastNote' => $lastNote
-    //     ]);
-    // }
+        return $this->render('home/dashboard.html.twig', [
+            'controller_name' => 'TestController',
+            // 'lastGrade' => $lastGrade,
+            // 'lastNote' => $lastNote
+        ]);
+    }
 
     // /**
     //  * @Route("/test", name="test")

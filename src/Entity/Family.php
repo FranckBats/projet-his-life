@@ -77,6 +77,11 @@ class Family
         $this->phonebook = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 
     public function getId(): ?int

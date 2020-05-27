@@ -80,6 +80,7 @@ class Child
         $this->healthbooks = new ArrayCollection();
         $this->notes = new ArrayCollection();
         $this->families = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

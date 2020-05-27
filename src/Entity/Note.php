@@ -32,6 +32,11 @@ class Note
      */
     private $child;
 
+    public function construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
+
     /**
      * @ORM\Column(type="datetime")
      */

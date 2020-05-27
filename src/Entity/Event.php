@@ -52,6 +52,7 @@ class Event
     public function __construct()
     {
         $this->people = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

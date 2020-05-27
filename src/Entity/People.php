@@ -93,6 +93,7 @@ class People implements UserInterface
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
         $this->events = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->pictures = new ArrayCollection();
@@ -338,6 +339,7 @@ class People implements UserInterface
 
         return $this;
     }
+    
 
     public function getBirthdate(): ?\DateTimeInterface
     {

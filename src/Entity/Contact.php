@@ -47,6 +47,11 @@ class Contact
      */
     private $family;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     /**
      * @ORM\Column(type="datetime")
      */
