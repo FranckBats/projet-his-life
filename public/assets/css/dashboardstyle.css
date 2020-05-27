@@ -420,8 +420,10 @@ a:focus {
     --ggs: 2;
 }
 
-.child-name{
-    color: #
+.name-child{
+    color: #65C8D0;
+    font-weight: 600 ;
+    font-size: 30px;
 }
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -437,7 +439,7 @@ a:focus {
     width: 20%;
     align-items: stretch;
     margin-right: 0px;
-    height: fit-content;
+    height: 100%;
 }
 
 #sidebar {
@@ -462,7 +464,7 @@ a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
-    
+    margin: 0 20px;
 }
 
 #sidebar ul p {
@@ -474,6 +476,7 @@ a:focus {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    margin:10px 0;
 }
 
 #sidebar ul li a:hover {
