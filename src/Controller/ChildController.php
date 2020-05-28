@@ -13,6 +13,17 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ChildController extends AbstractController
 {
+
+    /**
+     * @Route("/child/profile", name="child_profile")
+     */
+    public function profile()
+    {
+        return $this->render('child/profile.html.twig', [
+            'controller_name' => 'ChildController',
+        ]);
+    }
+
     /**
      * @Route("/child/create", name="child_create")
      */

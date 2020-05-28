@@ -1,0 +1,41 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}His Life
+{% endblock %}
+
+{% block stylesheets %}
+	<!-- Bootstrap CSS CDN -->
+	<link
+	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+	<!-- Scrollbar Custom CSS -->
+	<link
+	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<!-- Our Custom CSS -->
+	<link
+	rel="stylesheet" href="../assets/css/dashboardstyle.css"> 
+	<!-- icônes css.gg -->
+	<link href='https://css.gg/css' rel='stylesheet'> 
+
+{% endblock %}
+{% block body %}
+
+	<div class="desktop-container d-none d-lg-flex row">
+		<div class="card col-3 border border-grey" style="width: 18rem;">
+			<img src="../assets/images/kid.jpg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">Mickaël</h5>
+				<p>Age : Oulala on va pas le dire !!</p>
+				<div class="card-btn">
+					<a href="#" class="btn btn-primary">Modifier</a>
+					<a href="#" class="btn btn-primary">Supprimer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="btn-ajout">
+		<a href="{{path ('child_create') }}" class="btn btn-primary">Ajouter un Enfant</a>
+	</div>
+
+	{% block javascripts %}{% endblock %}
+{% endblock %}

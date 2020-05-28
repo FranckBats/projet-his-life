@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}S'enregistrer{% endblock %}
 
 {% block stylesheets %}
 <!-- Latest compiled and minified CSS -->
@@ -14,6 +14,7 @@
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Inscription</label> 
+
         {{ form_start(register) }}
         {{ form_row(register.lastname) }}
         {{ form_row(register.firstname) }}

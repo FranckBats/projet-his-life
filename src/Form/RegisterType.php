@@ -34,8 +34,10 @@ class RegisterType extends AbstractType
             ])
             ->add('birthdate', BirthdayType::class, [
                 'label' => 'Date anniversaire',
+                'format' => 'dd MM yyyy',
+                // 'setlocale' => 'fr_FR',
                 'placeholder' => [
-                    'day' => 'Day' , 'month' => 'Month', 'year' => 'Year',
+                    'day' => 'Jour' , 'month' => 'Mois', 'year' => 'Année',
                 ]
             ])
            
@@ -51,9 +53,10 @@ class RegisterType extends AbstractType
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Accepter les conditions',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous avez pas accepté les conditions',
                     ]),
                 ],
             ])

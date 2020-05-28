@@ -1,10 +1,19 @@
-{% extends 'basedashboard.html.twig' %}
+<!DOCTYPE html>
 
-{% block title %}His Life
-{% endblock %}
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="/assets/images/favicon.ico" rel="icon"/>
+<title>{% block title %}His Life{% endblock %}</title>
 
 {% block stylesheets %}
-	<!-- Bootstrap CSS CDN -->
+{% endblock %}
+
+
+<!-- Bootstrap CSS CDN -->
 	<link
 	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -13,17 +22,15 @@
 	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<!-- Our Custom CSS -->
 	<link
-	rel="stylesheet" href="assets/css/dashboardstyle.css">
+	rel="stylesheet" href="../assets/css/dashboardstyle.css">
 	<!-- icônes css.gg -->
 	<link href='https://css.gg/css' rel='stylesheet'>
 
-{% endblock %}
+</head>
 
-{% block body %}
-
-	{# <header>
+<header>
 		<div class="header">
-			<img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo">
+			<a href="{{path ('dashboard')}}"><img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo"></a>
 			<div class="header-login">
 				{% if app.user %}
 					<div class="mb-3 ">
@@ -56,7 +63,7 @@
 
 						<ul class="list-unstyled components">
 							<li>
-								<a class="d-flex align-items-center" href="#">
+								<a class="d-flex align-items-center" href="{{ path('child_profile')}}">
 									<i class="gg-boy mr-4"></i>Profil Enfant</a>
 
 							</li>
@@ -117,9 +124,9 @@
 								</ul>
 							</div>
 						</div>
-					</nav>#}
+					</nav>
 
-					<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
+					{# <div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
 						<div class="d-lg-none">
 							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
 						<div class="arrow">
@@ -134,84 +141,18 @@
 						</div>
 					</div>
 
-					<main class=""> 
-						<div class="d-lg-none border border-dark p-2">
-							<a class="card-lien" href="#">
-								<i class=""></i>Vie Scolaire</a>
-							<div class="row">
-								<div class="col-2">
-									<img class="img-fluid" src="images/avatar.png" alt="">
-								</div>
-							</div>
-							<div class="col-10">
-								<p class="m-0">Micheline</p>
-								<p class="mb-1">25/02/2020</p>
-
-								<div class="contenu-text">
-									<p>Il as encore jouer aux billes avec ses crottes de nez !</p>
-								</div>
-								<div class="btn-modif">
-									<a class="btn btn-primary" href="">Modifier</a>
-									<a class="btn btn-primary" href="">Supprimer</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- WARNING ! DESKTOP HTML NOW!  -->
-						<div class="desktop-container d-none d-lg-flex row">
-						<div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/sante.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Santé</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="card-btn">
-                                 <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                                </div>
-                            </div>
-                            </div>
-
-                           <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/ecoleprimaire.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Vie Scolaire </h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                 <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                            </div>
-                            </div> 
-                             <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/calendrier.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Calendrier</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                 <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                            </div>
-                            </div>
-
-                           <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/photo.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Galerie</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                    <a href="#" class="btn btn-primary t">Modifier</a>
-                                    <a href="#" class="btn btn-primary ">Supprimer</a>
-                                
-                            </div>
-                            </div> 
-
-					</div>
-					<!-- END OF DESKTOP HTML -->
-
-				</div>
+					<main > #}
+						
+							
+						{% block body %}
+                        {% endblock %}
+				{# </div>
 			</div>
 		</main>
 
 
-	</div>
-	{# <footer>
+	</div> #}
+	<footer>
 
 		<nav class="footer">
 			<ul class="col-8 d-flex justify-content-around">
@@ -228,7 +169,7 @@
 			<div class="footer-copyright">&copy;HisLife</div>
 		</nav>
 
-	</footer> #}
+	</footer>
 
 	{% block javascripts %}
 		<!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -259,4 +200,4 @@ $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 		</script>
 
 	{% endblock %}
-{% endblock %}
+
