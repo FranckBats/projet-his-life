@@ -6,7 +6,9 @@ use App\Entity\Child;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,7 +44,13 @@ class ChildType extends AbstractType
                     'day' => 'Jour' , 'month' => 'Mois', 'year' => 'Année',
                 ]
             ])
-            ->add('picture')
+            ->add('picture', FileType::class, [
+                'constraints' => [
+                    new Image([
+                        // on peut mettre une taille max ou min
+                    ])
+                ]
+             ])
             ->add('families', null, [
                 'label' => 'Famille',
             ])

@@ -22,13 +22,13 @@
 	{{ form_row(form.birthdate) }}
 	{{ form_row(form.picture) }}
 	{{ form_row(form.families)}}
-
-
-	
-
-
 	{{ form_end(form) }}
-    </main>
+	
+	<div class="btn-ajout">
+		<a href="{{path ('child_profile') }}" class="btn btn-primary">Ajouter un Enfant</a>
+	</div>
+
+	</main>
 	{% block javascripts %}{% endblock %}
 
 {% endblock %}
