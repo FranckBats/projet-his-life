@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block title %}His Life
 {% dump (app.user )%}
@@ -22,108 +22,6 @@
 
 {% block body %}
 
-	<header>
-		<div class="header">
-			<img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo">
-			<div class="header-login">
-				{% if app.user %}
-					<div class="mb-3 ">
-						Bonjour
-						{{ app.user.firstname }}
-						<a href="{{ path('app_logout') }}">Deconnexion</a>
-					</div>
-				{% endif %}
-			</div>
-		</header>
-		<div class="row">
-			<div class="navConnexionDesktop d-none d-lg-flex justify-content-between align-items-center col-lg-12">
-
-				<div></div>
-			</div>
-			<div class="WrapperAndCentralBoxes">
-				<div
-					class="wrapper">
-					<!-- LEFT SIDEBAR  -->
-					<nav class="CustomScrollbar pl-2" id="sidebar">
-						<div id="dismiss">
-							<i class="d-lg-none gg-close-o"></i>
-						</div>
-						<div class="sidebar-header border-bottom border-light">
-							<div class="card-profil">
-								<h3 class="d-flex align-items-center">
-									<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
-							</div>
-							<h4 class="d-flex align-items-center">
-								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
-						</div>
-
-						<ul class="list-unstyled components">
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-boy mr-4"></i>Profil
-																				                                    Enfant</a>
-
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-smile-upside mr-4"></i>Famille</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{path('school')}}">
-									<i class="gg-ruler mr-4"></i>Vie
-																				                                    Scolaire</a>
-
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{path('healthbook_browse')}}">
-									<i class="gg-swiss mr-4"></i>Santé</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
-
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-mail mr-4"></i>Message</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-image mr-4"></i>Galerie</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-phone mr-4"></i>Répertoire</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-bell mr-4"></i>Notification</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<!-- Black background under menubar -->
-				<div class="overlay"></div>
-				<!--  -->
-
-				<!-- Page Content  -->
-				<div class="m-md-0 p-0 p-md-3" id="content">
-					<nav class="navbar navbar-light  m-0 d-lg-none">
-						<div
-							class="container-fluid">
-							<!-- BURGER MENU LOGO OF LEFT SIDEBAR -->
-							<i class="d-lg-none gg-menu-left" id="sidebarCollapse"></i>
-							<!--  -->
-							<div>
-								<ul class="nav navbar-nav ml-auto">
-									<li class="nav-item">
-										<a class="nav-link" href="#"></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-
 					<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
 						<div class="d-lg-none">
 							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
@@ -139,12 +37,7 @@
 						</div>
 					</div>
 
-					{# {% if family is not null %} #}
-					{# {% for family in families%}
-					{{family.name}} #}
-					{# {% endfor %} #}
-					{# {% endif %} #}
-					<main class="">
+					<main class=""> 
 						<div class="d-lg-none border border-dark p-2">
 							<a class="card-lien" href="#">
 								<i class=""></i>Vie Scolaire</a>
@@ -224,24 +117,7 @@
 
 
 	</div>
-	<footer>
-
-		<nav class="footer">
-			<ul class="col-8 d-flex justify-content-around">
-				<li class="footer-nav-item">
-					<a>A propos</a>
-				</li>
-				<li class="footer-nav-item">
-					<a>Mentions Légales</a>
-				</li>
-				<li class="footer-nav-item">
-					<a>Nous contacter</a>
-				</li>
-			</ul>
-			<div class="footer-copyright">&copy;HisLife</div>
-		</nav>
-
-	</footer>
+	
 
 	{% block javascripts %}
 		<!-- jQuery CDN - Slim version (=without AJAX) -->

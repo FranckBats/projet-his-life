@@ -1,9 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
-{% block title %}Ajout d'une enfant{% endblock %}
+{% block title %}His Life
+{% endblock %}
 
+{% block stylesheets %}
+	
+	
+	
+
+{% endblock %}
 {% block body %}
+  <main>
+	<h1>
+		Ajouter un Enfant
+	</h1>
 
-{{form(form)}}
+	{{ form_start(form) }}
+	{{ form_row(form.lastname) }}
+	{{ form_row(form.firstname) }}
+	{{ form_row(form.gender) }}
+	{{ form_row(form.birthdate) }}
+	{{ form_row(form.picture) }}
+	{{ form_row(form.families)}}
+	<div class="btn-ajout">
+	<a href="{{path ('child_profile') }}" class="btn btn-primary">{{ form_row(form.submit)}}</a>
+	
+	
+		
+	</div>
+	{{ form_end(form) }}
+	</main>
+	{% block javascripts %}{% endblock %}
 
 {% endblock %}

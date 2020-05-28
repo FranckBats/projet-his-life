@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="/assets/images/favicon.ico" rel="icon"/>
+<title>{% block title %}His Life{% endblock %}</title>
+
+{% block stylesheets %}
+{% endblock %}
+
+
+<!-- Bootstrap CSS CDN -->
+	<link
+	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+	<!-- Scrollbar Custom CSS -->
+	<link
+	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<!-- Our Custom CSS -->
+	<link
+	rel="stylesheet" href="../assets/css/dashboardstyle.css">
+	<!-- icônes css.gg -->
+	<link href='https://css.gg/css' rel='stylesheet'>
+
+</head>
+
+<body>
+<header>
+		<div class="header">
+			<a href="{{path ('dashboard')}}"><img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo"></a>
+			<div class="header-login">
+				{% if app.user %}
+					<div class="mb-3 ">
+						Bonjour
+						{{ app.user.firstname }}
+						<a href="{{ path('app_logout') }}">Deconnexion</a>
+					</div>
+				{% endif %}
+			</div>
+		</header>
+		<div class="row">
+			<div class="navConnexionDesktop d-none d-lg-flex justify-content-between align-items-center col-lg-12">
+				</div>
+			<div class="WrapperAndCentralBoxes">
+				<div
+					class="wrapper">
+					<!-- LEFT SIDEBAR  -->
+					<nav class="CustomScrollbar pl-2" id="sidebar">
+						<div id="dismiss">
+							<i class="d-lg-none gg-close-o"></i>
+						</div>
+						<div class="sidebar-header border-bottom border-light">
+							<div class="card-profil">
+								<h3 class="d-flex align-items-center">
+									<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
+							</div>
+							<h4 class="d-flex align-items-center">
+								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
+						</div>
+
+						<ul class="list-unstyled components">
+							<li>
+								<a class="d-flex align-items-center" href="{{ path('child_profile')}}">
+									<i class="gg-boy mr-4"></i>Profil Enfant</a>
+
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="{{ path('family_create') }}">
+									<i class="gg-smile-upside mr-4"></i>Famille</a>
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="{{ path('school') }}">
+									<i class="gg-ruler mr-4"></i>Vie Scolaire</a>
+
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="{{ path('healthbook_browse') }}">
+									<i class="gg-swiss mr-4"></i>Santé</a>
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="#">
+									<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
+
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="#">
+									<i class="gg-mail mr-4"></i>Galerie</a>
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="#">
+									<i class="gg-phone mr-4"></i>Message</a>
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="#">
+									<i class="gg-image mr-4"></i>Répertoire</a>
+							</li>
+							<li>
+								<a class="d-flex align-items-center" href="#">
+									<i class="gg-bell mr-4"></i>Notification</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<!-- Black background under menubar -->
+				<div class="overlay"></div>
+				<!--  -->
+
+				<!-- Page Content  -->
+				<div class="m-md-0 p-0 p-md-3" id="content">
+					<nav class="navbar navbar-light  m-0 d-lg-none">
+						<div
+							class="container-fluid">
+							<!-- BURGER MENU LOGO OF LEFT SIDEBAR -->
+							<i class="d-lg-none gg-menu-left" id="sidebarCollapse"></i>
+							<!--  -->
+							<div>
+								<ul class="nav navbar-nav ml-auto">
+									<li class="nav-item">
+										<a class="nav-link" href="#">Nom Utilisateur</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+
+					{# <div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
+						<div class="d-lg-none">
+							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
+						<div class="arrow">
+							<i class="gg-arrow-left"></i>
+						</div>
+						<div class="name-child">Enzo</div>
+						<div class="arrow">
+							<i class="gg-arrow-right"></i>
+						</div>
+						<div class="add d-lg-none">
+							<i class=" gg-add"></i>
+						</div>
+					</div>
+
+					<main > #}
+						
+							
+						{% block body %}
+                        {% endblock %}
+				{# </div>
+			</div>
+		</main>
+
+
+	</div> #}
+	<footer>
+
+		<nav class="footer">
+			<ul class="col-8 d-flex justify-content-around">
+				<li class="footer-nav-item">
+					<a>A propos</a>
+				</li>
+				<li class="footer-nav-item">
+					<a>Mentions Légales</a>
+				</li>
+				<li class="footer-nav-item">
+					<a>Nous contacter</a>
+				</li>
+			</ul>
+			<div class="footer-copyright">&copy;HisLife</div>
+		</nav>
+
+	</footer>
+
+	{% block javascripts %}
+		<!-- jQuery CDN - Slim version (=without AJAX) -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<!-- Popper.JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		<!-- jQuery Custom Scroller CDN -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+$("#sidebar").mCustomScrollbar({theme: "minimal"});
+
+$('#dismiss, .overlay').on('click', function () {
+$('#sidebar').removeClass('active');
+$('.overlay').removeClass('active');
+});
+
+$('#sidebarCollapse').on('click', function () {
+$('#sidebar').addClass('active');
+$('.overlay').addClass('active');
+$('.collapse.in').toggleClass('in');
+$('a[aria-expanded=true]').attr('aria-expanded', 'false');
+});
+});
+		</script>
+
+	{% endblock %}
+</body>
+

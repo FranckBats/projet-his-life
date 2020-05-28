@@ -10,10 +10,16 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
+
+
 
 class ChildType extends AbstractType
 {
@@ -30,22 +36,49 @@ class ChildType extends AbstractType
         $families = $people->getFamilies($people);
 
         $builder
-            ->add('lastname')
-            ->add('firstname')
-            ->add('gender')
+            ->add('lastname', null, [
+                'label' => 'Nom',
+                'constraints' => new NotBlank,
+            ])
+            ->add('firstname', null, [
+                'label' => 'Prénom',
+                'constraints' => new NotBlank,
+            ])
+            ->add('gender', ChoiceType::class, [
+                'label' => 'Sexe',
+                'choices' => [
+                    'Fille' => 'Fille',
+                    'Garçon' => 'Garçon',
+                    'Autre' => 'Autre',
+                 ],
+                'expanded' => true,
+            ])
             ->add('birthdate', BirthdayType::class, [
                 'label' => 'Date anniversaire',
+                'format' => 'dd MM yyyy',
                 'placeholder' => [
                     'day' => 'Jour' , 'month' => 'Mois', 'year' => 'Année',
                 ]
             ])
-            ->add('picture')
+            ->add('picture', FileType::class, [
+                'label' => 'Photo',
+                'constraints' => [
+                    new Image([
+                        // on peut mettre une taille max ou min
+                        ])
+                ],
+                'required' => false
+            ])
             ->add('families', EntityType::class, [
+                'label' => 'Famille',
                 'class' => Family::class,
                 'choices' => $families,
                 'multiple' => true
+                ])
+                            
+            ->add('submit', SubmitType::class, [
+                'label' => 'Ajouter un enfant'
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 

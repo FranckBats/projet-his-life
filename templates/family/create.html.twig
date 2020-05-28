@@ -1,9 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block title %}Ajout d'une famille{% endblock %}
 
+
 {% block body %}
 
-{{form(form)}}
+{{ form_start(form) }}
+{{ form_row(form.name) }}
+{{ form_row(form.picture) }}
+{{ form_end(form) }}
 
 {% endblock %}
