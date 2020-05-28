@@ -23,15 +23,29 @@ class MainController extends AbstractController
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function dashboard()
+    public function dashboard(GradeRepository $gradeRepository)
     {
-        // $lastGrade = $gradeRepository->getLastUploaded();
+        $lastGrade = $gradeRepository->getLastUploaded();
+        $people = $this->getUser();
+
+        // $families = $people->getFamilies($people);
         // $lastNote = $noteRepository->getLastUploaded();
 
         return $this->render('home/dashboard.html.twig', [
             'controller_name' => 'TestController',
-            // 'lastGrade' => $lastGrade,
+            'lastGrade' => $lastGrade,
+            // 'families' => $families,
             // 'lastNote' => $lastNote
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/school", name="school")
+     */
+    public function schoolHome()
+    {
+        return $this->render('home/school.html.twig', [
+            'controller_name' => 'TestController',
         ]);
     }
 

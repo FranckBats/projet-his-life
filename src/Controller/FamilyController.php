@@ -29,6 +29,8 @@ class FamilyController extends AbstractController
             $family->addPerson($this->getUser());
             $em->persist($family);
             $em->flush();
+
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('family/create.html.twig', [

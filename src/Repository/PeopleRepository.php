@@ -53,6 +53,22 @@ class PeopleRepository extends ServiceEntityRepository implements PasswordUpgrad
     }
     */
 
+    public function testquery(Type $var = null)
+    {
+        return $this->createQueryBuilder('p')            
+        ->innerJoin('p_f', 'f', 'WITH', 'p.id = f.id')            
+        ->select('p, p_f')            
+        ->where('p.id='.$id)                
+        ->getQuery()                
+        ->getResult()                
+        ;    
+    }
+    // SELECT *
+    // FROM people
+    // INNER JOIN people_family ON people.id = people_family.people_id
+    // WHERE people.id = 1
+    
+    
     /*
     public function findOneBySomeField($value): ?People
     {

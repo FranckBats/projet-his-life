@@ -96,6 +96,15 @@ class HisLifeAuthenticator extends AbstractFormLoginAuthenticator implements Pas
             return new RedirectResponse($targetPath);
         }
 
+        // If the user is not assigned to a family, he is redirect to the "create family" form
+        $user = $token->getUser();
+        $families = $user->getFamilies();
+        $family = $families[0];
+
+        if ($family === null) {
+            return new RedirectResponse($this->urlGenerator->generate('family_create'));
+        }
+
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         return new RedirectResponse($this->urlGenerator->generate('dashboard'));
