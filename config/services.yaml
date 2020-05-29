@@ -7,6 +7,7 @@ parameters:
     grades_directory: '%kernel.project_dir%/public/assets/files/grades/'
     notes_directory: '%kernel.project_dir%/public/assets/files/notes/'
     healthbooks_directory: '%kernel.project_dir%/public/assets/files/healthbooks/'
+    pictures_directory: '%kernel.project_dir%/public/assets/files/pictures/'
 
 services:
     # default configuration for services in *this* file

@@ -100,6 +100,10 @@ class People implements UserInterface
         $this->families = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->firstname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

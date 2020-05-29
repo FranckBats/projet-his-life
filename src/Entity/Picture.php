@@ -52,7 +52,7 @@ class Picture
      */
     private $updatedAt;
 
-    public function construct()
+    public function __construct()
     {
         $this->createdAt = new \DateTime;
     }

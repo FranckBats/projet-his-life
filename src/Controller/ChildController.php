@@ -28,7 +28,7 @@ class ChildController extends AbstractController
     /**
      * @Route("/child/create", name="child_create")
      */
-    public function create(Request $request, EntityManagerInterface $em, FamilyRepository $familyRepository)
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $child = new Child;
 
