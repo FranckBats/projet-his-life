@@ -22,24 +22,33 @@ class ChildController extends AbstractController
 
         // #############################################
         // Pour l'instant je l'écris en français car ça m'arrange fortement
-        // Ce bloc récupére les familles de l'utilisateur, récupére ensuite les id de chacune des familles
-        // puis les stockent dans un tableau
+        // Ce bloc de code fait :
+
+        // Ici nous récupérons toutes les Entity Family de l'utilisateur connecté
         $familiesOfUser = $this->getUser()->getFamilies();
-        $familiesIds = array();
+
+        // Ici création de 2 tableaux vides qui nous seront utiles après pour stocker des objets
+        $childrenArray = array();
+
+        // Pour toutes les Entity Family on demande les children associés
+        // Vu qu'il en ressort une PersistentCollection, 
+        // il faut boucler sur cette collection pour obtenir chaque objet Child
+        // Ensuite on push dans notre tableau créé auparavant
+        foreach($familiesOfUser as $family) {
+            $childrenCollection = $family->getChildren();
+                foreach ($childrenCollection as $children) {   
+                    array_push($childrenArray, $children);
+                }
+            }
         
-        foreach ($familiesOfUser as $family) {
-            $familyId = $family->getId();
-            array_push($familiesIds, $familyId);
-        }
-        // ############################################
-
-
-        // $children = $familyRepository->returnAllChildrenOfFamilyId(1);
-        // dump($children);
-
+        // Ensuite il n'y a plus qu'à passer notre tableau
+        // dans le render du controleur pour l'exploiter dans le twig
+        // #############################################
+        
 
         return $this->render('child/profile.html.twig', [
             'controller_name' => 'ChildController',
+            'children' => $childrenArray
         ]);
     }
 
