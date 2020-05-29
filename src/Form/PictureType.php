@@ -54,7 +54,6 @@ class PictureType extends AbstractType
                 'label' => 'Famille',
                 'class' => Family::class,
                 'choices' => $families,
-                // 'multiple' => true
                 ])
             ->add('submit' , SubmitType::class, [
                 'label' => 'Envoyer'

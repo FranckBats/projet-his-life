@@ -17,8 +17,26 @@ class ChildController extends AbstractController
     /**
      * @Route("/child/profile", name="child_profile")
      */
-    public function profile(ChildRepository $childRepository)
+    public function profile(ChildRepository $childRepository, FamilyRepository $familyRepository)
     {
+
+        // #############################################
+        // Pour l'instant je l'écris en français car ça m'arrange fortement
+        // Ce bloc récupére les familles de l'utilisateur, récupére ensuite les id de chacune des familles
+        // puis les stockent dans un tableau
+        $familiesOfUser = $this->getUser()->getFamilies();
+        $familiesIds = array();
+        
+        foreach ($familiesOfUser as $family) {
+            $familyId = $family->getId();
+            array_push($familiesIds, $familyId);
+        }
+        // ############################################
+
+
+        // $children = $familyRepository->returnAllChildrenOfFamilyId(1);
+        // dump($children);
+
 
         return $this->render('child/profile.html.twig', [
             'controller_name' => 'ChildController',

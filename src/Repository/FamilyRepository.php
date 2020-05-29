@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Child;
 use App\Entity\Family;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,7 +20,22 @@ class FamilyRepository extends ServiceEntityRepository
         parent::__construct($registry, Family::class);
     }
 
+    // vvvvvvv REQUETE SQL POUR REALISER CECI vvvvvv
 
+        // SELECT family.id, family.name, child.firstname
+        // FROM family
+
+        // INNER JOIN family_child
+        // ON family.id = family_child.family_id
+
+        // INNER JOIN child
+        // ON child.id = family_child.child_id
+
+        // WHERE family.id = 4
+
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    
     // /**
     //  * @return Family[] Returns an array of Family objects
     //  */

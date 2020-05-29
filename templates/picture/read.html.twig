@@ -12,10 +12,8 @@
 	<link
 	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<!-- Our Custom CSS -->
-
-	<link rel="stylesheet" href="../assets/css/pictureStyle.css">
 	<link
-	rel="stylesheet" href="../assets/css/dashboardstyle.css">
+	rel="stylesheet" href="/assets/css/dashboardstyle.css">
 	<!-- icônes css.gg -->
 	<link href='https://css.gg/css' rel='stylesheet'>
 
@@ -23,16 +21,11 @@
 
 {% block body %}
 
-<ul class="picture">
-{% for picture in pictures %}
-  <li class="picture">
-  <a href="{{ path('picture_read', {'id': picture.id }) }}"><img class="picture" src="{{ picture.file }}" width="200"></a>
-    <p class="picture">{{ picture.title }}</p></li>
-	{% endfor %} 
- </ul>
-<div class="light"></div> 
+	{{picture.title}}
+
+	<img src="{{ asset(picture.file) }}" alt="">
+ 
 
 
-
-</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
-
+  
+   </div></div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}

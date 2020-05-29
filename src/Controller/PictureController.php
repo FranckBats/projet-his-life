@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Form\PictureType;
+use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,24 @@ class PictureController extends AbstractController
     /**
      * @Route("/picture", name="picture")
      */
-    public function index()
+    public function browse(PictureRepository $pictureRepository)
     {
+        $pictures = $pictureRepository->findPictureByPeopleId($this->getUser()->getId());
+
         return $this->render('picture/index.html.twig', [
             'controller_name' => 'PictureController',
+            'pictures' => $pictures
+        ]);
+    }
+
+    /**
+     * @Route("/picture/read/{id}", name="picture_read", requirements= {"id": "\d+"})
+     */
+    public function read(Picture $picture)
+    {
+        return $this->render('picture/read.html.twig', [
+            'controller_name' => 'PictureController',
+            'picture' => $picture
         ]);
     }
 
