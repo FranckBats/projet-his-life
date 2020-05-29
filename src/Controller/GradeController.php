@@ -82,8 +82,7 @@ class GradeController extends AbstractController
 
             $em->persist($grade);
             
-            
-            $file->move($directory, $fileName.'.jpg');
+            $file->move($this->getParameter('grades_directory'), $fileName.'.jpg');
 
             $em->flush();
 

@@ -1,7 +1,7 @@
 {% extends 'basedashboard.html.twig' %}
 
 {% block title %}His Life
-{% dump (app.user )%}
+	{% dump (app.user )%}
 {% endblock %}
 
 {% block stylesheets %}
@@ -22,116 +22,100 @@
 
 {% block body %}
 
-					<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
-						<div class="d-lg-none">
-							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
-						<div class="arrow">
-							<i class="gg-arrow-left"></i>
-						</div>
-						<div class="name-child">Enzo</div>
-						<div class="arrow">
-							<i class="gg-arrow-right"></i>
-						</div>
-						<div class="add d-lg-none">
-							<i class=" gg-add"></i>
-						</div>
+	<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
+		<div class="d-lg-none">
+			<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
+		<div class="arrow">
+			<i class="gg-arrow-left"></i>
+		</div>
+		<div class="name-child">Enzo</div>
+		<div class="arrow">
+			<i class="gg-arrow-right"></i>
+		</div>
+		<div class="add d-lg-none">
+			<i class=" gg-add"></i>
+		</div>
+	</div>
+
+	<main class="">
+		<div class="d-lg-none border border-dark p-2">
+			<a class="card-lien" href="#">
+				<i class=""></i>Vie Scolaire</a>
+			<div class="row">
+				<div class="col-2">
+					<img class="img-fluid" src="images/avatar.png" alt="">
+				</div>
+			</div>
+			<div class="col-10">
+				<p class="m-0">Micheline</p>
+				<p class="mb-1">25/02/2020</p>
+
+				<div class="contenu-text">
+					<p>Il as encore jouer aux billes avec ses crottes de nez !</p>
+				</div>
+				<div class="btn-modif">
+					<a class="btn btn-primary" href="">Modifier</a>
+					<a class="btn btn-primary" href="">Supprimer</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- WARNING ! DESKTOP HTML NOW!  -->
+		<div class="desktop-container d-none d-lg-flex row">
+			<div class="card col-5 border border-grey" style="width: 18rem;">
+				<img src="assets/images/sante.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Santé</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<div class="card-btn">
+						<a href="#" class="btn btn-primary">Modifier</a>
+						<a href="#" class="btn btn-primary">Supprimer</a>
 					</div>
+				</div>
+			</div>
 
-					<main class=""> 
-						<div class="d-lg-none border border-dark p-2">
-							<a class="card-lien" href="#">
-								<i class=""></i>Vie Scolaire</a>
-							<div class="row">
-								<div class="col-2">
-									<img class="img-fluid" src="images/avatar.png" alt="">
-								</div>
-							</div>
-							<div class="col-10">
-								<p class="m-0">Micheline</p>
-								<p class="mb-1">25/02/2020</p>
+			<div class="card col-5 border border-grey" style="width: 18rem;">
+				<h5 class="card-title">Vie Scolaire
+				</h5>
+				<h6>Dernier bulletin posté</h6>
+				<img src="{{lastGrade[0].file}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<p class="card-text">{{lastGrade[0].name}}</p>
 
-								<div class="contenu-text">
-									<p>Il as encore jouer aux billes avec ses crottes de nez !</p>
-								</div>
-								<div class="btn-modif">
-									<a class="btn btn-primary" href="">Modifier</a>
-									<a class="btn btn-primary" href="">Supprimer</a>
-								</div>
-							</div>
-						</div>
+					<a href="{{ path('grade_read', {'id': lastGrade[0].id}) }}" class="btn btn-primary">Voir le bulletin en détail</a>
 
-						<!-- WARNING ! DESKTOP HTML NOW!  -->
-						<div class="desktop-container d-none d-lg-flex row">
-						<div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/sante.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Santé</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="card-btn">
-                                 <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                                </div>
-                            </div>
-                            </div>
+					<a href="#" class="btn btn-primary">Modifier</a>
+					<a href="#" class="btn btn-primary">Supprimer</a>
+				</div>
+			</div>
+			<div class="card col-5 border border-grey" style="width: 18rem;">
+				<img src="assets/images/calendrier.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Calendrier</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-primary">Modifier</a>
+					<a href="#" class="btn btn-primary">Supprimer</a>
+				</div>
+			</div>
 
-                           <div class="card col-5 border border-grey" style="width: 18rem;">
-						   <h5 class="card-title">Vie Scolaire </h5>
-								<h6>Dernier bulletin posté</h6>
-                            <img src="{{lastGrade[0].file}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">{{lastGrade[0].name}}</p>
-                                
-								<a href="{{ path('grade_read', {'id': lastGrade[0].id}) }}" class="btn btn-primary">Voir le bulletin en détail</a>
-								
-                                <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                            </div>
-                            </div> 
-                             <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/calendrier.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Calendrier</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                 <a href="#" class="btn btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-primary">Supprimer</a>
-                            </div>
-                            </div>
+			<div class="card col-5 border border-grey" style="width: 18rem;">
+				<img src="assets/images/photo.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Galerie</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                           <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/photo.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Galerie</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                    <a href="#" class="btn btn-primary t">Modifier</a>
-                                    <a href="#" class="btn btn-primary ">Supprimer</a>
-                                
-                            </div>
-                            </div> 
-
-					</div>
-					<!-- END OF DESKTOP HTML -->
+					<a href="#" class="btn btn-primary t">Modifier</a>
+					<a href="#" class="btn btn-primary ">Supprimer</a>
 
 				</div>
 			</div>
-		</main>
 
+		</div>
+		<!-- END OF DESKTOP HTML -->
 
 	</div>
-	
-
-	{% block javascripts %}
-		<!-- jQuery CDN - Slim version (=without AJAX) -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<!-- Popper.JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-		<!-- Bootstrap JS -->
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-		<!-- jQuery Custom Scroller CDN -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-		<script type="text/javascript">
-			$(document).ready(function () {
+</div></main></div>{% block javascripts %}<!-- jQuery CDN - Slim version (=without AJAX) --><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><!-- Popper.JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script><!-- Bootstrap JS --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><!-- jQuery Custom Scroller CDN --><script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script><script type="text/javascript">
+$(document).ready(function () {
 $("#sidebar").mCustomScrollbar({theme: "minimal"});
 
 $('#dismiss, .overlay').on('click', function () {
@@ -145,8 +129,4 @@ $('.overlay').addClass('active');
 $('.collapse.in').toggleClass('in');
 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });
-});
-		</script>
-
-	{% endblock %}
-{% endblock %}
+});</script>{% endblock %}{% endblock %}

@@ -1,23 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
-{% block title %}Liste des entrées du carnet de santé{% endblock %}
-
-{% block body %}
-<div class="row">
-    <h1>Entrées du carnet de santé</h1>
-</div>
-
-<div class="row">
-
-{% for healthbook in healthbooks %}
-    <div class="card col-3">
-    <div class="card-body">
-        <h5 class="card-title">{{ healthbook.name }}</h5>
-        <img src="{{asset(healthbook.file)}}" alt="">
-        {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
-    </div>
-    </div>
-{% endfor %}
-
-</div>
+{% block title %}His Life
 {% endblock %}
+
+{% block stylesheets %}
+	<!-- Bootstrap CSS CDN -->
+	<link
+	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+	<!-- Scrollbar Custom CSS -->
+	<link
+	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<!-- Our Custom CSS -->
+	<link rel="stylesheet" href="../assets/css/childCard.css">
+	<link
+	rel="stylesheet" href="../assets/css/dashboardstyle.css">
+
+	<!-- icônes css.gg -->
+	<link href='https://css.gg/css' rel='stylesheet'>
+
+{% endblock %}
+{% block body %}
+
+	<h1>Accueil Santé</h1>
+
+<a class ="btn btn-primary"href="{{path('healthbook_add')}}">Ajouter une page du carnet de Santé</a>
+
+
+</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
