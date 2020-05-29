@@ -17,8 +17,9 @@ class ChildController extends AbstractController
     /**
      * @Route("/child/profile", name="child_profile")
      */
-    public function profile()
+    public function profile(ChildRepository $childRepository)
     {
+
         return $this->render('child/profile.html.twig', [
             'controller_name' => 'ChildController',
         ]);

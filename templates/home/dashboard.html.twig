@@ -75,13 +75,14 @@
                             </div>
 
                            <div class="card col-5 border border-grey" style="width: 18rem;">
-                            <img src="assets/images/ecoleprimaire.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Vie Scolaire </h5>
+						   <h5 class="card-title">Vie Scolaire </h5>
 								<h6>Dernier bulletin posté</h6>
-								<img src="{{lastGrade[0].file}}" alt="">
+                            <img src="{{lastGrade[0].file}}" class="card-img-top" alt="...">
+                            <div class="card-body">
                                 <p class="card-text">{{lastGrade[0].name}}</p>
+                                
 								<a href="{{ path('grade_read', {'id': lastGrade[0].id}) }}" class="btn btn-primary">Voir le bulletin en détail</a>
+								
                                 <a href="#" class="btn btn-primary">Modifier</a>
                                 <a href="#" class="btn btn-primary">Supprimer</a>
                             </div>

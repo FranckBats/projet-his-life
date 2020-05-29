@@ -86,6 +86,8 @@ class GradeController extends AbstractController
             $file->move($directory, $fileName.'.jpg');
 
             $em->flush();
+
+            return $this->redirectToRoute('grade_browse');
         }
 
         return $this->render('grade/add.html.twig', [
