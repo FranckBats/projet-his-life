@@ -36,6 +36,16 @@ class ChildController extends AbstractController
         // Ensuite on push dans notre tableau créé auparavant
         foreach($familiesOfUser as $family) {
             $childrenCollection = $family->getChildren();
+
+            // Si l'ont fait un dump de $childrenCollection, nous obtiendrons la PeristentCollection
+            // Mais nous ne voyons aucun éléments Child à l'intérieur, ceci est normal
+            // Il suffirait de faire $childrenCollection = $family->getChildren()->getValues;
+            // getValues() est une méthode des PersistentCollection qui permet d'obtenir tous les éléments
+            // Vu qu'ici nous avons plusieurs Family, nous devons refaire une boucle pour obtenir les Childs de chacune
+
+            // Doc utile pour les PersistentCollection :
+            // http://apigen.juzna.cz/doc/davidmoravek/nette-doctrine-sandbox/class-Doctrine.ORM.PersistentCollection.html
+
                 foreach ($childrenCollection as $children) {   
                     array_push($childrenArray, $children);
                 }
