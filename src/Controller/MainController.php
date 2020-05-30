@@ -25,15 +25,26 @@ class MainController extends AbstractController
      */
     public function dashboard(GradeRepository $gradeRepository)
     {
-        $lastGrade = $gradeRepository->getLastUploaded();
-        $people = $this->getUser();
+        $familiesOfUser = $this->getUser()->getFamilies();
 
-        // $families = $people->getFamilies($people);
-        // $lastNote = $noteRepository->getLastUploaded();
+        // $childrenArray = array();
+
+
+        // foreach($familiesOfUser as $family) {
+        //     $childrenCollection = $family->getChildren();
+
+        //         foreach ($childrenCollection as $children) {   
+        //             array_push($childrenArray, $children);
+        //         }
+        //     }
+
+        // $lastGrade = $gradeRepository->getLastUploaded();
+        // $people = $this->getUser();
 
         return $this->render('home/dashboard.html.twig', [
             'controller_name' => 'TestController',
-            'lastGrade' => $lastGrade,
+            'families' => $familiesOfUser
+            // 'lastGrade' => $lastGrade,
             // 'families' => $families,
             // 'lastNote' => $lastNote
         ]);

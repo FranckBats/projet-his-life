@@ -36,7 +36,6 @@ class ChildController extends AbstractController
         // Ensuite on push dans notre tableau créé auparavant
         foreach($familiesOfUser as $family) {
             $childrenCollection = $family->getChildren();
-
             // Si l'ont fait un dump de $childrenCollection, nous obtiendrons la PeristentCollection
             // Mais nous ne voyons aucun éléments Child à l'intérieur, ceci est normal
             // Il suffirait de faire $childrenCollection = $family->getChildren()->getValues;

@@ -127,13 +127,34 @@
 						</div>
 					</nav>
 
-					{# <div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
+					<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
 						<div class="d-lg-none">
 							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
 						<div class="arrow">
 							<i class="gg-arrow-left"></i>
 						</div>
-						<div class="name-child">Enzo</div>
+
+					{% if families is defined %}
+					{% for family in families %}
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{family.name}}
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							{% if family.children is defined %}
+							{% for children in family.children %}
+								<a class="dropdown-item" href="#">{{children.firstname}}</a>
+							{% endfor %}
+								{% else %}
+								<a class="dropdown-item" href="#">Vous n'avez pas encore ajouter d'enfant dans cette famille</a>
+								{% endif %}
+						</div>
+					</div>
+					{% endfor %}
+					{% endif %}
+
+
+						{# <div class="name-child">Enzo</div> #}
 						<div class="arrow">
 							<i class="gg-arrow-right"></i>
 						</div>
@@ -142,17 +163,17 @@
 						</div>
 					</div>
 
-					<main > #}
+					<main >
 						
 							
 						{% block body %}
                         {% endblock %}
-				{# </div>
+				</div>
 			</div>
 		</main>
 
 
-	</div> #}
+	</div>
 	<footer>
 
 		<nav class="footer">
