@@ -39,14 +39,19 @@
 {% endfor %}
 
 </div> #}
+<div>
+	<a href="{{path('grade_add')}}" class="btn btn-primary">Ajouter un bulletin</a>
+	<a href="{{path('school')}}" class="btn btn-primary">Retour</a>
+</div>
 
 {% for grade in grades %}
 <div class="desktop-container d-none d-lg-flex row">
 			<div class="card col-3 border border-grey" style="width: 18rem;">
+			<h5 class="card-title">{{ grade.name }}</h5>
 				<img src="{{asset(grade.file)}}" class="card-img-top" alt="...">
 				<div class="card-body">
-					<h5 class="card-title">{{ grade.name }}</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					
+					{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
 					<div class="card-btn">
 						<a href="#" class="btn btn-primary">Modifier</a>
 						<a href="#" class="btn btn-primary">Supprimer</a>

@@ -22,9 +22,9 @@
 	{{ form_row(form.birthdate) }}
 	{{ form_row(form.picture) }}
 	{{ form_row(form.families)}}
-	<div class="btn-ajout">
-	<a href="{{ path('child_profile') }}" class="btn btn-primary">{{ form_row(form.submit)}}</a>	
-	</div>
+	
+	<a href="{{ path('child_profile') }}" >{{ form_row(form.submit)}}</a>	
+	
 	{{ form_end(form) }}
 	</main>
 	{% block javascripts %}{% endblock %}
