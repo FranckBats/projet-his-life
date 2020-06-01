@@ -12,10 +12,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
+
 class UploadType extends AbstractType
 {
+    
+    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
+       
+        
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
@@ -27,6 +33,7 @@ class UploadType extends AbstractType
                 'class' => Child::class
             ])
             ->add('submit', SubmitType::class)
+            
         ;
     }
 

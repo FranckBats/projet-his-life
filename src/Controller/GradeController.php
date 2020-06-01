@@ -58,6 +58,7 @@ class GradeController extends AbstractController
 
             $name = $form->getData()->getName();
             $file = $form['file']->getData();
+            
 
             function generateRandomString($length = 10)
             {
