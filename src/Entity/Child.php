@@ -83,6 +83,10 @@ class Child
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString() {
+        return $this->firstname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Child;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,6 +22,9 @@ class UploadType extends AbstractType
             ])
             ->add('file', FileType::class, [
                 'label' => 'Photo'
+            ])
+            ->add('child', EntityType::class, [
+                'class' => Child::class
             ])
             ->add('submit', SubmitType::class)
         ;

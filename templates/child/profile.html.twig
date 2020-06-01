@@ -23,13 +23,17 @@
 {% block body %}
 
 	<div class="btn-ajout">
-		<a href="{{path ('child_create') }}" class="btn btn-primary">Ajouter un enfant</a>
+		<a href="{{path('child_create') }}" class="btn btn-primary">Ajouter un enfant</a>
 	</div>
 	<div class="box">
 	{% for child in children %}
 		<div class="card">
 			<div class="imgBx">
-				<img src="../assets/images/kid.jpg" alt="images">
+				{% if child.picture is not null %}
+				 <a href="{{ path('child_read', {'id': child.id }) }}"><img src="{{ asset(child.picture) }}" alt="images"></a>
+				{% else %}
+				<img src="{{ asset('assets/images/kid.jpg') }}" alt="images">
+				{% endif %}
 			</div>
 			<div class="details">
 				<h2>{{ child.firstname }}<br></h2>

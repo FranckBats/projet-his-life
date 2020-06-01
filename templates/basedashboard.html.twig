@@ -31,7 +31,7 @@
 <body>
 <header>
 		<div class="header">
-			<a href="{{path ('dashboard')}}"><img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo"></a>
+			<a href="{{ path('dashboard') }}"><img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo"></a>
 			<div class="header-login">
 				{% if app.user %}
 					<div class="mb-3 ">
@@ -110,7 +110,7 @@
 				<!--  -->
 
 				<!-- Page Content  -->
-				<div class="m-md-0 p-0 p-md-3" id="content">
+				{# <div class="m-md-0 p-0 p-md-3" id="content"> #}
 					<nav class="navbar navbar-light  m-0 d-lg-none">
 						<div
 							class="container-fluid">
@@ -131,46 +131,42 @@
 						<div class="d-lg-none">
 							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
 						<div class="arrow">
-							<i class="gg-arrow-left"></i>
+							{# <i class="gg-arrow-left"></i> #}
 						</div>
 
 					{% if families is defined %}
+					<div class="form-group">
+						<select class="custom-select" id="selectType">
 					{% for family in families %}
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{family.name}}
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							{% if family.children is defined %}
-							{% for children in family.children %}
-								<a class="dropdown-item" href="#">{{children.firstname}}</a>
+							{% for child in family.children %}
+							<option value="{{child.id}}">{{child.firstname}}</option>
 							{% endfor %}
-								{% else %}
-								<a class="dropdown-item" href="#">Vous n'avez pas encore ajouter d'enfant dans cette famille</a>
-								{% endif %}
-						</div>
-					</div>
+							{% endif %}
 					{% endfor %}
+						</select>
 					{% endif %}
+					{# </div> #}
+					<p id="selectedChild"></p>
 
 
 						{# <div class="name-child">Enzo</div> #}
 						<div class="arrow">
-							<i class="gg-arrow-right"></i>
+						{# 	<i class="gg-arrow-right"></i> #}
 						</div>
 						<div class="add d-lg-none">
-							<i class=" gg-add"></i>
+						{# 	<i class=" gg-add"></i> #}
 						</div>
 					</div>
 
-					<main >
+					<main> 
 						
 							
 						{% block body %}
                         {% endblock %}
 				</div>
 			</div>
-		</main>
+		</main> 
 
 
 	</div>
@@ -194,8 +190,8 @@
 	</footer>
 
 	{% block javascripts %}
-		<!-- jQuery CDN - Slim version (=without AJAX) -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<!-- jQuery CDN - -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<!-- Popper.JS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 		<!-- Bootstrap JS -->
@@ -205,20 +201,60 @@
 
 		<script type="text/javascript">
 			$(document).ready(function () {
-$("#sidebar").mCustomScrollbar({theme: "minimal"});
+				$("#sidebar").mCustomScrollbar({theme: "minimal"});
 
-$('#dismiss, .overlay').on('click', function () {
-$('#sidebar').removeClass('active');
-$('.overlay').removeClass('active');
-});
+				$('#dismiss, .overlay').on('click', function () {
+				$('#sidebar').removeClass('active');
+				$('.overlay').removeClass('active');
+				});
 
-$('#sidebarCollapse').on('click', function () {
-$('#sidebar').addClass('active');
-$('.overlay').addClass('active');
-$('.collapse.in').toggleClass('in');
-$('a[aria-expanded=true]').attr('aria-expanded', 'false');
-});
-});
+				$('#sidebarCollapse').on('click', function () {
+				$('#sidebar').addClass('active');
+				$('.overlay').addClass('active');
+				$('.collapse.in').toggleClass('in');
+				$('a[aria-expanded=true]').attr('aria-expanded', 'false');
+				});
+			});
+		</script>
+
+
+		<script type="text/javascript">
+			$('#selectType').on('change', function (e) {
+				var idSelect = e.currentTarget.value;
+				console.log(idSelect);
+				$.ajax({
+				url: '{{ path('ajax_action') }}',
+				type: "POST",
+				dataType: "json",
+				data: {
+					"idSelect": idSelect
+				},
+				async: true,
+				success: function (data) {
+
+
+						{# SCHOOL BLOCK #}
+
+						{# SCHOOL - LASTPOST = created_at #}
+
+						let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSchoolEvent_lastPost');
+						selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
+
+						console.log(selectedChildSchoolEvent_lastPost);
+
+						{# SCHOOL - NAME #}
+
+						let selectedChildSchoolEvent_name = document.getElementById('selectedChildSchoolEvent_name')
+						selectedChildSchoolEvent_name.textContent = data.lastSchoolEventArray.name
+
+						{# SCHOOL - FILE #}
+						let selectedChildSchoolEvent_img = document.getElementById('selectedChildSchoolEvent_img');
+						let img_src = selectedChildSchoolEvent_img.attributes[1];
+						img_src.value = data.lastSchoolEventArray.file;
+
+				}
+				})
+			});
 		</script>
 
 	{% endblock %}

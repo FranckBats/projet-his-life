@@ -46,6 +46,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/[defgnhp], roles: IS_AUTHENTICATED_FULLY }
+        # - { path: /delete, roles: ROLE_USER}
         # - { path: ^/family, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/grade, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

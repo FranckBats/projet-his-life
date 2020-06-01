@@ -6,10 +6,11 @@ use App\Entity\Child;
 use App\Form\ChildType;
 use App\Repository\ChildRepository;
 use App\Repository\FamilyRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ChildController extends AbstractController
 {
@@ -21,7 +22,7 @@ class ChildController extends AbstractController
     {
 
         // #############################################
-        // Pour l'instant je l'écris en français car ça m'arrange fortement
+        // Pour l'instant je l'écris en français car ça m'arrange fortement (et puis l'anglais c'est de la merde !!!)
         // Ce bloc de code fait :
 
         // Ici nous récupérons toutes les Entity Family de l'utilisateur connecté
@@ -74,8 +75,29 @@ class ChildController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $child->setLastname($form->getData()->getLastname());
-            $child->setFirstname($form->getData()->getFirstname());
+            $picture = $form['picture']->getData();
+
+            function generateRandomString($length = 10)
+            {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $maxLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++)
+                {
+                $randomString .= $characters[rand(0, $maxLength - 1)];
+                }
+                return $randomString;
+            }
+
+            $fileName = generateRandomString();
+
+            $directory = 'assets/files/child_picture/';
+
+            $finalDirectory = $directory.$fileName.'.jpg';
+            $child->setPicture($finalDirectory);
+
+            $picture->move($this->getParameter('child_picture_directory'), $fileName.'.jpg');
+
 
             $family = $form->getData()->getFamilies()[0];
             $family->addChild($child);
@@ -90,5 +112,34 @@ class ChildController extends AbstractController
             'controller_name' => 'ChildController',
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/child/read/{id}", name="child_read", requirements= {"id": "\d+"})
+     */
+    public function read(Child $child)
+    {
+    
+        return $this->render('child/read.html.twig', [
+            'controller_name' => 'ChildController',
+            'child' => $child
+        ]);
+    }
+
+    
+    /**
+     * @Route("/child/{id}", name="child_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     */
+    public function delete(Request $request, Child $child): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$child->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($child);
+            $em->flush();
+
+            $this->addFlash('success', 'Photo supprimé.');
+        }
+        
+        return $this->redirectToRoute('child_profile');
     }
 }

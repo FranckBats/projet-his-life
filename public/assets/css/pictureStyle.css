@@ -1,11 +1,13 @@
-body{
+ /* body{
   font-family: 'Homemade Apple', cursive;
   font-size:20px;
   background:url('https://images.pexels.com/photos/172277/pexels-photo-172277.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   background-size:cover;
-  background-repeat:repeat;
+  background-repeat:no-repeat;
   color:#000;
-}
+}  */
+
+
 
 .picture ul{
   position:absolute;
