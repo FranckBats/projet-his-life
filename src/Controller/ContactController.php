@@ -9,6 +9,7 @@ use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
@@ -29,7 +30,6 @@ class ContactController extends AbstractController
     public function Edit(Contact $contact, Request $request)
     {
         
-
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
@@ -49,7 +49,8 @@ class ContactController extends AbstractController
         }
 
         return $this->render('contact/edit.html.twig', [
-            'form' => $form->createView(), 
+            'form' => $form->createView(),
+            'contact' => $contact 
         ]);
     }
 
@@ -83,17 +84,17 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("contact/delete/{id}", name="contact_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/contact/delete/{id}", name="contact_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
-    public function delete(EntityManagerInterface $em, Contact $contact, Request $request)
+    public function delete( Request $request, Contact $contact): Response
     {
-        $formDelete = $this->createForm(DeleteType::class);
-
-        $formDelete->handleRequest($request);
-
-        if ($formDelete->isSubmitted() && $formDelete->isValid()) {
+        if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
+            
+            $em = $this->getDoctrine()->getManager();
             $em->remove($contact);
             $em->flush();
+
+            $this->addFlash('success', 'contact supprimé.');
         }
 
         return $this->redirectToRoute('contact_browse');

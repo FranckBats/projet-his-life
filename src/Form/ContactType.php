@@ -22,10 +22,7 @@ class ContactType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'enregistrer '
             ])
-            ->setMethod('DELETE')
-            ->add('deleteButton', SubmitType::class,[
-                'label' => 'Supprimer',
-            ])
+            
         ;
     }
 
