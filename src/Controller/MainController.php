@@ -66,14 +66,17 @@ public function ajaxAction(Request $request)
             $childObject = $family->getChildren()->getValues();
 
             foreach ($childObject as $child) {
-                
+                dump($child);
                 // ### GRADES && NOTE ###
                 $lastGrade = $child->getGrades()->last();
                 $lastGradeArray = [];
                 $lastNote = $child->getNotes()->last();
                 $lastNoteArray = [];
                 $lastSchoolEventArray = [];
-                if ($lastGrade != false && $lastNote != false) {
+                dump($lastGrade);
+                dump($lastNote);
+
+                if ($lastGrade != false) {
                     $lastGradeArray = [
                         'id' => $lastGrade->getId(),
                         'name' => $lastGrade->getName(),
@@ -81,6 +84,9 @@ public function ajaxAction(Request $request)
                         'created_at' => $lastGrade->getCreatedAt(),
                         'type' => 'grade'
                     ];
+                }
+
+                if ($lastNote != false) {
                     $lastNoteArray = [
                         'id' => $lastNote->getId(),
                         'name' => $lastNote->getName(),
@@ -88,44 +94,63 @@ public function ajaxAction(Request $request)
                         'created_at' => $lastNote->getCreatedAt(),
                         'type' => 'note'
                     ];
+                }
+
+                if ($lastGradeArray && $lastNoteArray != false) {
                     if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
                         $lastSchoolEventArray = $lastGradeArray;
                     }
                     else {
                         $lastSchoolEventArray = $lastNoteArray;
                     }
-
-                }                
-                // ### HEALTHBOOK ###
-                $lastHealthbook = $child->getHealthbooks()->last();
-                $lastHealthbookArray = [];
-                
-                if ($lastHealthbook != false) {
-                    $lastHealthbookArray = [
-                        'id' => $lastHealthbook->getId(),
-                        'name' => $lastHealthbook->getName(),
-                        'file' => $lastHealthbook->getFile(),
-                        'created_at' => $lastHealthbook->getCreatedAt()
-                    ];
                 }
-                
-                $childrenArray [$child->getId()] = [
-                    'firstname' => $child->getFirstname(),
-                    'lastname' => $child->getLastname(),
-                    'gender' => $child->getGender(),
-                    'birthdate' => $child->getBirthdate(),
-                    'lastSchoolEventArray' => $lastSchoolEventArray,
-                    'lastHealthbook' => $lastHealthbookArray
-                ];
+                else if ($lastGradeArray != false) {
+                    $lastSchoolEventArray = $lastGradeArray;
+                }
+                else {
+                    $lastSchoolEventArray = $lastNoteArray;
+                }
+
+                    
+                    dump($lastSchoolEventArray);
+                    // ### HEALTHBOOK ###
+                    $lastHealthbook = $child->getHealthbooks()->last();
+                    $lastHealthbookArray = [];
+                    
+                    if ($lastHealthbook != false) {
+                        $lastHealthbookArray = [
+                            'id' => $lastHealthbook->getId(),
+                            'name' => $lastHealthbook->getName(),
+                            'file' => $lastHealthbook->getFile(),
+                            'created_at' => $lastHealthbook->getCreatedAt()
+                        ];
+                    }
+                    
+                    $childrenArray [$child->getId()] = [
+                        'firstname' => $child->getFirstname(),
+                        'lastname' => $child->getLastname(),
+                        'gender' => $child->getGender(),
+                        'birthdate' => $child->getBirthdate(),
+                        'lastSchoolEventArray' => $lastSchoolEventArray,
+                        'lastHealthbook' => $lastHealthbookArray
+                    ];
+                }                
             }
             
         }
-    };
-
+    ;
     /* on récupère la valeur envoyée */
     $idSelect = $request->request->get('idSelect');
-    
-    $selectChild = $childrenArray[$idSelect];
+
+
+    if ($idSelect == 0) {
+        $selectChild = array_shift($childrenArray);
+    }
+
+    else {
+        $selectChild = $childrenArray[$idSelect];
+    }
+
     $response = new Response(json_encode($selectChild));
 
 	/* On renvoie une réponse encodée en JSON */
