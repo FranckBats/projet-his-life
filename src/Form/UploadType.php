@@ -15,9 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UploadType extends AbstractType
 {
-    
-    
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
        

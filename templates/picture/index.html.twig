@@ -27,16 +27,8 @@
 		<a href="{{path ('picture_add') }}" class="btn btn-primary">Ajouter une photo</a>
 	</div>
 
-{# <ul class="picture">
-{% for picture in pictures %}
-  <li class="picture">
-  <a href="{{ path('picture_read', {'id': picture.id }) }}"><img class="picture" src="{{ picture.file }}" width="200"></a>
-    <p class="picture">{{ picture.title }}</p></li>
-	{% endfor %} 
- </ul>
-<div class="light"></div>  #}
 
- <div class="box">
+	<div class="box">
 	{% for picture in pictures %}
 		<div class="card">
 			<div class="imgBx">

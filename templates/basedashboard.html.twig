@@ -32,79 +32,80 @@
 <header>
 		<div class="header">
 			<a href="{{ path('dashboard') }}"><img src="/assets/images/logo-texte-blanc-fond-transparent.png" alt="logo"></a>
-			<div class="header-login">
-				{% if app.user %}
+				<div class="header-login">
+						{% if app.user %}
 					<div class="mb-3 ">
 						Bonjour
-						{{ app.user.firstname }}
-						<a href="{{ path('app_logout') }}">Deconnexion</a>
+							{{ app.user.firstname }}
+							<a href="{{ path('app_logout') }}">Deconnexion</a>
 					</div>
 				{% endif %}
-			</div>
+				</div>
+		</div>
 		</header>
 		<div class="row">
 			<div class="navConnexionDesktop d-none d-lg-flex justify-content-between align-items-center col-lg-12">
-				</div>
-			<div class="WrapperAndCentralBoxes">
-				<div
-					class="wrapper">
+				<div class="WrapperAndCentralBoxes">
+					<div class="wrapper">
 					<!-- LEFT SIDEBAR  -->
-					<nav class="CustomScrollbar pl-2" id="sidebar">
-						<div id="dismiss">
+						<nav class="CustomScrollbar pl-2" id="sidebar">
+							<div id="dismiss">
 							<i class="d-lg-none gg-close-o"></i>
-						</div>
-						<div class="sidebar-header border-bottom border-light">
-							<div class="card-profil">
-								<h3 class="d-flex align-items-center">
-									<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
 							</div>
+							
+							<div class="sidebar-header border-bottom border-light">
+								<div class="card-profil">
+									<h3 class="d-flex align-items-center">
+										<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
+								</div>
 							<h4 class="d-flex align-items-center">
 								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
-						</div>
+							</div>
 
-						<ul class="list-unstyled components">
-							<li>
-								<a class="d-flex align-items-center" href="{{ path('child_profile')}}">
-									<i class="gg-boy mr-4"></i>Profil Enfant</a>
+								<ul class="list-unstyled components">
+									<li>
+										<a class="d-flex align-items-center" href="{{ path('child_profile')}}">
+										<i class="gg-boy mr-4"></i>Profil Enfant</a>
 
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{ path('family_create') }}">
-									<i class="gg-smile-upside mr-4"></i>Famille</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{ path('school') }}">
-									<i class="gg-ruler mr-4"></i>Vie Scolaire</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="{{ path('family_create') }}">
+										<i class="gg-smile-upside mr-4"></i>Famille</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="{{ path('school') }}">
+										<i class="gg-ruler mr-4"></i>Vie Scolaire</a>
 
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{ path('healthbook_browse') }}">
-									<i class="gg-swiss mr-4"></i>Santé</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="{{ path('healthbook_browse') }}">
+										<i class="gg-swiss mr-4"></i>Santé</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="#">
+										<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
 
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{ path('picture')}}">
-									<i class="gg-image mr-4"></i>Galerie</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-phone mr-4"></i>Message</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="{{path('contact_browse')}}">
-									<i class="gg-mail mr-4"></i>Répertoire</a>
-							</li>
-							<li>
-								<a class="d-flex align-items-center" href="#">
-									<i class="gg-bell mr-4"></i>Notification</a>
-							</li>
-						</ul>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="{{ path('picture')}}">
+										<i class="gg-image mr-4"></i>Galerie</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="#">
+										<i class="gg-phone mr-4"></i>Message</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="{{path('contact_browse')}}">
+										<i class="gg-mail mr-4"></i>Répertoire</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center" href="#">
+										<i class="gg-bell mr-4"></i>Notification</a>
+									</li>
+								</ul>
 					</nav>
 				</div>
+				
 				<!-- Black background under menubar -->
 				<div class="overlay"></div>
 				<!--  -->
@@ -127,11 +128,12 @@
 						</div>
 					</nav>
 
+
 					<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
-						<div class="d-lg-none">
+						
 							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
 						<div class="arrow">
-							{# <i class="gg-arrow-left"></i> #}
+							
 						</div>
 
 					{% if families is defined %}
@@ -146,26 +148,14 @@
 					{% endfor %}
 						</select>
 					{% endif %}
-					{# </div> #}
-					<p id="selectedChild"></p>
+					</div>  
 
-
-						{# <div class="name-child">Enzo</div> #}
-						<div class="arrow">
-						{# 	<i class="gg-arrow-right"></i> #}
-						</div>
-						<div class="add d-lg-none">
-						{# 	<i class=" gg-add"></i> #}
-						</div>
-					</div>
-
-					<main> 
-						
-							
+			<main> 
 						{% block body %}
                         {% endblock %}
+						
 				</div>
-			</div>
+			</div> 
 		</main> 
 
 
@@ -188,6 +178,7 @@
 		</nav>
 
 	</footer>
+	
 
 	{% block javascripts %}
 		<!-- jQuery CDN - -->
@@ -198,6 +189,38 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 		<!-- jQuery Custom Scroller CDN -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<script var dropdown = document.querySelectorAll(".dropdown");
+var dropdownArray = Array.prototype.slice.call(dropdown, 0);
+dropdownArray.forEach(function (el) {
+  var button = el.querySelector('a[data-toggle="dropdown"]'),
+    menu = el.querySelector(".dropdown-menu"),
+    arrow = button.querySelector("i.icon-arrow");
+
+  button.onclick = function (event) {
+    if (!menu.hasClass("show")) {
+      menu.classList.add("show");
+      menu.classList.remove("hide");
+      arrow.classList.add("open");
+      arrow.classList.remove("close");
+      event.preventDefault();
+    } else {
+      menu.classList.remove("show");
+      menu.classList.add("hide");
+      arrow.classList.remove("open");
+      arrow.classList.add("close");
+      event.preventDefault();
+    }
+  };
+});
+
+Element.prototype.hasClass = function (className) {
+  return (
+    this.className &&
+    new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className)
+  );
+};
+></script>
 
 		<script type="text/javascript">
 			$(document).ready(function () {
@@ -215,13 +238,13 @@
 				$('a[aria-expanded=true]').attr('aria-expanded', 'false');
 				});
 			});
+
+		
 		</script>
 
-
 		<script type="text/javascript">
-			$('#selectType').on('change', function (e) {
-				var idSelect = e.currentTarget.value;
-				console.log(idSelect);
+			window.addEventListener('DOMContentLoaded', function(e) {
+				var idSelect = 0;
 				$.ajax({
 				url: '{{ path('ajax_action') }}',
 				type: "POST",
@@ -230,28 +253,214 @@
 					"idSelect": idSelect
 				},
 				async: true,
-				success: function (data) {
-
-
+				success: function test(data) {
 						{# SCHOOL BLOCK #}
 
 						{# SCHOOL - LASTPOST = created_at #}
 
 						let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSchoolEvent_lastPost');
-						selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
 
-						console.log(selectedChildSchoolEvent_lastPost);
+						if (data.lastSchoolEventArray.created_at !== undefined) {
+						selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
+						}
+
+						else {
+						selectedChildSchoolEvent_lastPost.textContent = ''	
+						}
 
 						{# SCHOOL - NAME #}
 
 						let selectedChildSchoolEvent_name = document.getElementById('selectedChildSchoolEvent_name')
 						selectedChildSchoolEvent_name.textContent = data.lastSchoolEventArray.name
 
+						if (data.lastSchoolEventArray.name === undefined) {
+						selectedChildSchoolEvent_name.textContent = 'Aucun entrée dans vie scolaire'
+						}
+
 						{# SCHOOL - FILE #}
 						let selectedChildSchoolEvent_img = document.getElementById('selectedChildSchoolEvent_img');
-						let img_src = selectedChildSchoolEvent_img.attributes[1];
-						img_src.value = data.lastSchoolEventArray.file;
 
+						if (data.lastSchoolEventArray.file !== undefined) {
+						let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1];
+						selectedChildSchoolEvent_img_src.value = data.lastSchoolEventArray.file;
+						}
+
+						else {
+						let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1];
+						selectedChildSchoolEvent_img_src.value = '../assets/images/ecoleprimaire.jpg'	
+						}
+
+
+						{# SCHOOL - READ BUTTON #}
+
+						let selectedChildSchoolEvent_detail = document.getElementById('selectedChildSchoolEvent_detail');
+						let selectedChildSchoolEvent_button_href = selectedChildSchoolEvent_detail.attributes[1]
+
+						if (data.lastSchoolEventArray.type = 'grade') {
+						selectedChildSchoolEvent_button_href.textContent = 'grade/read/'+data.lastSchoolEventArray.id
+						}
+
+						else {
+						selectedChildSchoolEvent_button_href.textContent = 'note/read/'+data.lastSchoolEventArray.id
+						}
+
+
+						{# HEALTH - BLOCK #}
+
+						{# HEALTH - LASPOST  #}
+
+						let selectedChildHealthEvent = document.getElementById('selectedChildHealthEvent');
+
+						if (data.lastHealthbook.created_at !== undefined) {
+						selectedChildHealthEvent.textContent = data.lastHealthbook.created_at.date;
+						}
+
+						else {
+						selectedChildHealthEvent.textContent = '';	
+						}
+
+
+						{# HEALTH - NAME #}
+
+						let selectedChildHealthEvent_name = document.getElementById('selectedChildHealthEvent_name')
+						selectedChildHealthEvent_name.textContent = data.lastHealthbook.name
+
+						if (data.lastHealthbook.name === undefined) {
+						selectedChildHealthEvent_name.textContent = 'Aucune entrée dans Santé'
+						}
+
+						{# HEALTH - FILE #}
+
+						let selectedChildHealthEvent_img = document.getElementById('selectedChildHealthEvent_img');
+
+						if (data.lastHealthbook.file !== undefined) { 
+						let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1];
+						selectedChildHealthEvent_img_src.value = data.lastHealthbook.file;
+						}
+
+						else {
+						let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1];
+						selectedChildHealthEvent_img_src.value = 'assets/images/sante.jpg'
+						}
+
+						{# HEALTH - READ BUTTON #}
+
+						let selectedChildHealthEvent_detail = document.getElementById('selectedChildHealthEvent_detail');
+						let selectedChildHealthEvent_button_href = selectedChildHealthEvent_detail.attributes[1]
+
+						selectedChildHealthEvent_button_href.textContent = 'healthbook/read/'+data.lastHealthbook.id
+				}
+				})
+			});
+		</script>
+
+		<script type="text/javascript">
+			$('#selectType').on('change', function (e) {
+				var idSelect = e.currentTarget.value;
+				$.ajax({
+				url: '{{ path('ajax_action') }}',
+				type: "POST",
+				dataType: "json",
+				data: {
+					"idSelect": idSelect
+				},
+				async: true,
+				success: function test(data) {
+						{# SCHOOL BLOCK #}
+
+						{# SCHOOL - LASTPOST = created_at #}
+
+						let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSchoolEvent_lastPost');
+
+						if (data.lastSchoolEventArray.created_at !== undefined) {
+						selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
+						}
+
+						else {
+						selectedChildSchoolEvent_lastPost.textContent = ''	
+						}
+
+						{# SCHOOL - NAME #}
+
+						let selectedChildSchoolEvent_name = document.getElementById('selectedChildSchoolEvent_name')
+						selectedChildSchoolEvent_name.textContent = data.lastSchoolEventArray.name
+
+						if (data.lastSchoolEventArray.name === undefined) {
+						selectedChildSchoolEvent_name.textContent = 'Aucun entrée dans vie scolaire'
+						}
+
+						{# SCHOOL - FILE #}
+						let selectedChildSchoolEvent_img = document.getElementById('selectedChildSchoolEvent_img');
+
+						if (data.lastSchoolEventArray.file !== undefined) {
+						let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1];
+						selectedChildSchoolEvent_img_src.value = data.lastSchoolEventArray.file;
+						}
+
+						else {
+						let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1];
+						selectedChildSchoolEvent_img_src.value = '../assets/images/ecoleprimaire.jpg'	
+						}
+
+
+						{# SCHOOL - READ BUTTON #}
+
+						let selectedChildSchoolEvent_detail = document.getElementById('selectedChildSchoolEvent_detail');
+						let selectedChildSchoolEvent_button_href = selectedChildSchoolEvent_detail.attributes[1]
+
+						if (data.lastSchoolEventArray.type = 'grade') {
+						selectedChildSchoolEvent_button_href.textContent = 'grade/read/'+data.lastSchoolEventArray.id
+						}
+
+						else {
+						selectedChildSchoolEvent_button_href.textContent = 'note/read/'+data.lastSchoolEventArray.id
+						}
+
+
+						{# HEALTH - BLOCK #}
+
+						{# HEALTH - LASPOST  #}
+
+						let selectedChildHealthEvent = document.getElementById('selectedChildHealthEvent');
+
+						if (data.lastHealthbook.created_at !== undefined) {
+						selectedChildHealthEvent.textContent = data.lastHealthbook.created_at.date;
+						}
+
+						else {
+						selectedChildHealthEvent.textContent = '';	
+						}
+
+
+						{# HEALTH - NAME #}
+
+						let selectedChildHealthEvent_name = document.getElementById('selectedChildHealthEvent_name')
+						selectedChildHealthEvent_name.textContent = data.lastHealthbook.name
+
+						if (data.lastHealthbook.name === undefined) {
+						selectedChildHealthEvent_name.textContent = 'Aucune entrée dans Santé'
+						}
+
+						{# HEALTH - FILE #}
+
+						let selectedChildHealthEvent_img = document.getElementById('selectedChildHealthEvent_img');
+
+						if (data.lastHealthbook.file !== undefined) { 
+						let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1];
+						selectedChildHealthEvent_img_src.value = data.lastHealthbook.file;
+						}
+
+						else {
+						let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1];
+						selectedChildHealthEvent_img_src.value = 'assets/images/sante.jpg'
+						}
+
+						{# HEALTH - READ BUTTON #}
+
+						let selectedChildHealthEvent_detail = document.getElementById('selectedChildHealthEvent_detail');
+						let selectedChildHealthEvent_button_href = selectedChildHealthEvent_detail.attributes[1]
+
+						selectedChildHealthEvent_button_href.textContent = 'healthbook/read/'+data.lastHealthbook.id
 				}
 				})
 			});

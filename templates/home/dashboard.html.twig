@@ -76,28 +76,24 @@
 		<!-- WARNING ! DESKTOP HTML NOW!  -->
 		<div class="desktop-container d-none d-lg-flex row">
 			<div class="card col-5 border border-grey" style="width: 18rem;">
-				<img src="assets/images/sante.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
 					<h5 class="card-title">Santé</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<h6>Dernier événement dans Santé<span id="selectedChildHealthEvent"></span></h6>
+					<img id="selectedChildHealthEvent_img"src="" class="card-img-top" alt="...">
+				<div class="card-body">
+					<p id="selectedChildHealthEvent_name" class="card-text">Test</p>
 					<div class="card-btn">
-						<a href="#" class="btn btn-primary">Modifier</a>
-						<a href="#" class="btn btn-primary">Supprimer</a>
+						<a id="selectedChildHealthEvent_detail" href="" class="btn btn-primary">Voir en détail</a>
 					</div>
 				</div>
 			</div>
 
 			<div class="card col-5 border border-grey" style="width: 18rem;" >
 				<h5 class="card-title">Vie Scolaire</h5>
-				<h6 >Dernier ajout dans vie scolaire <span id="selectedChildSchoolEvent_lastPost"></span> </h6>
+				<h6>Dernier ajout dans vie scolaire <span id="selectedChildSchoolEvent_lastPost"></span> </h6>
 				<img id="selectedChildSchoolEvent_img" src="" class="card-img-top" alt="...">
 				<div class="card-body">
 					<p id="selectedChildSchoolEvent_name"class="card-text"></p>
-
-					<a href="" class="btn btn-primary">Voir le bulletin en détail</a>
-
-					<a href="#" class="btn btn-primary">Modifier</a>
-					<a href="#" class="btn btn-primary">Supprimer</a>
+					<a id="selectedChildSchoolEvent_detail" href="" class="btn btn-primary">Voir en détail</a>
 				</div>
 			</div>
 			<div class="card col-5 border border-grey" style="width: 18rem;">

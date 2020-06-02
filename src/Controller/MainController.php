@@ -79,13 +79,14 @@ public function ajaxAction(Request $request)
                         'name' => $lastGrade->getName(),
                         'file' => $lastGrade->getFile(),
                         'created_at' => $lastGrade->getCreatedAt(),
-                        
+                        'type' => 'grade'
                     ];
                     $lastNoteArray = [
                         'id' => $lastNote->getId(),
                         'name' => $lastNote->getName(),
                         'file' => $lastNote->getFile(),
                         'created_at' => $lastNote->getCreatedAt(),
+                        'type' => 'note'
                     ];
                     if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
                         $lastSchoolEventArray = $lastGradeArray;
@@ -104,6 +105,7 @@ public function ajaxAction(Request $request)
                         'id' => $lastHealthbook->getId(),
                         'name' => $lastHealthbook->getName(),
                         'file' => $lastHealthbook->getFile(),
+                        'created_at' => $lastHealthbook->getCreatedAt()
                     ];
                 }
                 
