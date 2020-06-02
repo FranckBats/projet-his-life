@@ -55,8 +55,9 @@
 						</div>
 						<div class="sidebar-header border-bottom border-light">
 							<div class="card-profil">
+							<a class ="d-flex align-items-center" href="{{ path('people_profile')}}">
 								<h3 class="d-flex align-items-center">
-									<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
+									<i class="gg-user ml-2 mr-2"></i>{{ app.user.firstname }}</h3></a>
 							</div>
 							<h4 class="d-flex align-items-center">
 								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
@@ -82,7 +83,7 @@
 									<i class="gg-swiss mr-4"></i>Santé</a>
 							</li>
 							<li>
-								<a class="d-flex align-items-center" href="#">
+								<a class="d-flex align-items-center" href="{{ path('event_index') }}">
 									<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
 
 							</li>

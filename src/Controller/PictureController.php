@@ -6,9 +6,10 @@ use App\Entity\Picture;
 use App\Form\PictureType;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PictureController extends AbstractController
 {
@@ -33,6 +34,32 @@ class PictureController extends AbstractController
         return $this->render('picture/read.html.twig', [
             'controller_name' => 'PictureController',
             'picture' => $picture
+        ]);
+    }
+
+    /**
+     * @Route("/picture/edit/{id}", name="picture_edit", requirements={"id": "\d+"})
+     */
+    public function edit(Picture $picture, Request $request)
+    {
+        $form = $this->createForm(PictureType::class, $picture);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($picture);
+
+            $em->flush();
+
+            return $this->redirectToRoute('picture');
+        }
+
+        return $this->render('picture/edit.html.twig', [
+            'form' => $form->createView(),
+            
         ]);
     }
 
@@ -101,5 +128,23 @@ class PictureController extends AbstractController
             'controller_name' => 'PictureController',
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/picture/delete/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
+     */
+
+    public function delete( Request $request, Picture $picture): Response 
+    {
+        if ($this->isCsrfTokenValid('delete'.$picture->getId(), $request->request->get('_Token'))) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($picture);
+            $em->flush();
+
+            $this->addFlash('success', 'contact supprimé.');
+        }
+
+        return $this->redirectToRoute('picture');
     }
 }

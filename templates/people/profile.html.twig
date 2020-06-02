@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block title %}Mon compte{% endblock %}
 
@@ -7,14 +7,23 @@
 <h1>Mon compte</h1>
 
 <dl class="row">
-    <dt class="col-3">Nom d'utilisateur</dt>
+    <dt class="col-3">Prénom d'utilisateur</dt>
     <dd class="col-9">{{ people.firstname }}</dd>
     <dt class="col-3">Adresse e-mail</dt>
     <dd class="col-9">{{ people.email }}</dd>
+    <dt class="col-3">Liste de familles</dt>
+    {% for family in people.families %}
+    <dd class="col-9"> {{ family }} </li> </dd>
+    {% endfor %}
+    <dt class="col-3">Liste des enfants</dt>
+    {% for family in people.families %}
+    {% for child in family.children %}
+    <dd class="col-9"> {{ child }} </dd>
+    {% endfor %}
+    {% endfor %}
+
+    <td><a href="{{path('people_edit')}}" class="btn btn-primary ">Modifier mes informations personnelles</a></td>
 </dl>
 
-{# edition people
-edition mot de passe  
-edition famille ? #}
 
 {% endblock %}
