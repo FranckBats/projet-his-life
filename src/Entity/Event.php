@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Event
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue()
+     * @ORM\Id()
      */
     private $id;
 
@@ -48,6 +48,16 @@ class Event
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $beginAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $endAt;
 
     public function __construct()
     {
@@ -144,6 +154,30 @@ class Event
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getBeginAt(): ?\DateTimeInterface
+    {
+        return $this->beginAt;
+    }
+
+    public function setBeginAt(\DateTimeInterface $beginAt): self
+    {
+        $this->beginAt = $beginAt;
+
+        return $this;
+    }
+
+    public function getEndAt(): ?\DateTimeInterface
+    {
+        return $this->endAt;
+    }
+
+    public function setEndAt(?\DateTimeInterface $endAt): self
+    {
+        $this->endAt = $endAt;
 
         return $this;
     }

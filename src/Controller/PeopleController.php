@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\People;
+use App\Form\PeopleType;
 use App\Form\RegisterType;
 use App\Repository\PeopleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PeopleController extends AbstractController
 {
@@ -18,10 +21,45 @@ class PeopleController extends AbstractController
      */
     public function profile()
     {
-        $people = $this->getPeople(); 
+        $people = $this->getUser(); 
 
         return $this->render('people/profile.html.twig', [
             'people' => $people,
+        ]);
+    }
+
+    /**
+     * @Route("/people/edit/", name="people_edit")
+     */
+    public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $people = $this->getUser();
+
+        $form = $this->createForm(PeopleType::class, $people);
+
+        $form->handleRequest($request);
+        //dd ($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $form->get('password')->getData();
+            //dd($password);
+            if ($password !== null) {
+                $people->setPassword($passwordEncoder->encodePassword($people, $password));
+            
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($people);
+
+                $em->flush();
+
+                return $this->redirectToRoute('people_profile');
+            }
+        }
+
+        return $this->render('people/edit.html.twig', [
+            'people' => $people,
+            'form' => $form->createView(),
         ]);
     }
 }

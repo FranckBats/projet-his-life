@@ -27,7 +27,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact/edit/{id}", name="contact_edit", requirements={"id": "\d+"})
      */
-    public function Edit(Contact $contact, Request $request)
+    public function edit(Contact $contact, Request $request)
     {
         
         $form = $this->createForm(ContactType::class, $contact);
@@ -50,7 +50,7 @@ class ContactController extends AbstractController
 
         return $this->render('contact/edit.html.twig', [
             'form' => $form->createView(),
-            'contact' => $contact 
+            'contact' => $contact,
         ]);
     }
 
