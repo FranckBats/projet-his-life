@@ -13,7 +13,7 @@
 	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<!-- Our Custom CSS -->
 
-	<link rel="stylesheet" href="../assets/css/pictureStyle.css">
+	<link rel="stylesheet" href="../assets/css/childCard.css">
 	<link
 	rel="stylesheet" href="../assets/css/dashboardstyle.css">
 	<!-- icônes css.gg -->
@@ -23,16 +23,30 @@
 
 {% block body %}
 
-<ul class="picture">
+	<div class="btn-ajout">
+		<a href="{{path ('picture_add') }}" class="btn btn-primary">Ajouter une photo</a>
+	</div>
+
+{# <ul class="picture">
 {% for picture in pictures %}
   <li class="picture">
   <a href="{{ path('picture_read', {'id': picture.id }) }}"><img class="picture" src="{{ picture.file }}" width="200"></a>
     <p class="picture">{{ picture.title }}</p></li>
 	{% endfor %} 
  </ul>
-<div class="light"></div> 
+<div class="light"></div>  #}
 
-
+ <div class="box">
+	{% for picture in pictures %}
+		<div class="card">
+			<div class="imgBx">
+				 <a href="{{ path('picture_read', {'id': picture.id }) }}"><img class="picture" src="{{ picture.file }}" width="200"></a>
+			</div>
+			<div class="details">
+				<h2>{{ picture.title }}<br></h2>
+			</div>
+		</div>
+	{% endfor %}
+	</div>   
 
 </div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
-

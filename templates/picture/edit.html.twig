@@ -1,0 +1,18 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Modifier votre photo{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+   <a href="{{path('picture_edit', {'id': picture.id})}}" class="btn btn-primary "><button type="submit" class="btn btn-primary">Modifier</a></button>
+{{ form_end(form) }}
+
+<a href="{{path('picture_edit', {'id': picture.id})}}" class="btn btn-primary ">Modifier</a>
+
+ <a href="{{ path('picture_index') }}">Retour à la liste</a>
+
+{{ include('picture/_delete_form.html.twig') }}
+
+{% endblock %}
