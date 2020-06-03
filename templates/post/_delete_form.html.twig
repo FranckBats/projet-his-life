@@ -1,4 +1,4 @@
-{% if contact is defined %}
+{% if post is defined %}
 
 <form method="post" action="{{ path('post_delete', {'id': post.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir supprimer ce message ?');">
     <input type="hidden" name="_method" value="DELETE">

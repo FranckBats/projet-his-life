@@ -35,27 +35,27 @@ class Family
     private $people;
 
     /**
-     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="family")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="family", cascade={"remove"})
      */
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="family")
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="family", cascade={"remove"})
      */
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="family")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="family", cascade={"remove"})
      */
     private $phonebook;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="family")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="family", cascade={"remove"})
      */
     private $pictures;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Child::class, inversedBy="families")
+     * @ORM\ManyToMany(targetEntity=Child::class, inversedBy="families", cascade={"remove"})
      */
     private $children;
 

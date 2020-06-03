@@ -1,8 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
-{% block title %}Hello NoteController!{% endblock %}
+{% block title %}Mot des professeurs{% endblock %}
 
 {% block body %}
+
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+
 <div class="row">
     <h1>Mots des professeurs</h1>
 </div>
@@ -15,6 +22,7 @@
 </div>
 
 {% for note in notes %}
+<a href="{{path ('note_read', {'id': note.id})}}">
     <div class="card col-3">
     <div class="card-body">
         <h5 class="card-title">{{ note.name }}</h5>
@@ -22,12 +30,12 @@
         {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
     </div>
     
-   
-{% endfor %}
+ </a>  
     <div class="card-btn">
-						<a href="#" class="btn btn-primary">Modifier</a>
-						<a href="#" class="btn btn-primary">Supprimer</a>
+						<a href="{{path('note_edit', {'id': note.id})}}" class="btn btn-primary">Modifier</a>
+						{{ include('note/_delete_form.html.twig')}}
 	 			</div>
     </div>	 
 </div>
+{% endfor %}
 {% endblock %}

@@ -78,7 +78,7 @@ class ChildType extends AbstractType
                 ])
                             
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter un enfant'
+                'label' => 'Soumettre le formulaire'
             ])
         ;
     }

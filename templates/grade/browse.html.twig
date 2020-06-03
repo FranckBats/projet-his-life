@@ -21,6 +21,14 @@
 
 {% endblock %}
 {% block body %}
+
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+
+
 <div class="row">
     <h1>Bulletins de note</h1>
 </div>
@@ -56,11 +64,10 @@
 						<div class="card-btn">
             				<a href="{{ path('grade_edit', {'id': grade.id}) }}" class="btn btn-primary">Modifier</a>
             				{{ include('grade/_delete_form.html.twig') }}
-							
+							</a>
         				</div>
 					</div>
 				</div>
-			</a>
 {% endfor %}
 
 {% endblock %}

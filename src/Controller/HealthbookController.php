@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Healthbook;
 use App\Form\UploadType;
+use App\Form\UploadEditType;
 use App\Repository\HealthbookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,30 +14,34 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class HealthbookController extends AbstractController
 {
-    // /**
-    //  * @Route("/healthbook", name="healthbook")
-    //  */
-    // public function index()
-    // {
-    //     return $this->render('healthbook/index.html.twig', [
-    //         'controller_name' => 'HealthBookController',
-    //     ]);
-    // }
-
     /** 
      * @Route("/healthbook/browse", name="healthbook_browse")
      */
-    public function browse (HealthbookRepository $healthbookRepository)
+    public function browse()
     {
+        $families = $this->getUser()->getFamilies();
+        $healthbooksArray = array();
+
+        foreach ($families as $family) {
+            $children = $family->getChildren();
+
+            foreach ($children as $child) {
+                $healthbooks = $child->getHealthbooks()->getValues();
+
+                foreach($healthbooks as $healthbook) {
+                    array_push($healthbooksArray, $healthbook);
+                }
+            }
+        }
         return $this->render('healthbook/browse.html.twig', [
-            'healthbooks' => $healthbookRepository->findAll(),
+            'healthbooks' => $healthbooksArray,
         ]);
     }
 
     /** 
      * @Route("/healthbook/read/{id}", name="healthbook_read", requirements= {"id": "\d+"})
      */
-    public function read (Healthbook $healthbook)
+    public function read(Healthbook $healthbook)
     {
         return $this->render('healthbook/read.html.twig', [
             'healthbook' => $healthbook,
@@ -93,18 +98,73 @@ class HealthbookController extends AbstractController
         return $this->render('healthbook/add.html.twig', [
             'controller_name' => 'HealthbookController',
             'form' => $form->createView(),
+        
         ]);
     }
 
     /** 
      * @Route("/healthbook/delete/{id}", name="healthbook_delete", requirements= {"id": "\d+"})
      */
-    public function delete (Healthbook $healthbook, EntityManagerInterface $em)
+    public function delete (Request $request, Healthbook $healthbook, EntityManagerInterface $em)
     {
-        $em->remove($healthbook);
-        $em->flush();
+        if ($this->isCsrfTokenValid('delete'.$healthbook->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($healthbook);
+            $em->flush();
 
-        return $this->redirectToRoute('healthbook_browse', [
+            $this->addFlash('success', 'Carnet de Santé bien supprimé.');
+        }
+        
+        return $this->redirectToRoute('healthbook_browse');
+    }
+
+    /**
+     * @Route("/healthbook/edit/{id}", name="healthbook_edit", requirements={"id": "\d+"})
+     */
+    public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
+    {
+        $form = $this->createForm(UploadEditType::class, $healthbook);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+            
+            $newFile = $form['file']->getData();
+            
+            if ($newFile != null) {
+                function generateRandomString($length = 10)
+                {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $maxLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $maxLength - 1)];
+                    }
+                    return $randomString;
+                }
+                
+                $fileName = generateRandomString();
+                
+                $directory = 'assets/files/healthbooks/';
+                
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $healthbook->setFile($finalDirectory);
+                
+                $newFile->move($this->getParameter('healthbooks_directory'), $fileName.'.jpg');
+
+            }
+            
+            $em->persist($healthbook);
+            $em->flush();
+            return $this->redirectToRoute('healthbook_browse');
+        }
+            
+            
+        return $this->render('healthbook/edit.html.twig', [
+            'form' => $form->createView(),
+            'healthbook' => $healthbook,
         ]);
+
+
     }
 }

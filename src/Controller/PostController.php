@@ -17,11 +17,19 @@ class PostController extends AbstractController
      */
     public function browse(Request $request, PostRepository $postRepository)
     {
-        
-           // $posts = $postRepository->findBy(['createdAt' => 'DESC']);
+        $families = $this->getUser()->getFamilies();
+        $postsArray = array();
+
+        foreach ($families as $family) {
+            $posts = $family->getPosts()->getValues();
+            foreach ($posts as $post){
+                array_push ($postsArray, $post);
+            }
+        }
+        // $posts = $postRepository->findBy(['createdAt' => 'DESC']);
         
         return $this->render('post/browse.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $postsArray,
         ]);
     }
 
@@ -30,7 +38,10 @@ class PostController extends AbstractController
      */
     public function read(Post $post, Request $request)
     {
-        
+        return $this->render('post/read.html.twig', [
+            'controller_name' => 'PostController',
+            'post' => $post
+        ]);
     }
 
     /**
@@ -70,7 +81,7 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+            return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
         }
         return $this->render('post/edit.html.twig', [
         'form' => $form->createView(), 

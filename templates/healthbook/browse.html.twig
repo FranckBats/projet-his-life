@@ -22,7 +22,32 @@
 {% endblock %}
 {% block body %}
 
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+
 	<h1>Accueil Santé</h1>
+
+	{% for healthbook in healthbooks %}
+<div class="desktop-container d-none d-lg-flex row">
+			<a href="{{ path('healthbook_read', {'id': healthbook.id}) }}">
+				<div class="card col-3 border border-grey" style="width: 18rem;">
+				<h5 class="card-title">{{ healthbook.name }}</h5>
+					<img src="{{asset(healthbook.file)}}" class="card-img-top" alt="...">
+					<div class="card-body">
+						
+						{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
+						<div class="card-btn">
+            				<a href="{{ path('healthbook_edit', {'id': healthbook.id}) }}" class="btn btn-primary">Modifier</a>
+            				{{ include('healthbook/_delete_form.html.twig') }}
+        				</div>
+					</div>
+				</div>
+			</a>
+
+	{% endfor %}
 
 <a class ="btn btn-primary"href="{{path('healthbook_add')}}">Ajouter une page du carnet de Santé</a>
 

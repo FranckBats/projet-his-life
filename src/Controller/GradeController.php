@@ -28,7 +28,7 @@ class GradeController extends AbstractController
     /** 
      * @Route("/grade/browse", name="grade_browse")
      */
-    public function browse(GradeRepository $gradeRepository)
+    public function browse()
     {
         $families = $this->getUser()->getFamilies();
         $gradesArray = array();
@@ -116,7 +116,7 @@ class GradeController extends AbstractController
         $grade = new Grade;
 
         $form = $this->createForm(UploadType::class, $grade);
-
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

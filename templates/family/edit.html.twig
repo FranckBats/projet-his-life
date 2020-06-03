@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le profil enfant{% endblock %}
+
+{% block body %}
+
+
+
+<div class="col-4 mt-2">
+
+{{ form_start(form) }}
+	{{ form_row(form.name) }}
+	{{ form_row(form.picture) }}
+	
+
+
+<a href="{{path('family_profile', {'id': family.id}) }}" type="submit" class="btn btn-primary">{{form_row(form.submit)}}</a>
+
+{{ form_end(form) }}
+
+    
+
+{% block javascripts %}{% endblock %}
+
+{% endblock %}

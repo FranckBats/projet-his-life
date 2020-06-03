@@ -27,11 +27,13 @@ class UploadType extends AbstractType
     {   
         $people = $this->security->getUser();
         $families = $people->getFamilies($people);
+        $children = array();
+
         foreach ($families as $family) {
-            $children = $family->getChildren();
+            $child = $family->getChildren()->getValues();
+            $children [$family->getName()] = $child;
         }
-
-
+        
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
@@ -45,7 +47,9 @@ class UploadType extends AbstractType
                 'class' => Child::class,
                 'choices' => $children,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Soumettre le formulaire'
+            ])
             
         ;
     }

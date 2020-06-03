@@ -139,7 +139,7 @@ class ChildController extends AbstractController
             $em->remove($child);
             $em->flush();
 
-            $this->addFlash('success', 'Photo supprimé.');
+            $this->addFlash('success', 'Child supprimé.');
         }
         
         return $this->redirectToRoute('child_profile');

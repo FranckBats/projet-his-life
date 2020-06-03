@@ -1,0 +1,22 @@
+<div class="row">
+    <h1>Message</h1>
+</div>
+
+<div class="row">
+
+
+    <div class="card col-3">
+        <a href="{{path('grade_browse')}}" class="btn btn-primary">Retour</a>
+    <div class="card-body">
+        <h3 class="card-title">{{ post.title }}</h3>
+        <h4> {{post.content}} </h4>
+
+        
+    </div>
+        <div class="card-btn">
+            <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-primary">Modifier</a>
+            
+        </div>
+    </div>
+{{ include('post/_delete_form.html.twig')}}
+</div>

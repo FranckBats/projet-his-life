@@ -17,12 +17,12 @@
 	{{ form_row(form.families)}}
 
 
-
-<a href="{{path('child_read', {'id': child.id})}}" class="btn btn-primary "><button type="submit" class="btn btn-primary">Modifier</button></a>
+<a href="{{path('child_profile', {'id': child.id}) }}" type="submit" class="btn btn-primary">{{form_row(form.submit)}}</a>
 
 {{ form_end(form) }}
 
     
 
 {% block javascripts %}{% endblock %}
+
 {% endblock %}
