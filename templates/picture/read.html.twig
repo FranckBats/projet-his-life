@@ -25,9 +25,12 @@
 	<div>
 	{{picture.description}}
 	</div>
+	<div>
+	<a href="{{path('picture_edit', {'id': picture.id})}}" class="btn btn-primary ">Modifier</a>
+	</div>
 	<img src="{{ asset(picture.file) }}" alt="">
+ 
 	
-
 
   
    </div></div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}

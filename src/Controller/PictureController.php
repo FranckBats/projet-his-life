@@ -20,7 +20,7 @@ class PictureController extends AbstractController
     {
         $pictures = $pictureRepository->findPictureByPeopleId($this->getUser()->getId());
 
-        return $this->render('picture/index.html.twig', [
+        return $this->render('picture/browse.html.twig', [
             'controller_name' => 'PictureController',
             'pictures' => $pictures
         ]);
@@ -42,6 +42,7 @@ class PictureController extends AbstractController
      */
     public function edit(Picture $picture, Request $request)
     {
+        dd($picture);
         $form = $this->createForm(PictureType::class, $picture);
 
         $form->handleRequest($request);
@@ -134,17 +135,16 @@ class PictureController extends AbstractController
      * @Route("/picture/delete/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
 
-    public function delete( Request $request, Picture $picture): Response 
+    public function delete(Request $request, Picture $picture): Response 
     {
-        if ($this->isCsrfTokenValid('delete'.$picture->getId(), $request->request->get('_Token'))) {
-
+        if ($this->isCsrfTokenValid('delete'.$picture->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($picture);
             $em->flush();
-
-            $this->addFlash('success', 'contact supprimé.');
+            
+            $this->addFlash('success', 'Photo supprimée');
         }
-
+        
         return $this->redirectToRoute('picture');
     }
 }

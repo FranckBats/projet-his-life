@@ -17,7 +17,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact_browse")
      */
-    public function Browse(ContactRepository $contactRepository)
+    public function browse(ContactRepository $contactRepository)
     {
         return $this->render('contact/browse.html.twig', [
             'contacts' => $contactRepository->findAll(),
