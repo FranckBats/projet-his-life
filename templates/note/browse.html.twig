@@ -7,7 +7,12 @@
     <h1>Mots des professeurs</h1>
 </div>
 
-<div class="row">
+
+
+<div>
+	<a href="{{path('note_add')}}" class="btn btn-primary">Ajouter un message du professeur</a>
+	<a href="{{path('school')}}" class="btn btn-primary">Retour</a>
+</div>
 
 {% for note in notes %}
     <div class="card col-3">
@@ -16,8 +21,13 @@
         <img src="{{asset(note.file)}}" alt="">
         {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
     </div>
-    </div>
+    
+   
 {% endfor %}
-
+    <div class="card-btn">
+						<a href="#" class="btn btn-primary">Modifier</a>
+						<a href="#" class="btn btn-primary">Supprimer</a>
+	 			</div>
+    </div>	 
 </div>
 {% endblock %}

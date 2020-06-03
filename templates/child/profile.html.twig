@@ -32,7 +32,8 @@
 				{% if child.picture is not null %}
 				 <a href="{{ path('child_read', {'id': child.id }) }}"><img src="{{ asset(child.picture) }}" alt="images"></a>
 				{% else %}
-				<img src="{{ asset('assets/images/kid.jpg') }}" alt="images">
+				<a href="{{ path('child_read', {'id': child.id }) }}">
+				<img src="{{ asset('assets/images/kid.jpg') }}"alt="images"></a>
 				{% endif %}
 			</div>
 			<div class="details">

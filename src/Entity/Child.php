@@ -55,17 +55,17 @@ class Child
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Grade::class, mappedBy="child")
+     * @ORM\OneToMany(targetEntity=Grade::class, mappedBy="child", cascade={"remove"})
      */
     private $grades;
 
     /**
-     * @ORM\OneToMany(targetEntity=Healthbook::class, mappedBy="child")
+     * @ORM\OneToMany(targetEntity=Healthbook::class, mappedBy="child",cascade={"remove"})
      */
     private $healthbooks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="child")
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="child", cascade={"remove"})
      */
     private $notes;
 

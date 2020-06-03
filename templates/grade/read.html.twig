@@ -6,11 +6,16 @@
 
 
     <div class="card col-3">
+        <a href="{{path('grade_browse')}}" class="btn btn-primary">Retour</a>
     <div class="card-body">
-        <h5 class="card-title">{{ grade.name }}</h5>
+        <h3 class="card-title">{{ grade.name }}</h3>
         <img src="{{asset(grade.file)}}" alt="">
         {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
     </div>
+        <div class="card-btn">
+            <a href="{{ path('grade_edit', {'id': grade.id}) }}" class="btn btn-primary">Modifier</a>
+            {{ include('grade/_delete_form.html.twig')}}
+        </div>
     </div>
 
 

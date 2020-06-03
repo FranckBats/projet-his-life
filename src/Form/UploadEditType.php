@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Security;
 
 
 
-class UploadType extends AbstractType
+class UploadEditType extends AbstractType
 {
     private $security;
 
@@ -30,8 +30,7 @@ class UploadType extends AbstractType
         foreach ($families as $family) {
             $children = $family->getChildren();
         }
-
-
+        
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
@@ -39,7 +38,8 @@ class UploadType extends AbstractType
             ->add('file', FileType::class, [
                 'label' => 'Photo',
                 'data_class' => null,
-                'required' => true
+                'required' => false,
+                'mapped' => false,
             ])
             ->add('child', EntityType::class, [
                 'class' => Child::class,
@@ -57,3 +57,4 @@ class UploadType extends AbstractType
         ]);
     }
 }
+

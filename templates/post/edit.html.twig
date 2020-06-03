@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le message{% endblock %}
+
+{% block body %}
+
+{# What is it ? Works fine without this #}
+{# {{ include('contact/_form.html.twig', {'button_label': 'update'}) }} #}
+
+<div class="col-4 mt-2">
+{{form(form)}}
+
+{{ include('post/_delete_form.html.twig') }}
+
+{% endblock %}

@@ -58,12 +58,7 @@
 								<h3 class="d-flex align-items-center">
 									<i class="gg-user ml-2 mr-2"></i>{{ app.user.firstname }}</h3></a>
 							</div>
-							
-							<div class="sidebar-header border-bottom border-light">
-								<div class="card-profil">
-									<h3 class="d-flex align-items-center">
-										<i class="gg-user ml-2 mr-2"></i>Mon Profil</h3>
-								</div>
+
 							<h4 class="d-flex align-items-center">
 								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
 							</div>
@@ -97,7 +92,7 @@
 									<i class="gg-image mr-4"></i>Galerie</a>
 							</li>
 							<li>
-								<a class="d-flex align-items-center" href="#">
+								<a class="d-flex align-items-center" href="{{ path('post_browse')}}">
 									<i class="gg-phone mr-4"></i>Message</a>
 							</li>
 							<li>

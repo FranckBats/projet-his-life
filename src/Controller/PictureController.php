@@ -42,7 +42,6 @@ class PictureController extends AbstractController
      */
     public function edit(Picture $picture, Request $request)
     {
-        dd($picture);
         $form = $this->createForm(PictureType::class, $picture);
 
         $form->handleRequest($request);

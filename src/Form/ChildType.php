@@ -62,6 +62,7 @@ class ChildType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Photo',
+                'data_class' => null,
                 'constraints' => [
                     new Image([
                         // on peut mettre une taille max ou min

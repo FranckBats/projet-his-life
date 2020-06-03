@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Child;
 use App\Form\ChildType;
+use App\Form\UploadEditType;
 use App\Repository\ChildRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Repository\FamilyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -93,11 +95,11 @@ class ChildController extends AbstractController
 
             $directory = 'assets/files/child_picture/';
 
-            $finalDirectory = $directory.$fileName.'.jpg';
-            $child->setPicture($finalDirectory);
-
-            $picture->move($this->getParameter('child_picture_directory'), $fileName.'.jpg');
-
+            if ($picture != null) {
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $child->setPicture($finalDirectory);
+                $picture->move($this->getParameter('child_picture_directory'), $fileName.'.jpg');
+            }
 
             $family = $form->getData()->getFamilies()[0];
             $family->addChild($child);
@@ -141,5 +143,56 @@ class ChildController extends AbstractController
         }
         
         return $this->redirectToRoute('child_profile');
+    }
+
+    /**
+     *  @Route ("/child/edit/{id}", name="child_edit", requirements={"id": "\d+"})
+     */
+    public function edit(Child $child, Request $request)
+    {
+        $form = $this->createForm(ChildType::class, $child);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $newFile = $form['picture']->getData();
+
+            if ($newFile != null){
+                function generateRandomString($length = 10)
+                {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $maxLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $maxLength - 1)];
+                    }
+                    return $randomString;
+                }
+                
+                $fileName = generateRandomString();
+                
+                $directory = 'assets/files/child_picture/';
+                
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $child->setPicture($finalDirectory);
+            
+                $newFile->move($this->getParameter('child_picture_directory'), $fileName.'.jpg');
+            }
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($child);
+
+            $em->flush();
+
+            return $this->redirectToRoute('child_profile');
+        }
+
+        return $this->render('child/edit.html.twig', [
+            'form' => $form->createView(),
+            'child' => $child, 
+        ]);
+
     }
 }

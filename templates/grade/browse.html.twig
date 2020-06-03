@@ -46,18 +46,21 @@
 
 {% for grade in grades %}
 <div class="desktop-container d-none d-lg-flex row">
-			<div class="card col-3 border border-grey" style="width: 18rem;">
-			<h5 class="card-title">{{ grade.name }}</h5>
-				<img src="{{asset(grade.file)}}" class="card-img-top" alt="...">
-				<div class="card-body">
-					
-					{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
-					<div class="card-btn">
-						<a href="#" class="btn btn-primary">Modifier</a>
-						<a href="#" class="btn btn-primary">Supprimer</a>
+			<a href="{{path ('grade_read', {'id': grade.id})}}">
+				<div class="card col-3 border border-grey" style="width: 18rem;">
+				<h5 class="card-title">{{ grade.name }}</h5>
+					<img src="{{asset(grade.file)}}" class="card-img-top" alt="...">
+					<div class="card-body">
+						
+						{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
+						<div class="card-btn">
+            				<a href="{{ path('grade_edit', {'id': grade.id}) }}" class="btn btn-primary">Modifier</a>
+            				{{ include('grade/_delete_form.html.twig') }}
+							
+        				</div>
 					</div>
 				</div>
-			</div>
+			</a>
 {% endfor %}
 
 {% endblock %}

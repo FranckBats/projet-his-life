@@ -25,11 +25,16 @@
 	<h2>{{child.lastname}}</h2>
 	{% if child.picture is not null %}
 	<img src="{{ asset(child.picture) }}" alt="">
+	{% else %}
+	<img src="{{ asset('assets/images/kid.jpg') }}" alt="">
 	{% endif %}
 
     
+	<div class="card-btn">
+            <a href="{{ path('child_edit', {'id': child.id}) }}" class="btn btn-primary">Modifier</a>
+            {{ include('child/_delete_form.html.twig')}}
+        </div>
  
- {{ include('child/_delete_form.html.twig') }}
 
 
   

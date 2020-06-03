@@ -136,7 +136,6 @@ public function ajaxAction(Request $request)
                     ];
                 }                
             }
-            
         }
     ;
     /* on récupère la valeur envoyée */
