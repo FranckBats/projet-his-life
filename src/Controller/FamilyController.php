@@ -41,9 +41,14 @@ class FamilyController extends AbstractController
 
             $family->setName($form->getData()->getName());
             $family->addPerson($this->getUser());
+
+            $token = bin2hex(random_bytes(32));
+            $family->setToken($token);
+            
             $em->persist($family);
             $em->flush();
-
+            
+            $this->addFlash('success', 'Vous avez bien créé votre famille. Vous pouvez inviter un autre utilisateur avec ce code '.$token);
             return $this->redirectToRoute('dashboard');
         }
 

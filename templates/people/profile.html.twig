@@ -11,9 +11,12 @@
     <dd class="col-9">{{ people.firstname }}</dd>
     <dt class="col-3">Adresse e-mail</dt>
     <dd class="col-9">{{ people.email }}</dd>
+   
     <dt class="col-3">Liste de familles</dt>
     {% for family in people.families %}
     <dd class="col-9"> {{ family }} </li> </dd>
+    <dt class="col-3">Code d'invitation</dt>
+    <dd class="col-9">{{ family.token }}</dd> 
     {% endfor %}
     <dt class="col-3">Liste des enfants</dt>
     {% for family in people.families %}

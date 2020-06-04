@@ -74,6 +74,11 @@
 		</div>
 
 		<!-- WARNING ! DESKTOP HTML NOW!  -->
+		{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+		{% endfor %}
 		<div class="desktop-container d-none d-lg-flex row">
 			<div class="card col-5 border border-grey" style="width: 18rem;">
 					<h5 class="card-title">Santé</h5>
