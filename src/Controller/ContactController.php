@@ -19,8 +19,20 @@ class ContactController extends AbstractController
      */
     public function browse(ContactRepository $contactRepository)
     {
+        $families = $this->getUser()->getFamilies();
+      
+        $contactsArray = array();
+        
+
+        foreach ($families as $family) {
+            $contacts = $family->getPhonebook()->getValues();
+            foreach ($contacts as $contact){
+                array_push ($contactsArray, $contact);
+            }
+        }
+
         return $this->render('contact/browse.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+            'contacts' => $contactsArray,
         ]);
     }
 

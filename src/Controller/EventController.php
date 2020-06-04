@@ -20,8 +20,20 @@ class EventController extends AbstractController
      */
     public function index(EventRepository $eventRepository): Response
     {
+        $families = $this->getUser()->getFamilies();
+        $eventsArray = array();
+
+        foreach ($families as $family) {
+            $events = $family->getEvents()->getValues();
+            
+            foreach ($events as $event){
+
+                array_push ($eventsArray, $event);
+            }
+        }
         return $this->render('event/index.html.twig', [
-            'events' => $eventRepository->findAll(),
+            'events' => $eventsArray,
+
         ]);
     }
 
