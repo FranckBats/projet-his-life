@@ -14,6 +14,22 @@
 						</div>
 
 					{% if families is defined %}
+					<div class="form-group">
+						<select class="custom-select" id="selectType">
+					{% for family in families %}
+							{% if family.children is defined %}
+							{% for child in family.children %}
+							<option value="{{child.id}}">{{child.firstname}}</option>
+							{% endfor %}
+							{% endif %}
+					{% endfor %}
+						</select>
+					{% endif %}
+					</div>  
+
+
+{# 
+					{% if families is defined %}
 					{% for family in families %}
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,7 +46,7 @@
 						</div>
 					</div>
 					{% endfor %}
-					{% endif %}
+					{% endif %} #}
 		<div class="arrow">
 			<i class="gg-arrow-right"></i>
 		</div>

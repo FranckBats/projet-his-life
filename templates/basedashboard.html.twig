@@ -59,8 +59,6 @@
 									<i class="gg-user ml-2 mr-2"></i>{{ app.user.firstname }}</h3></a>
 							</div>
 
-							<h4 class="d-flex align-items-center">
-								<i class="gg-log-out ml-2 mr-3"></i>Déconnexion</h4>
 							</div>
 
 						<ul class="list-unstyled components">
@@ -137,19 +135,7 @@
 							
 						</div>
 
-					{% if families is defined %}
-					<div class="form-group">
-						<select class="custom-select" id="selectType">
-					{% for family in families %}
-							{% if family.children is defined %}
-							{% for child in family.children %}
-							<option value="{{child.id}}">{{child.firstname}}</option>
-							{% endfor %}
-							{% endif %}
-					{% endfor %}
-						</select>
-					{% endif %}
-					</div>  
+
 
 			<main> 
 						{% block body %}
