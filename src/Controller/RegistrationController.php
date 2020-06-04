@@ -20,6 +20,7 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FamilyRepository $familyRepository, MailerInterface $mailer): Response
     {
+    
         $families = $familyRepository->findAll();
         
         $familiesByToken = array();
@@ -36,8 +37,9 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
         
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $token = $form->get('invitation_code')->getData();
+            $token = $request->query->get('token');
 
             if (array_key_exists($token, $familiesByToken)) {
                 $family = $familiesByToken[$token];
