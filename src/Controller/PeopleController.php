@@ -62,4 +62,20 @@ class PeopleController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/people/{id}", name="people_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     */
+    public function delete(Request $request, People $people): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$people->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($people);
+            $em->flush();
+
+            $this->addFlash('success', 'Profil supprimé.');
+        }
+        
+        return $this->redirectToRoute('app_logout');
+    }
 }

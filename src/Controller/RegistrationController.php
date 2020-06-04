@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\People;
 use App\Form\RegisterType;
 use App\Repository\FamilyRepository;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +18,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FamilyRepository $familyRepository): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FamilyRepository $familyRepository, MailerInterface $mailer): Response
     {
         $families = $familyRepository->findAll();
         
@@ -53,7 +55,16 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
+            $email = (new Email())
+            ->from('gaetancanovas@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Inscription sur le site His Life')
+            ->text('Bienvenue sur His Life' . $user->getFirstname() . $user->getLastname())
+            ->html('<img class="logomail" src="../assets/images/logo-fond-transparent.png" alt="logo"><p>Bienvenur sur His Life</p>');
 
+            $mailer->send($email);
+            
+            
             return $this->redirectToRoute('app_login');
         }
 

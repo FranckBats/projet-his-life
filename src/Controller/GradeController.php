@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 
 class GradeController extends AbstractController
 {
@@ -111,7 +114,7 @@ class GradeController extends AbstractController
     /**
      * @Route("/grade/add", name="grade_add")
      */
-    public function add(Request $request, EntityManagerInterface $em)
+    public function add(Request $request, EntityManagerInterface $em, NotifierInterface $notifier)
     {
         $grade = new Grade;
 
@@ -131,25 +134,46 @@ class GradeController extends AbstractController
                 $randomString = '';
                 for ($i = 0; $i < $length; $i++)
                 {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
+                    $randomString .= $characters[rand(0, $maxLength - 1)];
                 }
                 return $randomString;
             }
-
+            
             $fileName = generateRandomString();
-
+            
             $grade->setName($name);
-
+            
             $directory = 'assets/files/grades/';
-
+            
             $finalDirectory = $directory.$fileName.'.jpg';
             $grade->setFile($finalDirectory);
-
+            
             $em->persist($grade);
             
             $file->move($this->getParameter('grades_directory'), $fileName.'.jpg');
-
+            
             $em->flush();
+            
+            $notification = (new Notification('Nouveau bulletin ajouté', ['email']))
+            ->content('Un nouveau bulletin a été ajouté : ' .$grade->getName());
+            
+            $family = $form->getData()->getChild()->getFamilies()->first();
+            dump($family);
+
+            
+            $people = $family->getPeople()->getValues();
+            $peopleMails = array();
+
+            foreach ($people as $person) {
+                if ($person != $this->getUser()) {
+                    $user = $person->getEmail();
+                    
+                    $recipient = new Recipient(
+                        $user,
+                    );
+                    $notifier->send($notification, $recipient);
+                }    
+            }
 
             return $this->redirectToRoute('grade_browse');
         }

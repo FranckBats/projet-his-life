@@ -28,7 +28,8 @@ class FamilyType extends AbstractType
                         // on peut mettre une taille max ou min
                     ])
                     ],
-                'required' => false
+                'required' => false,
+                'data_class' => null
              ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter une famille',

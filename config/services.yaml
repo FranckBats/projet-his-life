@@ -9,6 +9,7 @@ parameters:
     healthbooks_directory: '%kernel.project_dir%/public/assets/files/healthbooks/'
     pictures_directory: '%kernel.project_dir%/public/assets/files/pictures/'
     child_picture_directory: '%kernel.project_dir%/public/assets/files/child_picture/'
+    family_picture_directory: '%kernel.project_dir%/public/assets/files/family_picture/'
 
 services:
     # default configuration for services in *this* file
