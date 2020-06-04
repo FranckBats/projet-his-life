@@ -22,9 +22,12 @@
 {% endblock %}
 {% block body %}
 
+<h1>Mes enfants</h1>
+
 	<div class="btn-ajout">
 		<a href="{{path('child_create') }}" class="btn btn-primary">Ajouter un enfant</a>
 	</div>
+	<div class="content">
 	<div class="box">
 	{% for child in children %}
 		<div class="card">
@@ -41,5 +44,6 @@
 			</div>
 		</div>
 	{% endfor %}
+	</div>
 	</div>
 </div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}

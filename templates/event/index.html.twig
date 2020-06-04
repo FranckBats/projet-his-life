@@ -3,8 +3,8 @@
 {% block title %}Event index{% endblock %}
 
 {% block body %}
-    <h1>Event index</h1>
-
+    <h1>Liste des événéments du calendrier</h1>
+<div class="col-10">
     <table class="table">
         <thead>
             <tr>
@@ -34,6 +34,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('event_new') }}">Create new</a>
 {% endblock %}

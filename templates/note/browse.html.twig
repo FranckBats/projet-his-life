@@ -10,37 +10,40 @@
             </div>
 {% endfor %}
 
-<div class="row">
+<div>
     <h1>Mots des professeurs</h1>
 </div>
 
 
 
-{# <div>
+<div>
 	<a href="{{path('note_add')}}" class="btn btn-primary">Ajouter un message du professeur</a>
 	<a href="{{path('school')}}" class="btn btn-primary">Retour</a>
 </div>
 
 {% for note in notes %}
-<a href="{{path ('note_read', {'id': note.id})}}">
-    <div class="card col-3">
-    <div class="card-body">
-        <h5 class="card-title">{{ note.name }}</h5>
-        <img src="{{asset(note.file)}}" alt="">
-       
+<div class="desktop-container d-none d-lg-flex row">
+    <a href="{{path ('note_read', {'id': note.id})}}">
+        <div class="card col-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ note.name }}</h5>
+            <img src="{{asset(note.file)}}" alt="">
+          
+        </div>
+        
+    </a>  
+        <div class="card-btn">
+                <a href="{{path('note_edit', {'id': note.id})}}" class="btn btn-primary">Modifier</a>
+                {{ include('note/_delete_form.html.twig')}}
+            </div>
+        </div>	 
     </div>
-    
- </a>  
-    <div class="card-btn">
-						<a href="{{path('note_edit', {'id': note.id})}}" class="btn btn-primary">Modifier</a>
-						{{ include('note/_delete_form.html.twig')}}
-	 			</div>
-    </div>	 
-</div> #}
-{# {% endfor %} #}
+</div><
+{% endfor %}
+</div></div></div>
+{% endblock %}
 
-
-<div class="container">
+{# <div class="container">
   <div class="card-group vgr-cards">
     <div class="cardNote">
       <div class="cardNote-img-body">
@@ -73,7 +76,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> #}
 
 
-{% endblock %}

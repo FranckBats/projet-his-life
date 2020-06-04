@@ -22,7 +22,6 @@ class ContactController extends AbstractController
         $families = $this->getUser()->getFamilies();
       
         $contactsArray = array();
-        
 
         foreach ($families as $family) {
             $contacts = $family->getPhonebook()->getValues();
