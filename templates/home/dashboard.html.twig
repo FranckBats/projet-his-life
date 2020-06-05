@@ -88,9 +88,9 @@
 			<div class="card col-5 border border-grey" style="width: 18rem;">
 					<h5 class="card-title">Santé</h5>
 					<h6>Dernier événement dans Santé<span id="selectedChildHealthEvent"></span></h6>
-					<img id="selectedChildHealthEvent_img"src="" class="card-img-top" alt="...">
+					<img id="selectedChildHealthEvent_img"src="{{ asset('assets/images/sante.jpg') }}" class="card-img-top" alt="...">
 				<div class="card-body">
-					<p id="selectedChildHealthEvent_name" class="card-text">Test</p>
+					<p id="selectedChildHealthEvent_name" class="card-text"></p>
 					<div class="card-btn">
 						<a id="selectedChildHealthEvent_detail" href="" class="btn btn-primary">Voir en détail</a>
 					</div>
@@ -100,7 +100,7 @@
 			<div class="card col-5 border border-grey" style="width: 18rem;" >
 				<h5 class="card-title">Vie Scolaire</h5>
 				<h6>Dernier ajout dans vie scolaire <span id="selectedChildSchoolEvent_lastPost"></span> </h6>
-				<img id="selectedChildSchoolEvent_img" src="" class="card-img-top" alt="...">
+				<img id="selectedChildSchoolEvent_img" src="{{ asset('assets/images/ecoleprimaire.jpg') }}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<p id="selectedChildSchoolEvent_name"class="card-text"></p>
 					<a id="selectedChildSchoolEvent_detail" href="" class="btn btn-primary">Voir en détail</a>

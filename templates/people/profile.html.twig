@@ -12,21 +12,21 @@
     <dt class="col-3">Adresse e-mail</dt>
     <dd class="col-9">{{ people.email }}</dd>
    
-    <dt class="col-3">Liste de familles</dt>
+    <dt class="col-12">Liste de familles</dt>
     {% for family in people.families %}
-    <dd class="col-9"> {{ family }} </li> </dd>
-    <dt class="col-3">Code d'invitation</dt>
-    <dd class="col-9">{{ family.token }}</dd> 
+    <dd class="col-3"> {{ family }} </li> </dd>
+    <dt class="col-2">Lien d'invitation :</dt>
+    <dd class="col-7">www.localhost:8080/register?token={{ family.token }}</dd> 
     {% endfor %}
-    <dt class="col-3">Liste des enfants</dt>
+    <dt class="col-12">Liste des enfants</dt>
     {% for family in people.families %}
     {% for child in family.children %}
-    <dd class="col-9"> {{ child }} </dd>
+    <dd class="col-3"> {{ child }} </dd>
     {% endfor %}
     {% endfor %}
 
-    <td><a href="{{path('people_edit')}}" class="btn btn-primary ">Modifier mes informations personnelles</a></td>
 </dl>
+    <td><a href="{{path('people_edit')}}" class="btn btn-primary ">Modifier mes informations personnelles</a></td>
 
 
 	<div class="card-btn">
