@@ -58,8 +58,7 @@
 								<h3 class="d-flex align-items-center">
 									<i class="gg-user ml-2 mr-2"></i>{{ app.user.firstname }}</h3></a>
 							</div>
-
-							</div>
+						</div>
 
 						<ul class="list-unstyled components">
 							<li>
@@ -81,7 +80,7 @@
 									<i class="gg-swiss mr-4"></i>Santé</a>
 							</li>
 							<li>
-								<a class="d-flex align-items-center" href="{{ path('event_index') }}">
+								<a class="d-flex align-items-center" href="{{ path('evenement_index') }}">
 									<i class="gg-calendar-dates mr-4"></i>Calendrier</a>
 
 							</li>
@@ -178,7 +177,9 @@
 		<!-- jQuery Custom Scroller CDN -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-		<script var dropdown = document.querySelectorAll(".dropdown");
+		<script> 
+		
+		var dropdown = document.querySelectorAll(".dropdown");
 var dropdownArray = Array.prototype.slice.call(dropdown, 0);
 dropdownArray.forEach(function (el) {
   var button = el.querySelector('a[data-toggle="dropdown"]'),
@@ -208,9 +209,9 @@ Element.prototype.hasClass = function (className) {
     new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className)
   );
 };
-></script>
+</script>
 
-		<script type="text/javascript">
+		{# <script type="text/javascript">
 			$(document).ready(function () {
 				$("#sidebar").mCustomScrollbar({theme: "minimal"});
 
@@ -228,7 +229,7 @@ Element.prototype.hasClass = function (className) {
 			});
 
 		
-		</script>
+		</script> #}
 
 		<script type="text/javascript">
 			window.addEventListener('DOMContentLoaded', function(e) {

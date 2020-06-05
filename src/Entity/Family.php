@@ -40,9 +40,9 @@ class Family
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="family", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="family", cascade={"remove"})
      */
-    private $events;
+    private $evenements;
 
     /**
      * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="family", cascade={"remove"})
@@ -78,7 +78,7 @@ class Family
     {
         $this->people = new ArrayCollection();
         $this->posts = new ArrayCollection();
-        $this->events = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
         $this->phonebook = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->children = new ArrayCollection();
@@ -178,30 +178,30 @@ class Family
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection|Evenement[]
      */
-    public function getEvents(): Collection
+    public function getEvenements(): Collection
     {
-        return $this->events;
+        return $this->evenements;
     }
 
-    public function addEvent(Event $event): self
+    public function addEvent(Evenement $evenement): self
     {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->setFamily($this);
+        if (!$this->evenenemens->contains($evenement)) {
+            $this->eventemens[] = $evenement;
+            $evenement->setFamily($this);
         }
 
         return $this;
     }
 
-    public function removeEvent(Event $event): self
+    public function removeEvent(Evenement $evenement): self
     {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
+        if ($this->evenements->contains($evenement)) {
+            $this->evenements->removeElement($evenement);
             // set the owning side to null (unless already changed)
-            if ($event->getFamily() === $this) {
-                $event->setFamily(null);
+            if ($evenement->getFamily() === $this) {
+                $evenement->setFamily(null);
             }
         }
 

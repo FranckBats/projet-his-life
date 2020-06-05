@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\EventRepository;
+use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EventRepository::class)
+ * @ORM\Entity(repositoryClass=EvenementRepository::class)
  */
-class Event
+class Evenement
 {
     /**
      * @ORM\Column(type="integer")
@@ -30,12 +30,12 @@ class Event
     private $type;
 
     /**
-     * @ORM\ManyToMany(targetEntity=People::class, mappedBy="events")
+     * @ORM\ManyToMany(targetEntity=People::class, mappedBy="evenements")
      */
     private $people;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="events")
+     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="evenements")
      */
     private $family;
 
@@ -63,6 +63,7 @@ class Event
     {
         $this->people = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -106,7 +107,7 @@ class Event
     {
         if (!$this->people->contains($person)) {
             $this->people[] = $person;
-            $person->addEvent($this);
+            $person->addEvenement($this);
         }
 
         return $this;
@@ -116,7 +117,7 @@ class Event
     {
         if ($this->people->contains($person)) {
             $this->people->removeElement($person);
-            $person->removeEvent($this);
+            $person->removeEvenement($this);
         }
 
         return $this;
