@@ -57,62 +57,60 @@ class MainController extends AbstractController
 */
 public function ajaxAction(Request $request)
 {
-    $familiesOfUser = $this->getUser()->getFamilies();
 
-    $childrenArray = array();
-    
-    foreach ($familiesOfUser as $family) {
-        if(!empty($family->getChildren()->getValues())) {
-            $childObject = $family->getChildren()->getValues();
-
-            foreach ($childObject as $child) {
-                dump($child);
-                // ### GRADES && NOTE ###
-                $lastGrade = $child->getGrades()->last();
-                $lastGradeArray = [];
-                $lastNote = $child->getNotes()->last();
-                $lastNoteArray = [];
-                $lastSchoolEventArray = [];
-                dump($lastGrade);
-                dump($lastNote);
-
-                if ($lastGrade != false) {
-                    $lastGradeArray = [
-                        'id' => $lastGrade->getId(),
-                        'name' => $lastGrade->getName(),
-                        'file' => $lastGrade->getFile(),
-                        'created_at' => $lastGrade->getCreatedAt(),
-                        'type' => 'grade'
-                    ];
-                }
-
-                if ($lastNote != false) {
-                    $lastNoteArray = [
-                        'id' => $lastNote->getId(),
-                        'name' => $lastNote->getName(),
-                        'file' => $lastNote->getFile(),
-                        'created_at' => $lastNote->getCreatedAt(),
-                        'type' => 'note'
-                    ];
-                }
-
-                if ($lastGradeArray && $lastNoteArray != false) {
-                    if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
+    if ($this->getUser() !== false) {
+        $familiesOfUser = $this->getUser()->getFamilies();
+        
+        $childrenArray = array();
+        
+        foreach ($familiesOfUser as $family) {
+            if(!empty($family->getChildren()->getValues())) {
+                $childObject = $family->getChildren()->getValues();
+                
+                foreach ($childObject as $child) {
+                    // ### GRADES && NOTE ###
+                    $lastGrade = $child->getGrades()->last();
+                    $lastGradeArray = [];
+                    $lastNote = $child->getNotes()->last();
+                    $lastNoteArray = [];
+                    $lastSchoolEventArray = [];
+                    
+                    if ($lastGrade != false) {
+                        $lastGradeArray = [
+                            'id' => $lastGrade->getId(),
+                            'name' => $lastGrade->getName(),
+                            'file' => $lastGrade->getFile(),
+                            'created_at' => $lastGrade->getCreatedAt(),
+                            'type' => 'grade'
+                        ];
+                    }
+                    
+                    if ($lastNote != false) {
+                        $lastNoteArray = [
+                            'id' => $lastNote->getId(),
+                            'name' => $lastNote->getName(),
+                            'file' => $lastNote->getFile(),
+                            'created_at' => $lastNote->getCreatedAt(),
+                            'type' => 'note'
+                        ];
+                    }
+                    
+                    if ($lastGradeArray && $lastNoteArray != false) {
+                        if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
+                            $lastSchoolEventArray = $lastGradeArray;
+                        }
+                        else {
+                            $lastSchoolEventArray = $lastNoteArray;
+                        }
+                    }
+                    else if ($lastGradeArray != false) {
                         $lastSchoolEventArray = $lastGradeArray;
                     }
                     else {
                         $lastSchoolEventArray = $lastNoteArray;
                     }
-                }
-                else if ($lastGradeArray != false) {
-                    $lastSchoolEventArray = $lastGradeArray;
-                }
-                else {
-                    $lastSchoolEventArray = $lastNoteArray;
-                }
-
                     
-                    dump($lastSchoolEventArray);
+                    
                     // ### HEALTHBOOK ###
                     $lastHealthbook = $child->getHealthbooks()->last();
                     $lastHealthbookArray = [];
@@ -137,30 +135,31 @@ public function ajaxAction(Request $request)
                 }                
             }
         }
-    ;
-    /* on récupère la valeur envoyée */
-    $idSelect = $request->request->get('idSelect');
-
-
-    if ($idSelect == 0) {
-        $selectChild = array_shift($childrenArray);
+        ;
+        /* on récupère la valeur envoyée */
+        $idSelect = $request->request->get('idSelect');
+        
+        
+        if ($idSelect == 0) {
+            $selectChild = array_shift($childrenArray);
+        }
+        
+        else {
+            $selectChild = $childrenArray[$idSelect];
+        }
+        
+        $response = new Response(json_encode($selectChild));
+        
+        /* On renvoie une réponse encodée en JSON */
+        // $response = new Response(json_encode(array($childrenArray)));
+        // dd($response);
+        
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
-
-    else {
-        $selectChild = $childrenArray[$idSelect];
-    }
-
-    $response = new Response(json_encode($selectChild));
-
-	/* On renvoie une réponse encodée en JSON */
-    // $response = new Response(json_encode(array($childrenArray)));
-    // dd($response);
-    
-    $response->headers->set('Content-Type', 'application/json');
-
-    return $response;
 }
-
+    
     /**
      * @Route("/dashboard/school", name="school")
      */
