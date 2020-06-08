@@ -1,7 +1,7 @@
 {% extends 'basedashboard.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('event_new') }}">Creez un nouvel évènement</a>
+    <a href="{{ path('evenement_new') }}">Creez un nouvel évènement</a>
 
     <div id="calendar-holder"></div>
 
@@ -48,4 +48,5 @@
             calendar.render();
         });
     </script>
-{% endblock %}{% endblock %}
+{% endblock %}
+{% endblock %}

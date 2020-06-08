@@ -37,9 +37,9 @@ class People implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Event::class, inversedBy="people")
+     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="people")
      */
-    private $events;
+    private $evenements;
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="people")
@@ -94,7 +94,7 @@ class People implements UserInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime;
-        $this->events = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->families = new ArrayCollection();
@@ -183,26 +183,26 @@ class People implements UserInterface
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection|Evenement[]
      */
-    public function getEvents(): Collection
+    public function getEvenements(): Collection
     {
-        return $this->events;
+        return $this->evenements;
     }
 
-    public function addEvent(Event $event): self
+    public function addEvenement(Evenement $evenement): self
     {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
         }
 
         return $this;
     }
 
-    public function removeEvent(Event $event): self
+    public function removeEvenement(Evenement $evenement): self
     {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
+        if ($this->evenements->contains($evenement)) {
+            $this->evenements->removeElement($evenement);
         }
 
         return $this;
