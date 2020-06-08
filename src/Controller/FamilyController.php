@@ -29,9 +29,9 @@ class FamilyController extends AbstractController
     /**
      * @Route("/family/create", name="family_create")
      */
-    public function create(Request $request, EntityManagerInterface $em, Family $family)
+    public function create(Request $request, EntityManagerInterface $em)
     {
-        $this->denyAccessUnlessGranted('view', $family);
+        
 
         $family = new Family;
 
