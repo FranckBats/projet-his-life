@@ -29,8 +29,10 @@ class FamilyController extends AbstractController
     /**
      * @Route("/family/create", name="family_create")
      */
-    public function create(Request $request, EntityManagerInterface $em)
+    public function create(Request $request, EntityManagerInterface $em, Family $family)
     {
+        $this->denyAccessUnlessGranted('view', $family);
+
         $family = new Family;
 
         $form = $this->createForm(FamilyType::class, $family);
@@ -65,6 +67,9 @@ class FamilyController extends AbstractController
      */
     public function read(Family $family)
     {
+
+        $this->denyAccessUnlessGranted('view', $family);
+
         return $this->render('family/read.html.twig', [
             'controller_name' => 'FamilyController',
             'family' => $family
@@ -76,6 +81,8 @@ class FamilyController extends AbstractController
      */
     public function delete(Request $request, Family $family): Response
     {
+        $this->denyAccessUnlessGranted('delete', $family);
+
         if ($this->isCsrfTokenValid('delete'.$family->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($family);
@@ -92,6 +99,8 @@ class FamilyController extends AbstractController
      */
     public function edit(Family $family, Request $request)
     {
+        $this->denyAccessUnlessGranted('edit', $family);
+
         $form = $this->createForm(FamilyType::class, $family);
 
         $form->handleRequest($request);

@@ -40,7 +40,8 @@ class ContactController extends AbstractController
      */
     public function edit(Contact $contact, Request $request)
     {
-        
+        $this->denyAccessUnlessGranted('edit', $contact);
+
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
