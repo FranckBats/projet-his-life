@@ -1,6 +1,5 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}Mot des professeurs{% endblock %}
 
 {% block body %}
 
@@ -10,72 +9,55 @@
             </div>
 {% endfor %}
 
-<div>
-    <h1>Mots des professeurs</h1>
-</div>
+<section class="light-content our-team">
 
 
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Mots des Professeurs</h2>
+						<a href="{{ path('note_add') }}" class="large-button green-color">Ajouter</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 
-<div>
-	<a href="{{path('note_add')}}" class="btn btn-primary">Ajouter un message du professeur</a>
-	<a href="{{path('school')}}" class="btn btn-primary">Retour</a>
-</div>
+		{% for note in notes %}
+			<div class="photo-card">
 
-{% for note in notes %}
-<div class="desktop-container d-none d-lg-flex row">
-    <a href="{{path ('note_read', {'id': note.id})}}">
-        <div class="card col-3">
-        <div class="card-body">
-            <h5 class="card-title">{{ note.name }}</h5>
-            <img src="{{asset(note.file)}}" alt="">
-          
-        </div>
-        
-    </a>  
-        <div class="card-btn">
-                <a href="{{path('note_edit', {'id': note.id})}}" class="btn btn-primary">Modifier</a>
-                {{ include('note/_delete_form.html.twig')}}
-            </div>
-        </div>	 
-    </div>
-</div><
-{% endfor %}
-</div></div></div>
+				<div class="photo-background" style="background-image:url('{{asset(note.file)}}'); ">
+				</div>
+				<div class="photo-details ">
+					<h1 class="title">{{ note.name }}</h1>
+					<span class="photo-author">{{note.createdAt|date('d-m-Y')}}</span>
+					<p class="description-white">{{ note.description }}</p>
+				</br>
+				<div class="p-t-10">
+					<a href="{{ path('note_edit', {'id': note.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+
+				</div>
+			</div>
+
+		</div>
+	{% endfor %}
+
+
+</section>
+
 {% endblock %}
 
-{# <div class="container">
-  <div class="card-group vgr-cards">
-    <div class="cardNote">
-      <div class="cardNote-img-body">
-        <img class="cardNote-img" src="https://picsum.photos/500/230" alt="Card image cap">
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">Card title</h4>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
-          bit longer.</p>
-        <a href="#" class="btn btn-outline-primary">Primary</a>
-      </div>
-    </div>
-    <div class="cardNote">
-      <div class="cardNote-img-body">
-        <img class="cardNote-img" src="https://picsum.photos/400/200" alt="Card image cap"></div>
-      <div class="card-body">
-        <h4 class="card-title">Card title</h4>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This card has supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-outline-primary">Primary</a>
-      </div>
-    </div>
-    <div class="cardNote">
-      <div class="cardNote-img-body">
-        <img class="cardNote-img" src="https://picsum.photos/450/250" alt="Card image cap"></div>
-      <div class="card-body">
-        <h4 class="card-title">Card title</h4>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action. This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.</p>
-        <a href="#" class="btn btn-outline-primary">Primary</a>
-      </div>
-    </div>
-  </div>
-</div> #}
+
+
+
+
+
 
 

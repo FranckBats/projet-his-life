@@ -1,54 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
-{% block stylesheets %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="assets/css/inscriptionstyle.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-{% endblock %}
 
 {% block body %}
 
-<div class="login-wrap">
-        <div class="login-html">
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Se connecter</label> 
 
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	<section class="light-content our-team">
+		<section class="light-content our-team">
 
-    {% if app.user %}
-        <div class="mb-3">
-            Bonjour {{ app.user.firstname }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
-        </div>
-    {% endif %}
+			<div class="font-poppins">
+				<div class="wrapper wrapper--w780">
+					<div class="card card-3">
+						<div class="card-heading"></div>
+						<div class="card-body">
+							<form method="post">
+								{% if error %}
+									<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+								{% endif %}
 
-   
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+								{% if app.user %}
+									<div class="mb-3">
+										Bonjour
+										{{ app.user.firstname }},
+										<a href="{{ path('app_logout') }}">Deconnexion</a>
+									</div>
+								{% endif %}
+								<div class="input-group">
+									<input class="input--style-3" type="email" value="{{ last_username }}" id="inputEmail" placeholder="Email" name="email">
+								</div>
+								<div class="input-group">
+									<input class="input--style-3" type="password" id="inputPassword" placeholder="Mot de passe" name="password">
+								</div>
+								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+								<div class="btn-login">
+									<div class="p-t-10">
+										<button class="large-button white-color" type="submit">Valider</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"> 
-    <div class="btn-login" >
-    <button class="btn-login-v" type="submit" class="btn btn-light">Se connecter</a></button>
-    </div>
-    
-        {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div> #}
-    
+			</section>
+			<!-- /.our-team -->
 
-     
-
-
- {% block javascripts %} {% endblock %}
-{% endblock %}
+		{% endblock %}

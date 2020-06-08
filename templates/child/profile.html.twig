@@ -1,49 +1,7 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}His Life
-{% endblock %}
-
-{% block stylesheets %}
-	<!-- Bootstrap CSS CDN -->
-	<link
-	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-	<!-- Scrollbar Custom CSS -->
-	<link
-	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-	<!-- Our Custom CSS -->
-	<link rel="stylesheet" href="../assets/css/childCard.css">
-	<link
-	rel="stylesheet" href="../assets/css/dashboardstyle.css">
-
-	<!-- icônes css.gg -->
-	<link href='https://css.gg/css' rel='stylesheet'>
-
-{% endblock %}
 {% block body %}
 
-<h1>Mes enfants</h1>
 
-	<div class="btn-ajout">
-		<a href="{{path('child_create') }}" class="btn btn-primary">Ajouter un enfant</a>
-	</div>
-	<div class="content">
-	<div class="box">
-	{% for child in children %}
-		<div class="card">
-			<div class="imgBx">
-				{% if child.picture is not null %}
-				 <a href="{{ path('child_read', {'id': child.id }) }}"><img src="{{ asset(child.picture) }}" alt="images"></a>
-				{% else %}
-				<a href="{{ path('child_read', {'id': child.id }) }}">
-				<img src="{{ asset('assets/images/kid.jpg') }}"alt="images"></a>
-				{% endif %}
-			</div>
-			<div class="details">
-				<h2>{{ child.firstname }}<br></h2>
-			</div>
-		</div>
-	{% endfor %}
-	</div>
-	</div>
-</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
+
+{% endblock %}

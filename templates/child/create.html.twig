@@ -1,46 +1,66 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}His Life
-{% endblock %}
 
-{% block stylesheets %}
-	
-		<link
-	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-	<!-- Scrollbar Custom CSS -->
-	<link
-	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-	<!-- Our Custom CSS -->
-	<link rel="stylesheet" href="../assets/css/childCard.css">
-	<link
-	rel="stylesheet" href="../assets/css/dashboardstyle.css">
-
-	<!-- icônes css.gg -->
-	<link href='https://css.gg/css' rel='stylesheet'>
-
-	
-
-{% endblock %}
 {% block body %}
  
-	<h1>
-		Ajouter un Enfant
-	</h1>
+	<section class="light-content our-team">
 
-	{{ form_start(form) }}
-	
-	{{ form_row(form.lastname) }}
-	{{ form_row(form.firstname) }}
-	{{ form_row(form.gender) }}
-	{{ form_row(form.birthdate) }}
-	{{ form_row(form.picture) }}
-	{{ form_row(form.families)}}
-	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Profil Enfant</h2>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 
-	
-	{{ form_end(form) }}
-	
-	{% block javascripts %}{% endblock %}
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-10">
+					<div class="card-heading"></div>
+                    <div class="card-body">
+                    <h2 class="title">Ajout d'un Enfant </h2>
+						{{ form_start(form) }}
+						{{ form_row(form.lastname, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.firstname, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.gender, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.birthdate) }}
+						{{ form_row(form.picture) }}
+						{{ form_row(form.families) }}
+						
+						<div class="p-t-10">
+							<button class="large-button white-color" type="submit">Valider</button>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</section>
+
+		{% block javascripts %}{% endblock %}
+
+			<script>
+				$(document).ready(function () {
+$(".js-datepicker").datepicker({
+viewMode: "years",
+weekStart: 1,
+daysOfWeekHighlighted: "6,0",
+autoclose: true,
+todayHighlight: true,
+startDate: '-30y',
+endDate: '+0d',
+format: 'dd/MM/yyyy'
+});
+
+$('.js-datepicker').datepicker("setDate", new Date());
+});
+			</script>
 
 {% endblock %}

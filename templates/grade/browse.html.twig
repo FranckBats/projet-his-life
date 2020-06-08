@@ -1,25 +1,6 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}His Life
-{% endblock %}
 
-{% block stylesheets %}
-	<!-- Bootstrap CSS CDN -->
-	<link
-	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-	<!-- Scrollbar Custom CSS -->
-	<link
-	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-	<!-- Our Custom CSS -->
-	
-	<link
-	rel="stylesheet" href="../assets/css/dashboardstyle.css">
-
-	<!-- icônes css.gg -->
-	<link href='https://css.gg/css' rel='stylesheet'>
-
-{% endblock %}
 {% block body %}
 
 {% for message in app.flashes('success') %}
@@ -28,47 +9,54 @@
             </div>
 {% endfor %}
 
+<section class="light-content our-team">
 
-<div>
-    <h1>Bulletins de note</h1>
-</div>
 
-{# <div class="row">  #}
-
-{# {% for grade in grades %}
-<div class="desktop-container d-none d-lg-flex row">
-    <div class="card col-5 border border-grey" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">{{ grade.name }}</h5>
-        <img src="{{asset(grade.file)}}" alt="">
-        <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a>
-    </div>
-    </div>
-{% endfor %}
-
-</div> #}
-<div>
-	<a href="{{path('grade_add')}}" class="btn btn-primary">Ajouter un bulletin</a>
-	<a href="{{path('school')}}" class="btn btn-primary">Retour</a>
-</div>
-
-{% for grade in grades %}
-<div class="desktop-container d-none d-lg-flex row">
-			<a href="{{path ('grade_read', {'id': grade.id})}}">
-				<div class="card col-3 border border-grey" style="width: 18rem;">
-				<h5 class="card-title">{{ grade.name }}</h5>
-					<img src="{{asset(grade.file)}}" class="card-img-top" alt="...">
-					<div class="card-body">
-						
-						{# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> #}
-						<div class="card-btn">
-            				<a href="{{ path('grade_edit', {'id': grade.id}) }}" class="btn btn-primary">Modifier</a>
-            				{{ include('grade/_delete_form.html.twig') }}
-							</a>
-        				</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Bulletin de Note</h2>
+						<a href="{{ path('grade_add') }}" class="large-button green-color">Ajouter</a>
 					</div>
+					<!-- /.section-header -->
 				</div>
-{% endfor %}
-</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+
+		{% for grade in grades %}
+			<div class="photo-card">
+
+				<div class="photo-background" style="background-image:url('{{asset(grade.file)}}'); "></div>
+				<div class="photo-details ">
+					<h1 class="title">{{ grade.name }}</h1>
+					<span class="photo-author">{{grade.createdAt|date('d-m-Y')}}</span>
+					<p class="description-white">{{ grade.description }}</p>
+				</br>
+				<div class="p-t-10">
+					<a href="{{ path('grade_edit', {'id': grade.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+
+				</div>
+			</div>
+
+		</div>
+	{% endfor %}
+
+
+</section>
+
 {% endblock %}
+
+
+
+
+
+
+
 

@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class RegisterType extends AbstractType
@@ -34,13 +34,13 @@ class RegisterType extends AbstractType
                 'label' => 'Prénom',
                 'constraints' => new NotBlank,
             ])
-            ->add('birthdate', BirthdayType::class, [
-                'label' => 'Date anniversaire',
-                'format' => 'dd MM yyyy',
-                // 'setlocale' => 'fr_FR',
-                'placeholder' => [
-                    'day' => 'Jour' , 'month' => 'Mois', 'year' => 'Année',
-                ]
+            ->add('birthdate',  DateType::class, [
+                // renders it as a single text box
+                'label' => 'Date Anniversaire',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' =>  'dd/MM/yyyy'
             ])
            
             ->add('role', ChoiceType::class, [
@@ -49,7 +49,6 @@ class RegisterType extends AbstractType
                     'Père' => 'Père',
                     'Mère' => 'Mère',
                 ],
-                'expanded' => true,
             ])
             
             ->add('email')
@@ -65,9 +64,9 @@ class RegisterType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe doit correspondre à ce champ',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'input--style-3']],
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
+                'first_options'  => ['label' => 'Mot de passe'], 
                 'second_options' => ['label' => 'Retapez le mot de passe'],
                 'constraints' => [
                     new Length([

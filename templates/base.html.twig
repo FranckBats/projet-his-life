@@ -1,35 +1,120 @@
 <!DOCTYPE html>
-
 <html>
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="/assets/images/favicon.ico" rel="icon"/>
-<title>{% block title %}His Life{% endblock %}</title>
-
-{% block stylesheets %}
-
-<link href='https://css.gg/css' rel='stylesheet'>
-{% endblock %}
-<!-- Bootstrap CSS CDN -->
-	<link
-	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-</head>
-
-
-<body>
-{% block body %}
-
-{% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-{% endblock %}
-{% endblock %}
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<title>
+			{% block title %}His Life
+			{% endblock %}
+		</title>
+	
+		<!-- Stylesheets -->
+	<link rel="stylesheet" href="assets/css/misc.css">
+	<link rel="stylesheet" href="assets/bootstrap/bootstrap.css"> 
+	<link rel="stylesheet" href="assets/css/blue-scheme.css"> 
+	<link rel="stylesheet" href="assets/css/main.css" media="all">
+	
+	<!-- JavaScripts -->
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	    
 
 
+	
+		
+	</head>
+	    <body>
+	<div class="responsive_menu">
+        <ul class="main_menu">
+            <li><a href="index.html">S'inscrire</a></li>
+            <li><a href="#">Connexion <i class="icon-button fa fa-user"></i></a></li>
+        </ul> <!-- /.main_menu -->
+    </div> <!-- /.responsive_menu -->
+
+	<header class="site-header clearfix">
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="pull-left logo">
+						<a href="index.html">
+							<img src="assets/images/includes/logo.png" alt="">
+						</a>
+					</div>	<!-- /.logo -->
+
+					<div class="main-navigation pull-right">
+
+						<nav class="main-nav visible-md visible-lg">
+							<ul class="sf-menu">
+								<li><a href="{{ path('app_register') }}">S'inscrire</a></li>
+            					<li><a href="{{ path('app_login') }}">Connexion <i class="icon-button fa fa-user"></i> </a></li>
+							</ul> <!-- /.sf-menu -->
+						</nav> <!-- /.main-nav -->
+
+						<!-- This one in here is responsive menu for tablet and mobiles -->
+					    <div class="responsive-navigation visible-sm visible-xs">
+					        <a href="#nogo" class="menu-toggle-btn">
+					            <i class="fa fa-bars"></i>
+					        </a>
+					    </div> <!-- /responsive_navigation -->
+
+					</div> <!-- /.main-navigation -->
+
+				</div> <!-- /.col-md-12 -->
+
+			</div> <!-- /.row -->
+
+		</div> <!-- /.container -->
+	</header> <!-- /.site-header -->
+
+	{% block body %}{% endblock %}
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="footer-nav clearfix">
+						<ul class="footer-menu">
+							<li><a href="index.html">A propos</a></li>
+							<li><a href="portfolio.html">Nous contacter</a></li>
+							<li><a href="blog.html">Mentions légales</a></li>
+						</ul> <!-- /.footer-menu -->
+					</nav> <!-- /.footer-nav -->
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+			<div class="row">
+				<div class="col-md-12">
+					<p class="copyright-text">Copyright &copy; HISLIFE 
+                    </p>
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</footer> <!-- /.site-footer -->
+
+
+
+  
+
+			
+
+
+		
+		{# ------>container #}
+
+		{% block javascripts %}{% endblock %}
+		<!-- Scripts -->
+	<script src="assets/js/min/plugins.min.js"></script>
+	<script src="assets/js/min/medigo-custom.min.js"></script>
+
+	<script src="assets/jsinsc/jquery/jquery.min.js"></script>
+
+	<script src="assets/jsinsc/select2/select2.min.js"></script>
+    <script src="assets/jsinsc/datepicker/moment.min.js"></script>
+    <script src="assets/jsinsc/datepicker/daterangepicker.js"></script>
+
+	<script src="assets/js/global.js"></script>
+
+	</body>
 </html>

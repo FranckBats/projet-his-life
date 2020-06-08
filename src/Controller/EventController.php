@@ -64,7 +64,7 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="event_show", methods={"GET"})
+     * @Route("/{id}", name="event_show", methods={"GET"}, requirements={"id": "\d+"})
      */
     public function show(Event $event): Response
     {
@@ -74,7 +74,7 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"}, requirements={"id": "\d+"})
      */
     public function edit(Request $request, Event $event): Response
     {
@@ -94,7 +94,7 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="event_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="event_delete", methods={"DELETE"}, requirements={"id": "\d+"})
      */
     public function delete(Request $request, Event $event): Response
     {

@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,12 +38,13 @@ class PictureType extends AbstractType
                 'label' => 'Titre',
                 'constraints' => new NotBlank,
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'required' => false
             ])
             ->add('file', FileType::class, [
                 'label' => 'Photo',
+                'data_class' => null,
                 'constraints' => [
                     new Image([
                         // on peut mettre une taille max ou min
@@ -54,11 +55,7 @@ class PictureType extends AbstractType
                 'label' => 'Famille',
                 'class' => Family::class,
                 'choices' => $families,
-                ])
-            ->add('submit' , SubmitType::class, [
-                'label' => 'Envoyer'
-            ])
-        ;
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

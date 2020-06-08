@@ -1,38 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'enregistrer{% endblock %}
-
-{% block stylesheets %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="assets/css/inscriptionstyle.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-{% endblock %}
-
-
 {% block body %}
-    
-    <div class="login-wrap">
-        <div class="login-html">
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Inscription</label> 
-
-        {{ form_start(register) }}
-        {{ form_row(register.lastname) }}
-        {{ form_row(register.firstname) }}
-        {{ form_row(register.birthdate) }}
-        {{ form_row(register.role) }}
-        {{ form_row(register.email) }}
-        {{ form_row(register.password) }}
-        {{ form_row(register.agreeTerms) }} 
-        
 
 
-    <div class="btn-register" >
-        <button class="btn-register-v" type="submit" class="btn btn-light">S'enregistrer</button>
-         
-        
-        <button class="btn-register-v" type="button" class="btn btn-light"><a href="{{path('home')}}">Retour</a></button>
-        
-    </div>
-    {{ form_end(register) }} 
-        {% block javascripts %} {% endblock %}
-        {% endblock %}
+		<section class="light-content our-team">
+
+			<div class="font-poppins">
+				<div class="wrapper wrapper--w780">
+					<div class="card card-3">
+						<div class="card-heading"></div>
+						<div class="card-body">
+							{{ form_start(register) }}
+                            {{ form_row(register.lastname, { 'attr': {'class': 'input--style-3'}}) }}
+                            {{ form_row(register.firstname, { 'attr': {'class': 'input--style-3'}}) }}
+							{{ form_row(register.birthdate) }}
+							{{ form_row(register.role) }}
+							{{ form_row(register.email, { 'attr': {'class': 'input--style-3'}}) }}
+							{{ form_row(register.password, { 'attr': {'class': 'input--style-3'}}) }}
+							{{ form_row(register.agreeTerms) }}
+
+							<div class="p-t-10">
+								<button class="large-button white-color" type="submit">Valider</button>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				{{ form_end(register) }}
+
+
+			</section>
+			<!-- /.our-team -->
+			{% block javascripts %}{% endblock %}
+			<script>
+				$(document).ready(function () {
+$(".js-datepicker").datepicker({
+viewMode: "years",
+weekStart: 1,
+daysOfWeekHighlighted: "6,0",
+autoclose: true,
+todayHighlight: true,
+startDate: '-30y',
+endDate: '+0d',
+format: 'dd/MM/yyyy'
+});
+
+$('.js-datepicker').datepicker("setDate", new Date());
+});
+			</script>
+
+
+		{% endblock %}

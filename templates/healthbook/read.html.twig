@@ -1,17 +1,85 @@
-<div class="row">
-    <h1>Entrée du carnet de santé</h1>
-</div>
-
-<div class="row">
+{% extends 'basedashboard.html.twig' %}
 
 
-    <div class="card col-3">
-    <div class="card-body">
-        <h5 class="card-title">{{ healthbook.name }}</h5>
-        <img src="{{asset(healthbook.file)}}" alt="">
-        {# <a href="{{ path('movie_read_slug', {'slug': movie.slug}) }}" class="card-link">Voir la fiche</a> #}
-    </div>
-    </div>
+{% block body %}
+
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+
+	{# <h1>Accueil Santé</h1>
+
+	{% for healthbook in healthbooks %}
+<div class="desktop-container d-none d-lg-flex row">
+			<a href="{{ path('healthbook_read', {'id': healthbook.id}) }}">
+				<div class="card col-3 border border-grey" style="width: 18rem;">
+				<h5 class="card-title">{{ healthbook.name }}</h5>
+					<img src="{{asset(healthbook.file)}}" class="card-img-top" alt="...">
+					<div class="card-body">
+						
+						
+						<div class="card-btn">
+            				<a href="{{ path('healthbook_edit', {'id': healthbook.id}) }}" class="btn btn-primary">Modifier</a>
+            				{{ include('healthbook/_delete_form.html.twig') }}
+        				</div>
+					</div>
+				</div>
+			</a>
+
+	{% endfor %}
+
+<a class ="btn btn-primary"href="{{path('healthbook_add')}}">Ajouter une page du carnet de Santé</a>
 
 
-</div>
+</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %} #}
+
+<section class="light-content our-team">
+		
+	
+	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Santé</h2> 
+						{% if families is defined %}
+							<select class="selectpicker" id="selectType">
+							<option value="0">Choisissez un enfant</option>
+								{% for family in families %}
+									{% if family.children is defined %}
+											{% for child in family.children %}
+											<option value="{{child.id}}">{{child.firstname}}</option>
+										{% endfor %}
+									{% endif %}
+								{% endfor %}
+							</select>
+						{% endif %}
+					</div> <!-- /.section-header -->
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+
+
+	<div class="container">	
+		<div class="row project-single">
+			<div class="col-md-8">
+				<div class="project-img">
+					<a href="{{ path('healthbook_read', {'id': healthbook.id}) }}"><img src="{{asset(healthbook.file)}}" alt="Project Image 1"></a>
+				</div> <!-- /.project-img -->
+			</div> <!-- /.col-md-8 -->
+			<div class="col-md-4">
+				<div class="project-info">
+					<h3 class="project-title">{{ healthbook.name }}</h3>
+					
+					{# <ul class="meta-post">
+						<li><span>Date:</span>{{ healthbook.createdAt }}</li>
+					</ul> #}
+				</div> <!-- /.project-info -->
+			</div> <!-- /.col-md-4 -->
+		</div> <!-- /.row -->
+	</div> <!-- /.container -->	
+	
+	 </section> <!-- /.our-team -->
+
+{% endblock %}

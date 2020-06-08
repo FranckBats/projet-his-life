@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block body %}
     <a href="{{ path('event_new') }}">Creez un nouvel évènement</a>
 
     <div id="calendar-holder"></div>
-{% endblock %}
+
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
@@ -48,4 +48,4 @@
             calendar.render();
         });
     </script>
-{% endblock %}
+{% endblock %}{% endblock %}

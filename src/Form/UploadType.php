@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
@@ -36,20 +38,29 @@ class UploadType extends AbstractType
         
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Titre'
             ])
             ->add('file', FileType::class, [
                 'label' => 'Photo',
                 'data_class' => null,
-                'required' => true
+                'required' => true,
             ])
             ->add('child', EntityType::class, [
                 'class' => Child::class,
                 'choices' => $children,
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Soumettre le formulaire'
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'required' => false,
+                'constraints' => [
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Votre Description est trop longue, elle doit faire maximum 255 caractères'
+                    ]),
+                ]
+
             ])
+            
             
         ;
     }

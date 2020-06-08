@@ -1,15 +1,53 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Modifier le contact{% endblock %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block body %}
 
-{# What is it ? Works fine without this #}
-{# {{ include('contact/_form.html.twig', {'button_label': 'update'}) }} #}
+<section class="light-content our-team">
 
-<div class="col-4 mt-2">
-{{form(form)}}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Contact</h2>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 
-{{ include('contact/_delete_form.html.twig') }}
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-14">
+					<div class="card-heading"></div>
+                    <div class="card-body">
+                    <h2 class="title">Modifier un Contact</h2>
+						{{ form_start(form) }}
+						{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.job, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.address, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.phone, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.email, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.family, { 'attr': {'class': 'input--style-3'}}) }}
+						
+                        <div class="p-t-10">
+						<button class="large-button white-color" type="submit">Modifier</button>
+                         </div>
+						 {{ form_end(form) }}
+						 </br>
+						 {{ include('contact/_delete_form.html.twig') }}
+                       
+					</div>
+				</div>
+			</div>
+			
+		</section>
 
 {% endblock %}
+
+
+
+
+

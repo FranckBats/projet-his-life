@@ -1,18 +1,13 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}His Life
-	{% dump (app.user )%}
-{% endblock %}
-
 {% block body %}
 
-	<div class="children-choice-bar row d-flex justify-content-between p-2 m-0">
-						<div class="d-lg-none">
-							<img class="img-logo" src="images/HisLifeMobileLogo.png" alt=""></div>
-						<div class="arrow">
-							<i class="gg-arrow-left"></i>
-						</div>
-
+				<section class="light-content our-team">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">TABLEAU DE BORD</h2> 
 					{% if families is defined %}
 					<div class="form-group">
 						<select class="custom-select" id="selectType">
@@ -26,111 +21,97 @@
 						</select>
 					{% endif %}
 					</div>  
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div> 
+		<!-- /.container -->
+		<div class="team-members">
+			<div class="container">
+				<div class="row">
 
-
-{# 
-					{% if families is defined %}
-					{% for family in families %}
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{family.name}}
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							{% if family.children is defined %}
-							{% for children in family.children %}
-								<a class="dropdown-item" href="#">{{children.firstname}}</a>
-							{% endfor %}
-								{% else %}
-								<a class="dropdown-item" href="#">Vous n'avez pas encore ajouter d'enfant dans cette famille</a>
-								{% endif %}
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success">
+							{{ message }}
 						</div>
-					</div>
 					{% endfor %}
-					{% endif %} #}
-		<div class="arrow">
-			<i class="gg-arrow-right"></i>
-		</div>
-		<div class="add d-lg-none">
-			<i class=" gg-add"></i>
-		</div>
-	</div> 
 
-	<main class="">
-		<div class="d-lg-none border border-dark p-2">
-			<a class="card-lien" href="#">
-				<i class=""></i>Vie Scolaire</a>
-			<div class="row">
-				<div class="col-2">
-					<img class="img-fluid" src="images/avatar.png" alt="">
-				</div>
-			</div>
-			<div class="col-10">
-				<p class="m-0">Micheline</p>
-				<p class="mb-1">25/02/2020</p>
-
-				<div class="contenu-text">
-					<p>Il as encore jouer aux billes avec ses crottes de nez !</p>
-				</div>
-				<div class="btn-modif">
-					<a class="btn btn-primary" href="">Modifier</a>
-					<a class="btn btn-primary" href="">Supprimer</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- WARNING ! DESKTOP HTML NOW!  -->
-		{% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-		{% endfor %}
-		<div class="desktop-container d-none d-lg-flex row">
-			<div class="card col-5 border border-grey" style="width: 18rem;">
-					<h5 class="card-title">Santé</h5>
-					<h6>Dernier événement dans Santé<span id="selectedChildHealthEvent"></span></h6>
-					<img id="selectedChildHealthEvent_img"src="{{ asset('assets/images/sante.jpg') }}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<p id="selectedChildHealthEvent_name" class="card-text"></p>
-					<div class="card-btn">
-						<a id="selectedChildHealthEvent_detail" href="" class="btn btn-primary">Voir en détail</a>
+					<div class="col-md-6 col-sm-4 ">
+						<div class="team-member">
+							<div class="thumb-post">
+								<img id="selectedChildHealthEvent_img" src="{{ asset('assets/images/sante.jpg') }}" alt="">
+							</div>
+							<div class="member-content">
+								<h4 class="member-name">Santé</h4>
+								<h6>Dernier événement dans Santé<span id="selectedChildHealthEvent"></span></h6>
+								<p id="selectedChildHealthEvent_name">Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.
+								</p>
+							</div>
+						</div>
+						<!-- /.team-member -->
 					</div>
+					<!-- /.col-md-4 -->
+
+					<div class="col-md-6 col-sm-4 center-block">
+						<div class="team-member">
+							<div class="thumb-post">
+								<img id="selectedChildSchoolEvent_img" src="{{ asset('assets/images/sante.jpg') }}" alt="">
+							</div>
+							<div class="member-content">
+								<h4 class="member-name">Vie Scolaire</h4>
+								<h6>Dernier événement dans Santé<span id="selectedChildSchoolEvent_lastPost"></span></h6>
+								<p id="selectedChildSchoolEvent_name">Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.  Duis vitae consequat neque. Nulla pharetra eleifend nulla. Duis vitae consequat neque. Nulla pharetra eleifend nulla.
+								</p>
+							</div>
+						</div>
+						<!-- /.team-member -->
+					</div>
+					<!-- /.col-md-4 -->
 				</div>
-			</div>
+				<!-- /.row -->
+				<div class="row">
 
-			<div class="card col-5 border border-grey" style="width: 18rem;" >
-				<h5 class="card-title">Vie Scolaire</h5>
-				<h6>Dernier ajout dans vie scolaire <span id="selectedChildSchoolEvent_lastPost"></span> </h6>
-				<img id="selectedChildSchoolEvent_img" src="{{ asset('assets/images/ecoleprimaire.jpg') }}" class="card-img-top" alt="...">
-				<div class="card-body">
-					<p id="selectedChildSchoolEvent_name"class="card-text"></p>
-					<a id="selectedChildSchoolEvent_detail" href="" class="btn btn-primary">Voir en détail</a>
+					<div class="col-md-6 col-sm-4 center-block">
+						<div class="team-member">
+							<div class="thumb-post">
+								<img src="assets/images/includes/member3.jpg" alt="">
+							</div>
+							<div class="member-content">
+								<h4 class="member-name">Galerie Photo</h4>
+								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla.
+								</p>
+							</div>
+						</div>
+						<!-- /.team-member -->
+					</div>
+					<!-- /.col-md-4 -->
+
+					<div class="col-md-6 col-sm-4 center-block">
+						<div class="team-member">
+							<div class="thumb-post">
+								<img src="assets/images/includes/member4.jpg" alt="">
+							</div>
+							<div class="member-content">
+								<h4 class="member-name">Calendrier</h4>
+								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla.
+								</p>
+							</div>
+						</div>
+						<!-- /.team-member -->
+					</div>
+					<!-- /.col-md-4 -->
+
 				</div>
+				<!-- /.row -->
+
 			</div>
-			<div class="card col-5 border border-grey" style="width: 18rem;">
-				<img src="assets/images/calendrier.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Calendrier</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Modifier</a>
-					<a href="#" class="btn btn-primary">Supprimer</a>
-				</div>
-			</div>
-
-			<div class="card col-5 border border-grey" style="width: 18rem;">
-				<img src="assets/images/photo.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Galerie</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-					<a href="#" class="btn btn-primary t">Modifier</a>
-					<a href="#" class="btn btn-primary ">Supprimer</a>
-
-				</div>
-			</div>
-
+			<!-- /.container -->
 		</div>
-		<!-- END OF DESKTOP HTML -->
+		<!-- /.team-members -->
+	</section>
+	<!-- /.our-team -->
 
-	</div>
-</div></main></div>
+
 {% endblock %}

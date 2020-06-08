@@ -5,11 +5,13 @@ namespace App\Form;
 use App\Entity\Post;
 use App\Entity\Family;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PostType extends AbstractType
 {
@@ -26,17 +28,21 @@ class PostType extends AbstractType
         $families = $people->getFamilies($people);
         
         $builder
-            ->add('title')
-            ->add('content')
+            ->add('title', null, [
+                'label' => 'Titre',
+               
+            ])
+            ->add('content', TextareaType::class, [
+                'label' => 'Message',
+                'required' => false
+            ])
             //->add('people')
             ->add('family', EntityType::class, [
                 'label' => 'Famille',
                 'class' => Family::class,
                 'choices' => $families,
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer'
-            ])
+           
         ;
     }
 

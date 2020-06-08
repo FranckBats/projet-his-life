@@ -1,15 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
-{% block title %}Ajout un contact{% endblock %}
+
 
 {% block body %}
 
-<h1>Ajouter un contact</h1>
+<section class="light-content our-team">
 
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Contact</h2>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 
-<div class="col-4 mt-2">
-{{form(form)}}
-</div>
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-14">
+					<div class="card-heading"></div>
+                    <div class="card-body">
+                    <h2 class="title">Ajout d'un Contact</h2>
+						{{ form_start(form) }}
+						{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.job, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.address, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.phone, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.email, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.family, { 'attr': {'class': 'input--style-3'}}) }}
+                        
+						<div class="p-t-10">
+							<button class="large-button white-color" type="submit">Valider</button>
 
+						</div>
+
+					</div>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</section>
 
 {% endblock %}
+
+
+

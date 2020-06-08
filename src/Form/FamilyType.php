@@ -21,19 +21,12 @@ class FamilyType extends AbstractType
                 'label' => 'Nom de la famille',
                 'constraints' => new NotBlank,
             ])
-            ->add('picture', FileType::class, [
+            ->add('picture', FileType::class, array(
                 'label' => 'Photo',
-                'constraints' => [
-                    new Image([
-                        // on peut mettre une taille max ou min
-                    ])
-                    ],
+                'data_class' => null,
                 'required' => false,
-                'data_class' => null
-             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter une famille',
-            ])
+            ))
+            
         ;
     }
 

@@ -9,7 +9,7 @@ use App\Repository\FamilyRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -51,14 +51,15 @@ class ChildType extends AbstractType
                     'Garçon' => 'Garçon',
                     'Autre' => 'Autre',
                  ],
-                'expanded' => true,
+                
             ])
-            ->add('birthdate', BirthdayType::class, [
-                'label' => 'Date anniversaire',
-                'format' => 'dd MM yyyy',
-                'placeholder' => [
-                    'day' => 'Jour' , 'month' => 'Mois', 'year' => 'Année',
-                ]
+            ->add('birthdate',  DateType::class, [
+                // renders it as a single text box
+                'label' => 'Date Anniversaire',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' =>  'dd/MM/yyyy'
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Photo',
@@ -77,9 +78,7 @@ class ChildType extends AbstractType
                 'multiple' => true
                 ])
                             
-            ->add('submit', SubmitType::class, [
-                'label' => 'Soumettre le formulaire'
-            ])
+            
         ;
     }
 

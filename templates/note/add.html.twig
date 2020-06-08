@@ -1,9 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'basedashboard.html.twig' %}
 
-{% block title %}Ajout d'un mot des professeurs{% endblock %}
+
 
 {% block body %}
 
-{{form(form)}}
+<section class="light-content our-team">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Mots des Professeurs</h2>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-12">
+					<div class="card-heading"></div>
+                    <div class="card-body">
+                    <h2 class="title">Ajout d'un mot</h2>
+						{{ form_start(form) }}
+						{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.description, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.child) }}
+						{{ form_row(form.file) }}
+
+
+						<div class="p-t-10">
+							<button class="large-button white-color" type="submit">Valider</button>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</section>
 
 {% endblock %}

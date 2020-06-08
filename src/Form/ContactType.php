@@ -36,9 +36,7 @@ class ContactType extends AbstractType
                 'class' => Family::class,
                 'choices' => $families,
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'enregistrer '
-            ])
+            
             
         ;
     }

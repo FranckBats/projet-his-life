@@ -1,25 +1,5 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}Hello PictureController!
-{% endblock %}
-
-{% block stylesheets %}
-	<!-- Bootstrap CSS CDN -->
-	<link
-	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-	<!-- Scrollbar Custom CSS -->
-	<link
-	rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-	<!-- Our Custom CSS -->
-
-	<link rel="stylesheet" href="../assets/css/childCard.css">
-	<link
-	rel="stylesheet" href="../assets/css/dashboardstyle.css">
-	<!-- icônes css.gg -->
-	<link href='https://css.gg/css' rel='stylesheet'>
-
-{% endblock %}
 
 {% block body %}
 
@@ -29,22 +9,54 @@
             </div>
 {% endfor %}
 
-	<div class="btn-ajout">
-		<a href="{{path ('picture_add') }}" class="btn btn-primary">Ajouter une photo</a>
-	</div>
+<section class="light-content our-team">
 
 
-	<div class="box">
-	{% for picture in pictures %}
-		<div class="card">
-			<div class="imgBx">
-				 <a href="{{ path('picture_read', {'id': picture.id }) }}"><img class="picture" src="{{ picture.file }}" width="200"></a>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Galerie Photo</h2>
+						<a href="{{ path('picture_add') }}" class="large-button green-color">Ajouter</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
 			</div>
-			<div class="details">
-				<h2>{{ picture.title }}<br></h2>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+
+		{% for picture in pictures %}
+			<div class="photo-card">
+
+				<div class="photo-background" style="background-image:url('{{asset(picture.file)}}'); "></div>
+				<div class="photo-details ">
+					<h1 class="title">{{ picture.title }}</h1>
+					<span class="photo-author">{{picture.createdAt|date('d-m-Y')}}</span>
+					<p class="description-white">{{ picture.description }}</p>
+				</br>
+				<div class="p-t-10">
+					<a href="{{ path('picture_edit', {'id': picture.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+
+				</div>
 			</div>
+
 		</div>
 	{% endfor %}
-	</div>   
 
-</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
+
+</section>
+
+{% endblock %}
+
+
+
+
+
+
+
+

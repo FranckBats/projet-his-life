@@ -95,9 +95,9 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/contact/delete/{id}", name="contact_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/contact/delete/{id}", name="contact_delete", requirements={"id": "\d+"})
      */
-    public function delete( Request $request, Contact $contact): Response
+    public function delete( Request $request, Contact $contact, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
             

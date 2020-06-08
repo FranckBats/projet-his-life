@@ -1,11 +1,50 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}Ajout d'une photo{% endblock %}
-
 {% block body %}
 
 {{ form_start(form) }}
 
-{{ form_end(form) }}
+<section class="light-content our-team">
 
-</div></div></div></div>{% block javascripts %}{% endblock %}{% endblock %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Mes Photos</h2>
+						
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-9">
+					<div class="card-heading"></div>
+                    <div class="card-body">
+                    <h2 class="title">Ajout d'une Photo</h2>
+						{{ form_start(form) }}
+						{{ form_row(form.title, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.description, { 'attr': {'class': 'input--style-3'}}) }}
+                        {{ form_row(form.family, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.file) }}
+
+
+						<div class="p-t-10">
+							<button class="large-button white-color" type="submit">Valider</button>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</section>
+
+
+
+{% endblock %}

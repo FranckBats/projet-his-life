@@ -1,49 +1,38 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
 
-{% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-{% endfor %}
+<div class="row">
+     {% for post in posts %}
+		<div class="col-md-12">
+			<div id="blog-comments" class="blog-post-comments">
+				<h3>{{post.title}}</h3>
+				<div class="blog-comments-content">
+					<div class="media">
+						<div class="pull-left">
+							<img class="media-object" src="" alt="">
+						</div>
+
+						<div class="media-body">
+							<div class="media-heading">
+								<h4>{{post.people}}</h4>
+								    <span>{{post.createdAt|date('d-m-Y')}}</span>
+								</div>
+								<p>{{post.content}}</p>
+								
+						</div>
+					<!-- /.blog-comments-content -->
+
+				</div>
+				<!-- /.blog-post-comments -->
 
 
-<div class="">
-    <div>
-        <h1>Liste des Posts</h1>
-    </div>
-    <a href="{{path('post_add')}}" class="btn btn-primary">Ajouter un message</a>
+			</div>
+			<!-- /.col-md-12 -->
+             {% endfor %}
+		</div>
+		<!-- /.row -->
 
-    <table class="table table-hover">
-     <thead>
-        <tr>
-            <th scope="col-2">Titre</th>
-            <th scope="col-2">Message</th>
-            <th scope="col-2">Posté par<th>
-            <th scope="col-2">Posté à<th>
-            <th scope="col-2"> <th>
-            <th scope="col-2"> <th>
-        </tr>
-     </thead>
-     <tbody>
-        {% for post in posts %}
-        <tr>
-            {# <th scope="row"></th> #}
-            <th scope="col-2"> <a href="{{path('post_read', {'id': post.id})}}">{{post.title}}</td>
-            <td scope="col-2">{{post.content}}</td>
-            <td scope="col-2">{{post.people}}
-            <td scope="col-2">{{post.createdAt|date('d-m-Y-h-i')}}
-            <td scope="col-2"><a href="{{path('post_edit', {'id': post.id})}}" class="btn btn-primary ">Modifier</a></td>
-            <td>{{ include('post/_delete_form.html.twig')}}</td>
-        </tr>
-      
-        {% endfor %}
-     </tbody>
-    </table>
 
-    
-</div>
-{% endblock %}
+	{% endblock %}
