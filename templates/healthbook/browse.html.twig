@@ -3,52 +3,57 @@
 
 {% block body %}
 
-	{% for message in app.flashes('success') %}
-		<div class="alert alert-success">
-			{{ message }}
-		</div>
-	{% endfor %}
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success">
+		{{ message }}
+	</div>
+{% endfor %}
 
 
-	<section class="light-content our-team">
+<section class="light-content our-team">
 
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="section-header">
-						<h2 class="section-title">Santé</h2>
-						<a href="{{ path('healthbook_add') }}" class="large-button green-color">Ajouter</a>
-					</div>
-					<!-- /.section-header -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-header">
+					<h2 class="section-title">Santé</h2>
+					<a href="{{ path('healthbook_add') }}" class="large-button green-color">Ajouter</a>
 				</div>
-				<!-- /.col-md-12 -->
+				<!-- /.section-header -->
 			</div>
-			<!-- /.row -->
+			<!-- /.col-md-12 -->
 		</div>
-		<!-- /.container -->
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
 
-		{% for healthbook in healthbooks %}
-			<div class="photo-card">
+	{% for healthbook in healthbooks %}
+		<div class="photo-card">
 
-				<div class="photo-background" style="background-image:url('{{asset(healthbook.file)}}'); "></div>
-				<div class="photo-details ">
-					<h1 class="title">{{ healthbook.name }}</h1>
-					<span class="photo-author">{{healthbook.createdAt|date('d-m-Y')}}</span>
-					<p class="description-white">{{ healthbook.description }}</p>
-				</br>
-				<div class="p-t-10">
+			<div class="photo-background" style="background-image:url('{{asset(healthbook.file)}}'); "></div>
+
+			<div class="col-md-4">
+				<div class="project-info"></br>
+				<h3 class="project-title">{{ healthbook.name }}</h3>
+			</br>
+			<span class="date">Posté le:
+				{{healthbook.createdAt|date('d-m-Y')}}</span>
+		</br>
+	</br>
+	<p class="description">Description:
+		{{ healthbook.description }}</p>
+
+<div class="p-t-10">
 					<a href="{{ path('healthbook_edit', {'id': healthbook.id}) }}" class="large-button-blanc white-color">
 						<button class="large-button-blanc white-color" type="submit">Modifier</button>
 					</a>
 
 
 				</div>
-			</div>
-
-		</div>
-	{% endfor %}
-
-
-</section>
-<!-- /.our-team -->{% endblock %}
+</div><!-- /.project-info -->
+</div>
+</div>
+{% endfor %}
+</section><!-- /.our-team -->
+{% endblock %}

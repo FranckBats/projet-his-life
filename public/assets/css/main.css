@@ -719,6 +719,11 @@
   display: table-cell;
 }
 
+/*  =================================== */
+.project-title, .description, .date{
+  color:white;
+}
+
   @media (max-width: 767px) {
     .card-3 {
       display: block;

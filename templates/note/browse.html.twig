@@ -32,17 +32,23 @@
 
 				<div class="photo-background" style="background-image:url('{{asset(note.file)}}'); ">
 				</div>
-				<div class="photo-details ">
-					<h1 class="title">{{ note.name }}</h1>
-					<span class="photo-author">{{note.createdAt|date('d-m-Y')}}</span>
-					<p class="description-white">{{ note.description }}</p>
-				</br>
+				<div class="col-md-4">
+				<div class="project-info"></br>
+				<h3 class="project-title">{{ note.name }}</h3>
+			</br>
+			<span class="date">Posté le:
+				{{note.createdAt|date('d-m-Y')}}</span>
+		</br>
+	</br>
+	<p class="description">Description:
+		{{ note.description }}</p>
+		
 				<div class="p-t-10">
 					<a href="{{ path('note_edit', {'id': note.id}) }}" class="large-button-blanc white-color">
 						<button class="large-button-blanc white-color" type="submit">Modifier</button>
 					</a>
 
-
+</div>
 				</div>
 			</div>
 
