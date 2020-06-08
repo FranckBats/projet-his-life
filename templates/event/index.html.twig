@@ -3,7 +3,7 @@
 
 
 {% block body %}
-    <h1>Liste des événéments du calendrier</h1>
+    {# <h1>Liste des événéments du calendrier</h1>
 <div class="col-10">
     <table class="table">
         <thead>
@@ -35,5 +35,49 @@
         </tbody>
     </table>
 </div>
-    <a href="{{ path('event_new') }}">Create new</a>
+    <a href="{{ path('event_new') }}">Create new</a> #}
+
+
+
+    <section class="light-content our-team">
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Calendrier</h2>
+						<a href="{{ path('event_add') }}" class="large-button green-color">Ajouter</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+{# 
+		{% for event in events %}
+			<div class="photo-card">
+
+				<div class="photo-background" style="background-image:url('{{ asset('assets/images/member10.jpg') }}'); "></div>
+				<div class="photo-details ">
+					<h1 class="title">{{ event.name }}</h1>
+                    <h1 class="title">{{ event.type }}</h1>
+					<span class="photo-author">{{event.beginAt|date('d-m-Y')}}</span>
+                    <span class="photo-author">{{event.endAt|date('d-m-Y')}}</span>
+					
+				</br>
+				<div class="p-t-10">
+					<a href="{{ path('event_show', {'id': event.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+
+				</div>
+			</div>
+
+		</div>
+	{% endfor %} #}
+</section> 
 {% endblock %}

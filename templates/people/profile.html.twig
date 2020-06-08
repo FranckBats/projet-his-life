@@ -66,7 +66,7 @@
 
 		
 			<div class="photo-card">
-            {
+            
 				{% if people.picture is not null %}
 				 <div class="photo-background" style="background-image:url('{{ asset(family.picture) }}'); "></div>
 				{% else %}
@@ -76,6 +76,10 @@
 					<h1 class="title">Prénom: {{ people.firstname }}</h1>
                     <h1 class="title">Email: {{ people.email }}</h1>
 				</br>
+				<h1>Mes familles:</h1>
+				{% for family in people.families %}
+					<h1>{{ family }}</h1>
+					 {% endfor %}
 				<div class="p-t-10">
 					<a class="photo-background" href="{{ path('people_edit', {'id': people.id}) }}" class="large-button-blanc white-color">
 						<button class="large-button-blanc white-color" type="submit">Modifier</button>

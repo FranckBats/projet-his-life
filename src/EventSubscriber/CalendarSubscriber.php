@@ -52,11 +52,11 @@ class CalendarSubscriber implements EventSubscriberInterface
             // this create the events with your data (here booking data) to fill calendar
             $eventEvent = new Event(
                 $event->getName(),
-                $event->getType(),
-                $event->getPeople(),
-                $event->getFamily(),
-                $event->getCreatedAt(),
-                $event->getUpdatedAt(),
+                // $event->getType(),
+                // $event->getPeople(),
+                // $event->getFamily(),
+                // $event->getCreatedAt(),
+                // $event->getUpdatedAt(),
                 $event->getBeginAt(),
                 $event->getEndAt() // If the end date is null or not defined, a all day event is created.
             );
