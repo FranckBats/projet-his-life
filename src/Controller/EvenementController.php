@@ -66,6 +66,8 @@ class EvenementController extends AbstractController
      */
     public function show(Evenement $evenement): Response
     {
+        $this->denyAccessUnlessGranted('show', $evenement);
+
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
         ]);
@@ -76,6 +78,9 @@ class EvenementController extends AbstractController
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
+
+        $this->denyAccessUnlessGranted('edit', $evenement);
+
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
@@ -96,6 +101,8 @@ class EvenementController extends AbstractController
      */
     public function delete(Request $request, Evenement $evenement): Response
     {
+        $this->denyAccessUnlessGranted('delete', $evenement);
+
         if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($evenement);

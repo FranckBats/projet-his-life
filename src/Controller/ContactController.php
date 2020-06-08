@@ -19,6 +19,8 @@ class ContactController extends AbstractController
      */
     public function browse(ContactRepository $contactRepository)
     {
+        //$this->denyAccessUnlessGranted('view', $contact);
+
         $families = $this->getUser()->getFamilies();
       
         $contactsArray = array();
@@ -71,7 +73,11 @@ class ContactController extends AbstractController
      */
     public function add(Request $request)
     {
+
+        
+
         $contact = New Contact();
+        //$this->denyAccessUnlessGranted('create', $contact);
 
         $form = $this->createForm(ContactType::class, $contact);
 
@@ -100,6 +106,8 @@ class ContactController extends AbstractController
      */
     public function delete( Request $request, Contact $contact, EntityManagerInterface $em): Response
     {
+
+        $this->denyAccessUnlessGranted('delete', $contact);
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
             
             $em = $this->getDoctrine()->getManager();

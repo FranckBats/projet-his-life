@@ -31,6 +31,8 @@ class PictureController extends AbstractController
      */
     public function read(Picture $picture)
     {
+        $this->denyAccessUnlessGranted('view', $picture);
+
         return $this->render('picture/read.html.twig', [
             'controller_name' => 'PictureController',
             'picture' => $picture
@@ -42,6 +44,8 @@ class PictureController extends AbstractController
      */
     public function edit(Picture $picture, Request $request)
     {
+        $this->denyAccessUnlessGranted('edit', $picture);
+
         $form = $this->createForm(PictureType::class, $picture);
 
         $form->handleRequest($request);
@@ -59,7 +63,7 @@ class PictureController extends AbstractController
 
         return $this->render('picture/edit.html.twig', [
             'form' => $form->createView(),
-            
+            'picture' => $picture
         ]);
     }
 
@@ -136,6 +140,8 @@ class PictureController extends AbstractController
 
     public function delete(Request $request, Picture $picture): Response 
     {
+        $this->denyAccessUnlessGranted('delete', $picture);
+
         if ($this->isCsrfTokenValid('delete'.$picture->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($picture);

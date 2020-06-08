@@ -2,22 +2,22 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Family;
+use App\Entity\Contact;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class AccessFamilyVoter extends Voter
+class AccessContactVoter extends Voter
 {
     protected function supports($attribute, $subject)
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, ['edit', 'view', 'delete', 'create'])
-            && $subject instanceof Family;
+            && $subject instanceof Contact;
     }
 
-    protected function voteOnAttribute($attribute, $family, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $contact, TokenInterface $token)
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
@@ -27,11 +27,13 @@ class AccessFamilyVoter extends Voter
     
         $families= $user->getFamilies($user);
         
-        foreach ($families as $familyRow) {
-            if ($familyRow === $family) {
+        foreach ($families as $familyRow) 
+        {
+            $contacts = $familyRow->getPhonebook()->getValues();
 
-            // ... (check conditions and return true to grant permission) ...
-                switch ($attribute) {
+                if (in_array($contact, $contacts)) {
+            // ... (check conditions and return true to grant permission)
+                    switch ($attribute) {
                 case 'edit':
                     return true;
                     break;
@@ -41,14 +43,11 @@ class AccessFamilyVoter extends Voter
                     break;
 
                 case 'delete':
-                    
                     return true;
                     break;
-
-                
                 }
-            }
-            return false;
+                } 
         }
+            return false;
     }
 }

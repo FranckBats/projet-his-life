@@ -121,7 +121,8 @@ class ChildController extends AbstractController
      */
     public function read(Child $child)
     {
-    
+        $this->denyAccessUnlessGranted('read', $child);
+
         return $this->render('child/read.html.twig', [
             'controller_name' => 'ChildController',
             'child' => $child
@@ -134,6 +135,8 @@ class ChildController extends AbstractController
      */
     public function delete(Request $request, Child $child): Response
     {
+        $this->denyAccessUnlessGranted('delete', $child);
+
         if ($this->isCsrfTokenValid('delete'.$child->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($child);
@@ -150,6 +153,9 @@ class ChildController extends AbstractController
      */
     public function edit(Child $child, Request $request)
     {
+
+        $this->denyAccessUnlessGranted('edit', $child);
+
         $form = $this->createForm(ChildType::class, $child);
 
         $form->handleRequest($request);
