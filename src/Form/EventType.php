@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -40,10 +41,24 @@ class EventType extends AbstractType
                     'Scolaire' => 'Scolaire',
                     'Autre' => 'Autre',
                 ],
-                'expanded' => true,
+               
             ])
-            ->add('beginAt')
-            ->add('endAt')
+            ->add('beginAt',  DateType::class, [
+                // renders it as a single text box
+                'label' => 'Commence le:',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' =>  'dd/MM/yyyy'
+            ])
+            ->add('endAt',  DateType::class, [
+                // renders it as a single text box
+                'label' => 'Fini le:',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'format' =>  'dd/MM/yyyy'
+            ])
             //->add('people')
             ->add('family', EntityType::class, [
                 'label' => 'Famille',
@@ -51,9 +66,7 @@ class EventType extends AbstractType
                 'choices' => $families,
                 //'multiple' => true
             ])
-            ->add ("submit", SubmitType::class, [
-                'label' => 'Ajouter un événement'
-            ])
+            
         ;
     }
 

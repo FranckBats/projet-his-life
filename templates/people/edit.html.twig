@@ -1,13 +1,46 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Modifier votre profil{% endblock %}
+{% extends 'basedashboard.html.twig' %}
 
 {% block body %}
 
-{{ include('people/_form.html.twig', {'button_label': 'update'}) }}
+<section class="light-content our-team">
 
-<a href="{{ path('people_profile') }}"> Retour sur votre profil</a>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Mon Profil</h2>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 
-{# {{ include('contact/_delete_form.html.twig') }} #}
+		<div class="font-poppinsdeux">
+			<div class="wrapper wrapper--w780">
+				<div class="card card-12">
+					<div class="card-heading"></div>
+					<div class="card-body">
+						<h2 class="title">Modifier
+						</h2>
+						{{ form_start(form) }}
+
+					<div class="p-t-10">
+							<button class="large-button white-color" type="submit">Valider</button>
+					</div>
+					{{ form_end(form) }}
+					</br>{{ include('family/_delete_form.html.twig') }}
+						</div>
+					</br>
+
+				</div>
+			</div>
+		</div>
+		
+	</section>
+
+
 
 {% endblock %}

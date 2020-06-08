@@ -1,7 +1,22 @@
 {% extends 'basedashboard.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('event_new') }}">Creez un nouvel évènement</a>
+    
+    <section class="light-content our-team">
+
+<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Calendrier</h2>
+						<a href="{{ path('event_new') }}" class="large-button green-color">Ajouter une Entrée</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
 
     <div id="calendar-holder"></div>
 
@@ -45,7 +60,9 @@
                 plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
                 timeZone: 'UTC',
             });
-            calendar.render();
+            calendar.render(); 
         });
-    </script>
-{% endblock %}{% endblock %}
+    </script> 
+
+    </section>
+{% endblock %}{% endblock %} 
