@@ -31,8 +31,7 @@ class FamilyController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
-        
-
+    
         $family = new Family;
 
         $form = $this->createForm(FamilyType::class, $family);
@@ -40,6 +39,30 @@ class FamilyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $picture = $form['picture']->getData();
+
+            function generateRandomString($length = 10)
+            {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $maxLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++)
+                {
+                $randomString .= $characters[rand(0, $maxLength - 1)];
+                }
+                return $randomString;
+            }
+
+            $fileName = generateRandomString();
+
+            $directory = 'assets/files/family_picture/';
+
+            if ($picture != null) {
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $family->setPicture($finalDirectory);
+                $picture->move($this->getParameter('family_picture_directory'), $fileName.'.jpg');
+            }
 
             $family->setName($form->getData()->getName());
             $family->addPerson($this->getUser());

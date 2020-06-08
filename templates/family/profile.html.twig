@@ -30,11 +30,12 @@
 		{% for family in families %}
 			<div class="photo-card">
 				{% if family.picture is not null %}
-				 <a href="{{ path('family_read', {'id': family.id }) }}"><img src="{{ asset(family.picture) }}" alt="images"></a>
+				 <div class="photo-background" style="background-image:url('{{ asset(family.picture) }}'); "></div>
 				{% else %}
-				<a href="{{ path('family_read', {'id': family.id }) }}">
-				<img src="{{ asset('assets/images/kid.jpg') }}"alt="images"></a>
-				{% endif %}
+
+                <div class="photo-background" style="background-image:url('{{ asset('assets/images/famillebase.jpg') }}'); "></div>
+			
+				{% endif %} 
 				<div class="photo-details ">
 					<h1 class="title">{{ family.name }}</h1>
 				</br>

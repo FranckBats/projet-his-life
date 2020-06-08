@@ -1,10 +1,22 @@
 {% extends 'basedashboard.html.twig' %}
 
-{% block title %}Event index{% endblock %}
-
 {% block body %}
+    
+    <section class="light-content our-team">
 
-  <a href="{{ path('evenement_new') }}">Creez un nouvel évènement</a>
+<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Calendrier</h2>
+						<a href="{{ path('evenement_new') }}" class="large-button green-color">Ajouter une Entrée</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
 
     <div id="calendar-holder"></div>
 
@@ -15,15 +27,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
 {% endblock %}
 
+
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script> 
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
             var calendarEl = document.getElementById('calendar-holder');
-            console.log(calendarEl);
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 defaultView: 'dayGridMonth',
                 editable: true,
@@ -48,40 +61,9 @@
                 timeZone: 'UTC',
             });
             calendar.render();
-        }); 
+        });
     </script>
 
-    <h1>Liste des événéments du calendrier</h1>
-<div class="col-10">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.name }}</td>
-                <td>{{ evenement.type }}</td>
-                <td>{{ evenement.beginAt ? evenement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.endAt ? evenement.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-    <a href="{{ path('evenement_new') }}">Create new</a>
-{% endblock %} 
+    </section>
+
+{% endblock %}

@@ -46,6 +46,9 @@
 					<a href="{{ path('evenement_index') }}">Calendrier</a>
 				</li>
 				<li>
+					<a href="{{ path('post_browse')}}">Message</a>
+				</li>
+				<li>
 					<a href="">{{ app.user.firstname }}</a>
 					<ul>
 						{% if app.user %}
@@ -58,9 +61,7 @@
 							<li>
 								<a href="{{ path('family_profile') }}">Famille</a>
 							</li>
-							<li>
-								<a href="{{ path('post_browse')}}">Message</a>
-							</li>
+							
 							<li>
 								<a href="{{ path('app_logout') }}">Déconnexion</a>
 							</li>
@@ -115,6 +116,9 @@
 									<a href="{{ path('evenement_index') }}">Calendrier</a>
 								</li>
 								<li>
+									<a href="{{ path('post_browse')}}">Message</a>
+								</li>
+								<li>
 									<a href="{{ path('people_profile')}}">{{ app.user.firstname }}</a>
 									<ul>
 										{% if app.user %}
@@ -127,9 +131,7 @@
 											<li>
 												<a href="{{ path('family_profile') }}">Famille</a>
 											</li>
-											<li>
-												<a href="{{ path('post_browse')}}">Message</a>
-											</li>
+											
 											<li>
 												<a href="{{ path('app_logout') }}">Déconnexion</a>
 											</li>
@@ -196,7 +198,7 @@
 </div>
 <!-- /.container --></footer>
 
-{<script src="../../assets/js/min/plugins.min.js"></script>
+<script src="../../assets/js/min/plugins.min.js"></script>
 <script src="../../assets/js/min/medigo-custom.min.js"></script>
 
 
