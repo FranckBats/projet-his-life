@@ -231,7 +231,6 @@ $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 
 <script type="text/javascript">
 	window.addEventListener('DOMContentLoaded', function (e) {
-console.log('coucou');
 var idSelect = 0;
 $.ajax({
 url: '{{ path('ajax_action') }}',
@@ -239,6 +238,7 @@ type: "POST",
 dataType: "json",
 data: {
 "idSelect": idSelect
+
 },
 async: true,
 success: function test(data) {
@@ -308,13 +308,44 @@ let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1
 selectedChildHealthEvent_img_src.value = '../assets/images/sante.jpg'
 }
 
+{# PICTURE - NAME #}
+
+let selectedChildLastFamilyPicture_description = document.getElementById('selectedChildLastFamilyPicture_description')
+selectedChildLastFamilyPicture_description.textContent = data.lastFamilyPicture.description
+
+if (data.lastFamilyPicture.description === undefined) {
+selectedChildLastFamilyPicture_description.textContent = 'Aucune photo récente postée'
+}
+
+{# PICTURE - LASTPOST #}
+
+let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedChildLastFamilyPicture_lastPost');
+
+if (data.lastFamilyPicture.created_at !== undefined) {
+selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
+} else {
+selectedlastFamilyPicture.textContent = '';
+}
+
+{# PICTURE - FILE #}
+
+let selectedChildLastFamilyPicture_img = document.getElementById('selectedChildLastFamilyPicture_img');
+
+if (data.lastFamilyPicture.file !== undefined) {
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
+selectedChildLastFamilyPicture_img_src.value = data.lastFamilyPicture.file;
+} else {
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture.attributes[1];
+selectedChildLastFamilyPicture_src.value = '../assets/images/sante.jpg'
+}
+
+
 }
 })});
 </script>
 
 
 <script type="text/javascript">
-console.log('coucou');
 	$('#selectType').on('change', function (e) {
 var idSelect = e.currentTarget.value;
 console.log(e);
@@ -393,6 +424,36 @@ let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1
 selectedChildHealthEvent_img_src.value = '../../assets/images/sante.jpg'
 }
 
+{# PICTURE - NAME #}
+
+let selectedChildLastFamilyPicture_description = document.getElementById('selectedChildLastFamilyPicture_description')
+selectedChildLastFamilyPicture_description.textContent = data.lastFamilyPicture.description
+
+if (data.lastFamilyPicture.description === undefined) {
+selectedChildLastFamilyPicture_description.textContent = 'Aucune photo récente postée'
+}
+
+{# PICTURE - LASTPOST #}
+
+let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedChildLastFamilyPicture_lastPost');
+
+if (data.lastFamilyPicture.created_at !== undefined) {
+selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
+} else {
+selectedlastFamilyPicture.textContent = '';
+}
+
+{# PICTURE - FILE #}
+
+let selectedChildLastFamilyPicture_img = document.getElementById('selectedChildLastFamilyPicture_img');
+
+if (data.lastFamilyPicture.file !== undefined) {
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
+selectedChildLastFamilyPicture_img_src.value = data.lastFamilyPicture.file;
+} else {
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture.attributes[1];
+selectedChildLastFamilyPicture_src.value = '../assets/images/sante.jpg'
+}
 
 }
 })});

@@ -57,16 +57,28 @@ class MainController extends AbstractController
 */
 public function ajaxAction(Request $request)
 {
-
     if ($this->getUser() !== false) {
         $familiesOfUser = $this->getUser()->getFamilies();
-        
         $childrenArray = array();
         
         foreach ($familiesOfUser as $family) {
+
+            $lastFamilyPictureArray = [];
+
+            if ($family->getPictures()->last() != false) {
+                $lastFamilyPicture = $family->getPictures()->last();
+                $lastFamilyPictureArray = [
+                    'id' => $lastFamilyPicture->getId(),
+                    'title' => $lastFamilyPicture->getTitle(),
+                    'description' => $lastFamilyPicture->getDescription(),
+                    'file' => $lastFamilyPicture->getFile(),
+                    'created_at' => $lastFamilyPicture->getCreatedAt()
+                ];
+            }
+                
+
             if(!empty($family->getChildren()->getValues())) {
                 $childObject = $family->getChildren()->getValues();
-                
                 foreach ($childObject as $child) {
                     // ### GRADES && NOTE ###
                     $lastGrade = $child->getGrades()->last();
@@ -130,7 +142,8 @@ public function ajaxAction(Request $request)
                         'gender' => $child->getGender(),
                         'birthdate' => $child->getBirthdate(),
                         'lastSchoolEventArray' => $lastSchoolEventArray,
-                        'lastHealthbook' => $lastHealthbookArray
+                        'lastHealthbook' => $lastHealthbookArray,
+                        'lastFamilyPicture' => $lastFamilyPictureArray 
                     ];
                 }                
             }
@@ -138,16 +151,15 @@ public function ajaxAction(Request $request)
         ;
         /* on récupère la valeur envoyée */
         $idSelect = $request->request->get('idSelect');
-        
-        
+
         if ($idSelect == 0) {
             $selectChild = array_shift($childrenArray);
         }
-        
+
         else {
             $selectChild = $childrenArray[$idSelect];
         }
-        
+
         $response = new Response(json_encode($selectChild));
         
         /* On renvoie une réponse encodée en JSON */
