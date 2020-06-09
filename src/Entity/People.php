@@ -37,22 +37,22 @@ class People implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="people")
+     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="people", cascade={"remove"})
      */
     private $evenements;
 
     /**
-     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="people")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="people", cascade={"remove"})
      */
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="people")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="people", cascade={"remove"})
      */
     private $pictures;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Family::class, inversedBy="people")
+     * @ORM\ManyToMany(targetEntity=Family::class, inversedBy="people", cascade={"remove"})
      */
     private $families;
 
