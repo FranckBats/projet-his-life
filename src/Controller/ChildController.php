@@ -18,7 +18,7 @@ class ChildController extends AbstractController
 {
 
     /**
-     * @Route("/child/profile", name="child_profile")
+     * @Route("/enfant/profil", name="child_profile")
      */
     public function profile(ChildRepository $childRepository, FamilyRepository $familyRepository)
     {
@@ -65,7 +65,7 @@ class ChildController extends AbstractController
     }
 
     /**
-     * @Route("/child/create", name="child_create")
+     * @Route("/enfant/ajout", name="child_create")
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
@@ -117,7 +117,7 @@ class ChildController extends AbstractController
     }
 
     /**
-     * @Route("/child/read/{id}", name="child_read", requirements= {"id": "\d+"})
+     * @Route("/enfant/profil/{id}", name="child_read", requirements= {"id": "\d+"})
      */
     public function read(Child $child)
     {
@@ -131,7 +131,7 @@ class ChildController extends AbstractController
 
     
     /**
-     * @Route("/child/{id}", name="child_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/enfant/{id}", name="child_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(Request $request, Child $child): Response
     {
@@ -149,7 +149,7 @@ class ChildController extends AbstractController
     }
 
     /**
-     *  @Route ("/child/edit/{id}", name="child_edit", requirements={"id": "\d+"})
+     *  @Route ("/enfant/modifier/{id}", name="child_edit", requirements={"id": "\d+"})
      */
     public function edit(Child $child, Request $request)
     {

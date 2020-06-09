@@ -23,7 +23,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/tableau-de-bord-je-sais-c-est-moche-en-francais", name="dashboard")
      */
     public function dashboard(GradeRepository $gradeRepository)
     {
@@ -63,6 +63,7 @@ public function ajaxAction(Request $request)
         
         foreach ($familiesOfUser as $family) {
 
+            // ### LAST CHILD FAMILY PICTURE ### 
             $lastFamilyPictureArray = [];
 
             if ($family->getPictures()->last() != false) {
@@ -75,7 +76,21 @@ public function ajaxAction(Request $request)
                     'created_at' => $lastFamilyPicture->getCreatedAt()
                 ];
             }
-                
+
+            // ### LAST CHILD FAMILY EVENT ### 
+            $lastFamilyEventArray = [];
+
+            if ($family->getEvenements()->last() != false) {
+                $lastFamilyEvent = $family->getEvenements()->last();
+                $lastFamilyEventArray = [
+                    'id' => $lastFamilyEvent->getId(),
+                    'name' => $lastFamilyEvent->getName(),
+                    'type' => $lastFamilyEvent->getType(),
+                    'created_at' => $lastFamilyEvent->getCreatedAt(),
+                    'begin_at' => $lastFamilyEvent->getBeginAt(),
+                    'end_at' => $lastFamilyEvent->getEndAt()
+                ];
+            }
 
             if(!empty($family->getChildren()->getValues())) {
                 $childObject = $family->getChildren()->getValues();
@@ -143,7 +158,8 @@ public function ajaxAction(Request $request)
                         'birthdate' => $child->getBirthdate(),
                         'lastSchoolEventArray' => $lastSchoolEventArray,
                         'lastHealthbook' => $lastHealthbookArray,
-                        'lastFamilyPicture' => $lastFamilyPictureArray 
+                        'lastFamilyPicture' => $lastFamilyPictureArray,
+                        'lastFamilyEvent' => $lastFamilyEventArray
                     ];
                 }                
             }

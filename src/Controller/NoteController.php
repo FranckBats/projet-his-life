@@ -17,7 +17,7 @@ class NoteController extends AbstractController
     
 
     /** 
-     * @Route("/note", name="note_browse")
+     * @Route("/mots-des-profs", name="note_browse")
      */
     public function browse (NoteRepository $noteRepository)
     {
@@ -42,7 +42,7 @@ class NoteController extends AbstractController
     }
 
     /** 
-     * @Route("/note/read/{id}", name="note_read", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/{id}", name="note_read", requirements= {"id": "\d+"})
      */
     public function read (note $note)
     {
@@ -52,7 +52,7 @@ class NoteController extends AbstractController
     }
 
     /**
-     * @Route("/note/edit/{id}", name="note_edit", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/modifier/{id}", name="note_edit", requirements= {"id": "\d+"})
      */
     public function edit(Note $note, Request $request){
 
@@ -103,7 +103,7 @@ class NoteController extends AbstractController
     }
 
     /**
-     * @Route("/note/add", name="note_add")
+     * @Route("/mots-des-profs/ajouter", name="note_add")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -156,7 +156,7 @@ class NoteController extends AbstractController
     }
 
     /** 
-     * @Route("/note/delete/{id}", name="note_delete", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/supprimer/{id}", name="note_delete", requirements= {"id": "\d+"})
      */
     public function delete (Request $request, Note $note)
     {
@@ -170,4 +170,5 @@ class NoteController extends AbstractController
         }
         return $this->redirectToRoute('note_browse');
     }
+
 }

@@ -19,7 +19,7 @@ use Symfony\Component\Notifier\Recipient\Recipient;
 class GradeController extends AbstractController
 {
     /**
-     * @Route("/grade", name="grade")
+     * @Route("/bulletins", name="grade")
      */
     public function index()
     {
@@ -29,7 +29,7 @@ class GradeController extends AbstractController
     }
 
     /** 
-     * @Route("/grade/browse", name="grade_browse")
+     * @Route("/bulletins/index", name="grade_browse")
      */
     public function browse()
     {
@@ -53,7 +53,7 @@ class GradeController extends AbstractController
     }
 
     /** 
-     * @Route("/grade/read/{id}", name="grade_read", requirements={"id": "\d+"})
+     * @Route("/bulletins/{id}", name="grade_read", requirements={"id": "\d+"})
      */
     public function read(Grade $grade)
     {
@@ -63,7 +63,7 @@ class GradeController extends AbstractController
     }
 
     /**
-     * @Route("/grade/edit/{id}", name="grade_edit", requirements={"id": "\d+"})
+     * @Route("/bulletins/modifier/{id}", name="grade_edit", requirements={"id": "\d+"})
      */
     public function edit(Grade $grade, Request $request, EntityManagerInterface $em)
     {
@@ -106,13 +106,12 @@ class GradeController extends AbstractController
             
         return $this->render('grade/edit.html.twig', [
             'form' => $form->createView(),
+            'grade' => $grade
         ]);
-
-
     }
 
     /**
-     * @Route("/grade/add", name="grade_add")
+     * @Route("/bulletins/ajouter", name="grade_add")
      */
     public function add(Request $request, EntityManagerInterface $em, NotifierInterface $notifier)
     {
@@ -158,7 +157,6 @@ class GradeController extends AbstractController
             ->content('Un nouveau bulletin a été ajouté : ' .$grade->getName());
             
             $family = $form->getData()->getChild()->getFamilies()->first();
-            dump($family);
 
             
             $people = $family->getPeople()->getValues();
@@ -185,9 +183,9 @@ class GradeController extends AbstractController
     }
 
     /** 
-     * @Route("/grade/delete/{id}", name="grade_delete", requirements= {"id": "\d+"})
+     * @Route("/bulletins/supprimer/{id}", name="grade_delete", requirements= {"id": "\d+"})
      */
-    public function delete (Request $request, Grade $grade): Response
+    public function delete (Request $request, Grade $grade, EntityManagerInterface $em)
     {
         if ($this->isCsrfTokenValid('delete'.$grade->getId(), $request->request->get('_token'))){
 

@@ -17,7 +17,7 @@ class PeopleController extends AbstractController
     
     
     /**
-     * @Route("/people/profile", name="people_profile")
+     * @Route("/mon-profil", name="people_profile")
      */
     public function profile()
     {
@@ -29,7 +29,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route("/people/edit/", name="people_edit")
+     * @Route("/mon-profil/modifier/", name="people_edit")
      */
     public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -64,7 +64,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route("/people/{id}", name="people_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/mon-profil/{id}", name="people_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(Request $request, People $people): Response
     {

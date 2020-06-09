@@ -185,17 +185,17 @@ class Family
         return $this->evenements;
     }
 
-    public function addEvent(Evenement $evenement): self
+    public function addEvenement(Evenement $evenement): self
     {
-        if (!$this->evenenemens->contains($evenement)) {
-            $this->eventemens[] = $evenement;
+        if (!$this->evenenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
             $evenement->setFamily($this);
         }
 
         return $this;
     }
 
-    public function removeEvent(Evenement $evenement): self
+    public function removeEvenement(Evenement $evenement): self
     {
         if ($this->evenements->contains($evenement)) {
             $this->evenements->removeElement($evenement);

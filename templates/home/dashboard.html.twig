@@ -38,32 +38,44 @@
 						</div>
 					{% endfor %}
 
-					<div class="col-md-6 col-sm-4 ">
+					<div class="col-md-6 col-sm-4 center-block">
 						<div class="team-member">
 							<div class="member-content">
-								<h4 class="member-name">Santé</h4>
-								<h6>Dernier événement dans Santé<span id="selectedChildHealthEvent"></span></br></h6>
-								<p id="selectedChildHealthEvent_name">
-								</p>
+								<a href="{{ path('evenement_index') }}"><h4 class="member-name">Calendrier</h4></a></br>
+								    <h5 class="titre"> Posté le: </h5>
+									<p> <span id="selectedChildLastEvent_lastPost"></span></br></br>
+									<h5 class="titre"> Titre: </h5>
+									<p> <span id="selectedChildLastEvent_name"></span></p></br>
+									<h5 class="titre"> Genre: </h5>
+									<p> <span id="selectedChildLastEvent_type"></p><br>
+									<h5 class="titre"> Début de l'événement: </h5>
+									<p> <span id="selectedChildLastEvent_beginAt"></p></br>
+									<h5 class="titre">Fin de l'événement:   </h5>
+									<p> <span id="selectedChildLastEvent_endAt"></p></br>
 							</div>
 							<div class="thumb-post">
-								<img id="selectedChildHealthEvent_img" src="{{ asset('assets/images/sante.jpg') }}" alt="">
+								<img id="selectedChildLastEvent_img" src="" alt="">
 							</div>
 						</div>
 						<!-- /.team-member -->
 					</div>
 					<!-- /.col-md-4 -->
 
+					
+
 					<div class="col-md-6 col-sm-4 center-block">
 						<div class="team-member">
 							<div class="member-content">
 								<h4 class="member-name">Vie Scolaire</h4>
-								<h6>Dernier événement dans Santé<span id="selectedChildSchoolEvent_lastPost"></span></h6>
-								<p id="selectedChildSchoolEvent_name">
-								</p>
+								<h5 class="titre"> Posté le: </h5>
+								<p> <span id="selectedChildSchoolEvent_lastPost"></span></p>
+								<h5 class="titre"> Titre: </h5>
+								<p> <span id="selectedChildSchoolEvent_name"></span></p>
+								
+								
 							</div>
 							<div class="thumb-post">
-								<img id="selectedChildSchoolEvent_img" src="{{ asset('assets/images/ecoleprimaire.jpg') }}" alt="">
+								<a id="selectedChildSchoolEvent_detail" href=""><img id="selectedChildSchoolEvent_img" src="{{ asset('assets/images/ecoleprimaire.jpg') }}" alt=""></a>
 							</div>
 						</div>
 						<!-- /.team-member -->
@@ -77,32 +89,38 @@
 						<div class="team-member">
 							<div class="member-content">
 								<h4 class="member-name">Galerie Photo</h4>
-									<h6>Dernière photo postée<span id="selectedChildLastFamilyPicture_lastPost"></span></h6>
-									<p id="selectedChildLastFamilyPicture_description">
-									</p>
+								    <h5 class="titre"> Posté le: </h5>
+									<p><span id="selectedChildLastFamilyPicture_lastPost"></span></h6></br>
+									<h5 class="titre"> Titre: </h5>
+									<p><span id="selectedChildLastFamilyPicture_title"></span></p>
+									
 							</div>
 							<div class="thumb-post">
-								<img id="selectedChildLastFamilyPicture_img" src="assets/images/includes/member3.jpg" alt="">
+								<a href="{{ path('picture')}}"><img id="selectedChildLastFamilyPicture_img" src="assets/images/includes/member3.jpg" alt=""></a>
 							</div>
 						</div>
 						<!-- /.team-member -->
 					</div>
 					<!-- /.col-md-4 -->
 
-					<div class="col-md-6 col-sm-4 center-block">
+					<div class="col-md-6 col-sm-4 ">
 						<div class="team-member">
 							<div class="member-content">
-								<h4 class="member-name">Calendrier</h4>
-								<p>
-								</p>
+								<h4 class="member-name">Santé</h4>
+								<h5 class="titre"> Posté le: </h5>
+								<h6><span id="selectedChildHealthEvent"></span></h6></br>
+								<h5 class="titre"> Titre: </h5>
+								<p> <span id="selectedChildHealthEvent_name"></span></p>
+								
 							</div>
 							<div class="thumb-post">
-								<img src="assets/images/includes/member4.jpg" alt="">
+								<a href="{{ path('healthbook_browse')}}"><img id="selectedChildHealthEvent_img" src="{{ asset('assets/images/sante.jpg') }}" alt=""></a>
 							</div>
 						</div>
 						<!-- /.team-member -->
 					</div>
 					<!-- /.col-md-4 -->
+					
 
 				</div>
 				<!-- /.row -->

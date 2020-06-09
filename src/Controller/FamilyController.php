@@ -16,7 +16,7 @@ class FamilyController extends AbstractController
 {
 
     /**
-     * @Route("/family/profile", name="family_profile")
+     * @Route("/famille/profil", name="family_profile")
      */
     public function profile(FamilyRepository $childRepository, FamilyRepository $familyRepository)
     {
@@ -27,7 +27,7 @@ class FamilyController extends AbstractController
     }
     
     /**
-     * @Route("/family/create", name="family_create")
+     * @Route("/famille/ajouter", name="family_create")
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
@@ -86,7 +86,7 @@ class FamilyController extends AbstractController
     }
 
     /**
-     * @Route("/family/read/{id}", name="family_read", requirements= {"id": "\d+"})
+     * @Route("/famille/profil/{id}", name="family_read", requirements= {"id": "\d+"})
      */
     public function read(Family $family)
     {
@@ -100,7 +100,7 @@ class FamilyController extends AbstractController
     }
 
    /**
-     * @Route("/family/{id}", name="family_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/famille/{id}", name="family_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(Request $request, Family $family): Response
     {
@@ -118,7 +118,7 @@ class FamilyController extends AbstractController
     }
 
     /**
-     *  @Route ("/family/edit/{id}", name="family_edit", requirements={"id": "\d+"})
+     *  @Route ("/famille/modifier/{id}", name="family_edit", requirements={"id": "\d+"})
      */
     public function edit(Family $family, Request $request)
     {

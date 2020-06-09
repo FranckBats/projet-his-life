@@ -212,23 +212,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-{#
-				<!-- Popper.JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script><!-- Bootstrap JS --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><!-- jQuery Custom Scroller CDN --><script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script><script var dropdown="document.querySelectorAll(" .dropdown");" var dropdownarray="Array.prototype.slice.call(dropdown, 0);" dropdownarray.foreach(function (el) { var button =" el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector(".dropdown-menu"), arrow = button.querySelector("i.icon-arrow"); button.onclick = function (event) { if (!menu.hasClass("show")) { menu.classList.add("show"); menu.classList.remove("hide"); arrow.classList.add("open"); arrow.classList.remove("close"); event.preventDefault(); } else { menu.classList.remove("show"); menu.classList.add("hide"); arrow.classList.remove("open"); arrow.classList.add("close"); event.preventDefault(); } }; });" element.prototype.hasclass=" function" (classname) { return ( this.classname && new regexp(" (^|\\s)" + className + " (\\s|$)").test(this.className) ); };></script><script type=" text/javascript">$(document).ready(function () {
-$("#sidebar").mCustomScrollbar({theme: "minimal"});
-
-$('#dismiss, .overlay').on('click', function () {
-$('#sidebar').removeClass('active');
-$('.overlay').removeClass('active');
-});
-
-$('#sidebarCollapse').on('click', function () {
-$('#sidebar').addClass('active');
-$('.overlay').addClass('active');
-$('.collapse.in').toggleClass('in');
-$('a[aria-expanded=true]').attr('aria-expanded', 'false');
-});
-});</script> #}
-
 <script type="text/javascript">
 	window.addEventListener('DOMContentLoaded', function (e) {
 var idSelect = 0;
@@ -274,6 +257,16 @@ let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1
 selectedChildSchoolEvent_img_src.value = '../assets/images/ecoleprimaire.jpg'
 }
 
+{# SCHOOL - READ BUTTON #}
+let selectedChildSchoolEvent_detail = document.getElementById('selectedChildSchoolEvent_detail');
+let selectedChildSchoolEvent_button_href = selectedChildSchoolEvent_detail.attributes[1]
+if (data.lastSchoolEventArray.type === 'grade') {
+selectedChildSchoolEvent_button_href.textContent = '{{ path('grade_browse') }}'
+}
+else {
+selectedChildSchoolEvent_button_href.textContent = '{{ path('note_browse') }}'
+}
+
 
 {# HEALTH - BLOCK #} 
 {# HEALTH - LASPOST #}
@@ -308,13 +301,13 @@ let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1
 selectedChildHealthEvent_img_src.value = '../assets/images/sante.jpg'
 }
 
-{# PICTURE - NAME #}
+{# PICTURE - TITLE #}
 
-let selectedChildLastFamilyPicture_description = document.getElementById('selectedChildLastFamilyPicture_description')
-selectedChildLastFamilyPicture_description.textContent = data.lastFamilyPicture.description
+let selectedChildLastFamilyPicture_title = document.getElementById('selectedChildLastFamilyPicture_title')
+selectedChildLastFamilyPicture_title.textContent = data.lastFamilyPicture.title
 
-if (data.lastFamilyPicture.description === undefined) {
-selectedChildLastFamilyPicture_description.textContent = 'Aucune photo récente postée'
+if (data.lastFamilyPicture.title === undefined) {
+selectedChildLastFamilyPicture_title.textContent = 'Aucune photo récente postée'
 }
 
 {# PICTURE - LASTPOST #}
@@ -324,7 +317,7 @@ let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedC
 if (data.lastFamilyPicture.created_at !== undefined) {
 selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
 } else {
-selectedlastFamilyPicture.textContent = '';
+selectedChildLastFamilyPicture_lastPost.textContent = '';
 }
 
 {# PICTURE - FILE #}
@@ -334,11 +327,67 @@ let selectedChildLastFamilyPicture_img = document.getElementById('selectedChildL
 if (data.lastFamilyPicture.file !== undefined) {
 let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
 selectedChildLastFamilyPicture_img_src.value = data.lastFamilyPicture.file;
-} else {
-let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture.attributes[1];
-selectedChildLastFamilyPicture_src.value = '../assets/images/sante.jpg'
+} 
+else {
+
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
+
+selectedChildLastFamilyPicture_img_src.value = '../assets/images/includes/member3.jpg'
 }
 
+{# EVENT- NAME #}
+
+let selectedChildLastEvent_name = document.getElementById('selectedChildLastEvent_name')
+selectedChildLastEvent_name.textContent = data.lastFamilyEvent.name
+
+if (data.lastFamilyEvent.name === undefined) {
+selectedChildLastEvent_name.textContent = 'Aucune entrée dans le calendrier'
+}
+
+{# EVENT- TYPE #}
+
+let selectedChildLastEvent_type = document.getElementById('selectedChildLastEvent_type')
+selectedChildLastEvent_type.textContent = data.lastFamilyEvent.type
+
+if (data.lastFamilyEvent.type === undefined) {
+selectedChildLastEvent_type.textContent = ''
+}
+
+{# EVENT - CREATED AT#}
+
+let selectedChildLastEvent_lastPost = document.getElementById('selectedChildLastEvent_lastPost');
+
+if (data.lastFamilyEvent.created_at !== undefined) {
+	selectedChildLastEvent_lastPost.textContent = data.lastFamilyEvent.created_at.date
+}
+
+{# EVENT- BEGIN AT #}
+
+let selectedChildLastEvent_beginAt = document.getElementById('selectedChildLastEvent_beginAt')
+let selectedChildLastEvent_img = document.getElementById('selectedChildLastEvent_img');
+let selectedChildLastEvent_img_src = selectedChildLastEvent_img.attributes[1];
+
+if (data.lastFamilyEvent.begin_at !== undefined) {
+selectedChildLastEvent_beginAt.textContent = data.lastFamilyEvent.begin_at.date
+selectedChildLastEvent_img_src.value = '';
+}
+
+else {
+selectedChildLastEvent_beginAt.textContent = ''
+selectedChildLastEvent_img_src.value = '../assets/images/includes/member4.jpg';
+}
+
+{# EVENT- END AT #}
+
+let selectedChildLastEvent_endAt = document.getElementById('selectedChildLastEvent_endAt')
+
+if (data.lastFamilyEvent.end_at !== undefined) {
+selectedChildLastEvent_endAt.textContent = data.lastFamilyEvent.end_at.date
+}
+
+else {
+selectedChildLastEvent_endAt.textContent = ''
+}
 
 }
 })});
@@ -348,6 +397,7 @@ selectedChildLastFamilyPicture_src.value = '../assets/images/sante.jpg'
 <script type="text/javascript">
 	$('#selectType').on('change', function (e) {
 var idSelect = e.currentTarget.value;
+
 console.log(e);
 $.ajax({
 url: '{{ path('ajax_action') }}',
@@ -356,6 +406,7 @@ dataType: "json",
 data: {
 "idSelect": idSelect
 },
+
 async: true,
 success: function test(data) {
 
@@ -365,7 +416,8 @@ success: function test(data) {
 let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSchoolEvent_lastPost');
 
 if (data.lastSchoolEventArray.created_at !== undefined) {
-selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
+
+selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.dateTime;
 } else {
 selectedChildSchoolEvent_lastPost.textContent = ''
 }
@@ -388,6 +440,16 @@ selectedChildSchoolEvent_img_src.value = data.lastSchoolEventArray.file;
 } else {
 let selectedChildSchoolEvent_img_src = selectedChildSchoolEvent_img.attributes[1];
 selectedChildSchoolEvent_img_src.value = '../../assets/images/ecoleprimaire.jpg'
+}
+
+{# SCHOOL - READ BUTTON #}
+let selectedChildSchoolEvent_detail = document.getElementById('selectedChildSchoolEvent_detail');
+let selectedChildSchoolEvent_button_href = selectedChildSchoolEvent_detail.attributes[1]
+if (data.lastSchoolEventArray.type === 'grade') {
+selectedChildSchoolEvent_button_href.textContent = '{{ path('grade_browse') }}'
+}
+else {
+selectedChildSchoolEvent_button_href.textContent = '{{ path('note_browse') }}'
 }
 
 
@@ -424,13 +486,14 @@ let selectedChildHealthEvent_img_src = selectedChildHealthEvent_img.attributes[1
 selectedChildHealthEvent_img_src.value = '../../assets/images/sante.jpg'
 }
 
-{# PICTURE - NAME #}
 
-let selectedChildLastFamilyPicture_description = document.getElementById('selectedChildLastFamilyPicture_description')
-selectedChildLastFamilyPicture_description.textContent = data.lastFamilyPicture.description
+{# PICTURE - TITLE #}
 
-if (data.lastFamilyPicture.description === undefined) {
-selectedChildLastFamilyPicture_description.textContent = 'Aucune photo récente postée'
+let selectedChildLastFamilyPicture_title = document.getElementById('selectedChildLastFamilyPicture_title')
+selectedChildLastFamilyPicture_title.textContent = data.lastFamilyPicture.title
+
+if (data.lastFamilyPicture.title === undefined) {
+selectedChildLastFamilyPicture_title.textContent = 'Aucune photo récente postée'
 }
 
 {# PICTURE - LASTPOST #}
@@ -440,7 +503,7 @@ let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedC
 if (data.lastFamilyPicture.created_at !== undefined) {
 selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
 } else {
-selectedlastFamilyPicture.textContent = '';
+selectedChildLastFamilyPicture_lastPost.textContent = '';
 }
 
 {# PICTURE - FILE #}
@@ -450,10 +513,68 @@ let selectedChildLastFamilyPicture_img = document.getElementById('selectedChildL
 if (data.lastFamilyPicture.file !== undefined) {
 let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
 selectedChildLastFamilyPicture_img_src.value = data.lastFamilyPicture.file;
-} else {
-let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture.attributes[1];
-selectedChildLastFamilyPicture_src.value = '../assets/images/sante.jpg'
+} 
+else {
+
+let selectedChildLastFamilyPicture_img_src = selectedChildLastFamilyPicture_img.attributes[1];
+
+selectedChildLastFamilyPicture_img_src.value = '../assets/images/includes/member3.jpg'
 }
+
+{# EVENT- NAME #}
+
+let selectedChildLastEvent_name = document.getElementById('selectedChildLastEvent_name')
+selectedChildLastEvent_name.textContent = data.lastFamilyEvent.name
+
+if (data.lastFamilyEvent.name === undefined) {
+selectedChildLastEvent_name.textContent = 'Aucune entrée dans le calendrier'
+}
+
+{# EVENT - CREATED AT#}
+
+let selectedChildLastEvent_lastPost = document.getElementById('selectedChildLastEvent_lastPost');
+
+if (data.lastFamilyEvent.created_at !== undefined) {
+	selectedChildLastEvent_lastPost.textContent = data.lastFamilyEvent.created_at.date
+}
+
+{# EVENT- TYPE #}
+
+let selectedChildLastEvent_type = document.getElementById('selectedChildLastEvent_type')
+selectedChildLastEvent_type.textContent = data.lastFamilyEvent.type
+
+if (data.lastFamilyEvent.type === undefined) {
+selectedChildLastEvent_type.textContent = ''
+}
+
+{# EVENT- BEGIN AT #}
+
+let selectedChildLastEvent_beginAt = document.getElementById('selectedChildLastEvent_beginAt')
+let selectedChildLastEvent_img = document.getElementById('selectedChildLastEvent_img');
+let selectedChildLastEvent_img_src = selectedChildLastEvent_img.attributes[1];
+
+if (data.lastFamilyEvent.begin_at !== undefined) {
+selectedChildLastEvent_beginAt.textContent = data.lastFamilyEvent.begin_at.date
+selectedChildLastEvent_img_src.value = '';
+}
+
+else {
+selectedChildLastEvent_beginAt.textContent = ''
+selectedChildLastEvent_img_src.value = '../assets/images/includes/member4.jpg';
+}
+
+{# EVENT- END AT #}
+
+let selectedChildLastEvent_endAt = document.getElementById('selectedChildLastEvent_endAt')
+
+if (data.lastFamilyEvent.end_at !== undefined) {
+selectedChildLastEvent_endAt.textContent = data.lastFamilyEvent.end_at.date
+}
+
+else {
+selectedChildLastEvent_endAt.textContent = ''
+}
+
 
 }
 })});

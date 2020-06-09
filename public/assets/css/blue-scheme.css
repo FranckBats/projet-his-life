@@ -329,6 +329,7 @@ body {
   .section-header .section-title {
     font-size: 30px;
     font-weight: 600;
+    color:#777777;
   }
   
   .larger-text {
@@ -1004,6 +1005,8 @@ a.large-button.red-color {
     background-color: white;
     padding: 5px 10px;
     font-size: 14px;
+    
+    
   }
   
   .member-name {
@@ -1011,6 +1014,14 @@ a.large-button.red-color {
     font-weight: 500;
     margin-top: 25px;
     display: block;
+    font-weight: bold;
+    color: #838BC5;
+    text-transform: uppercase;
+  }
+
+  .titre{
+    font-weight: bold;
+    color: #838BC5;
   }
   
   .thumb-post {

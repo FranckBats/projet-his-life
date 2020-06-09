@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact_browse")
+     * @Route("/repertoire", name="contact_browse")
      */
     public function browse(ContactRepository $contactRepository)
     {
@@ -38,7 +38,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/contact/edit/{id}", name="contact_edit", requirements={"id": "\d+"})
+     * @Route("/repertoire/modifiercontact/{id}", name="contact_edit", requirements={"id": "\d+"})
      */
     public function edit(Contact $contact, Request $request)
     {
@@ -69,7 +69,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/contact/add", name="contact_add")
+     * @Route("/repertoire/ajoutercontact", name="contact_add")
      */
     public function add(Request $request)
     {
@@ -102,7 +102,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/contact/delete/{id}", name="contact_delete", requirements={"id": "\d+"})
+     * @Route("/repertoire/supprimer/{id}", name="contact_delete", requirements={"id": "\d+"})
      */
     public function delete( Request $request, Contact $contact, EntityManagerInterface $em): Response
     {

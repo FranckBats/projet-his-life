@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post", name="post_browse")
+     * @Route("/messages", name="post_browse")
      */
     public function browse(Request $request, PostRepository $postRepository)
     {
@@ -34,7 +34,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route ("/post/{id}", name="post_read", requirements={"id": "\d+"})
+     * @Route ("/messages/{id}", name="post_read", requirements={"id": "\d+"})
      */
     public function read(Post $post, Request $request)
     {
@@ -45,7 +45,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/add", name="post_add")
+     * @Route("/message/ajouter", name="post_add")
      */
     public function add(Request $request)
     {
@@ -72,7 +72,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route ("/post/edit/{id}", name="post_edit", requirements={"id": "\d+"})
+     * @Route ("/message/modifier/{id}", name="post_edit", requirements={"id": "\d+"})
      */
     public function edit(Post $post, Request $request)
     {
@@ -89,7 +89,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route ("/post/delete/{id}", name="post_delete", requirements={"id": "\d+"})
+     * @Route ("/message/supprimer/{id}", name="post_delete", requirements={"id": "\d+"})
      */
     public function delete(Post $post, Request $request): Response
     {

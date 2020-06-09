@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class HealthbookController extends AbstractController
 {
     /** 
-     * @Route("/healthbook/browse", name="healthbook_browse")
+     * @Route("/sante", name="healthbook_browse")
      */
     public function browse()
     {
@@ -39,7 +39,7 @@ class HealthbookController extends AbstractController
     }
 
     /** 
-     * @Route("/healthbook/read/{id}", name="healthbook_read", requirements= {"id": "\d+"})
+     * @Route("/sante/{id}", name="healthbook_read", requirements= {"id": "\d+"})
      */
     public function read(Healthbook $healthbook)
     {
@@ -49,7 +49,7 @@ class HealthbookController extends AbstractController
     }
 
     /**
-     * @Route("/healthbook/add", name="healthbook_add")
+     * @Route("/sante/ajouter", name="healthbook_add")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -103,7 +103,7 @@ class HealthbookController extends AbstractController
     }
 
     /** 
-     * @Route("/healthbook/delete/{id}", name="healthbook_delete", requirements= {"id": "\d+"})
+     * @Route("/sante/supprimer/{id}", name="healthbook_delete", requirements= {"id": "\d+"})
      */
     public function delete (Request $request, Healthbook $healthbook, EntityManagerInterface $em)
     {
@@ -119,7 +119,7 @@ class HealthbookController extends AbstractController
     }
 
     /**
-     * @Route("/healthbook/edit/{id}", name="healthbook_edit", requirements={"id": "\d+"})
+     * @Route("/sante/modifier/{id}", name="healthbook_edit", requirements={"id": "\d+"})
      */
     public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
     {

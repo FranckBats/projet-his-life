@@ -36,7 +36,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="evenement_new", methods={"GET","POST"})
+     * @Route("/ajout", name="evenement_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -74,7 +74,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="evenement_edit", requirements= {"id": "\d+"}, methods={"GET","POST"})
+     * @Route("/{id}/modifier", name="evenement_edit", requirements= {"id": "\d+"}, methods={"GET","POST"})
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
@@ -97,7 +97,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="evenement_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
+     * @Route("/{id}/supprimer", name="evenement_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(Request $request, Evenement $evenement): Response
     {

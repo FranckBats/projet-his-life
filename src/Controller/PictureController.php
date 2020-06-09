@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PictureController extends AbstractController
 {
     /**
-     * @Route("/picture", name="picture")
+     * @Route("/galerie", name="picture")
      */
     public function browse(PictureRepository $pictureRepository)
     {
@@ -27,7 +27,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/picture/read/{id}", name="picture_read", requirements= {"id": "\d+"})
+     * @Route("/galerie/{id}", name="picture_read", requirements= {"id": "\d+"})
      */
     public function read(Picture $picture)
     {
@@ -40,7 +40,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/picture/edit/{id}", name="picture_edit", requirements={"id": "\d+"})
+     * @Route("/galerie/modifier/{id}", name="picture_edit", requirements={"id": "\d+"})
      */
     public function edit(Picture $picture, Request $request)
     {
@@ -68,7 +68,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/picture/add", name="picture_add")
+     * @Route("/galerie/ajouter", name="picture_add")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -135,7 +135,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/picture/delete/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
+     * @Route("/galerie/supprimer/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
 
     public function delete(Request $request, Picture $picture): Response 
