@@ -57,6 +57,8 @@ class GradeController extends AbstractController
      */
     public function read(Grade $grade)
     {
+        $this->denyAccessUnlessGranted('read', $grade);
+
         return $this->render('grade/read.html.twig', [
             'grade' => $grade,
         ]);
@@ -67,6 +69,8 @@ class GradeController extends AbstractController
      */
     public function edit(Grade $grade, Request $request, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('edit', $grade);
+
         $form = $this->createForm(UploadEditType::class, $grade);
 
         $form->handleRequest($request);
@@ -189,6 +193,8 @@ class GradeController extends AbstractController
      */
     public function delete (Request $request, Grade $grade): Response
     {
+        $this->denyAccessUnlessGranted('delete', $grade);
+
         if ($this->isCsrfTokenValid('delete'.$grade->getId(), $request->request->get('_token'))){
 
         $em = $this->getDoctrine()->getManager();
