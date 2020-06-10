@@ -39,6 +39,14 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionsLegales(){
+
+        return $this->render('mentions-legales.html.twig');
+    }
+
+    /**
      * @Route("/comment-on-pourrait-appeler-cet-url-hein-je-vous-le-demande", name="dashboard")
      */
     public function dashboard()
@@ -60,6 +68,22 @@ class MainController extends AbstractController
     public function aboutDashboard(){
 
         return $this->render('about_dashboard.html.twig');
+    }
+
+    /**
+     * @Route("tableau-de-bord/nous-contacter", name="dashboard_contact_us")
+     */
+    public function contactUsDashboard(){
+
+        return $this->render('contact_us_dashboard.html.twig');
+    }
+
+    /**
+     * @Route("tableau-de-bord/mentions-legales", name="dashboard_mentions_legales")
+     */
+    public function mentionsLegalesDashboard(){
+
+        return $this->render('mentions_legales_dashboard.html.twig');
     }
 
 
