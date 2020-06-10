@@ -15,7 +15,9 @@
 		<link rel="stylesheet" href="../../assets/css/cards.css" media="all">
 		<!-- JavaScripts -->
 		<script src="../../assets/js/jquery-1.10.2.min.js"></script>
-		<script src="../../assets/js/jquery-migrate-1.2.1.min.js"></script> 
+		<script src="../../assets/js/jquery-migrate-1.2.1.min.js"></script>
+
+		<link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon" />
 
 		{% block stylesheets %}{% endblock %}
 	</head>
@@ -171,7 +173,7 @@
 			<nav class="footer-nav clearfix">
 				<ul class="footer-menu">
 					<li>
-						<a href="index.html">A propos</a>
+						<a href="{{ path('dashboard_about') }}">A propos</a>
 					</li>
 					<li>
 						<a href="portfolio.html">Nous contacter</a>
@@ -210,6 +212,7 @@
 <!-- jQuery CDN - -->
 {% block javascripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../../assets/js/moment-with-locales.js"></script> 
 
 
 <script type="text/javascript">
@@ -226,13 +229,18 @@ data: {
 async: true,
 success: function test(data) {
 
+moment.locale('fr');
 {# SCHOOL BLOCK #} 
 {# SCHOOL - LASTPOST = created_at #}
 
 let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSchoolEvent_lastPost');
 
 if (data.lastSchoolEventArray.created_at !== undefined) {
-selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.date;
+
+let date = data.lastSchoolEventArray.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');
+selectedChildSchoolEvent_lastPost.textContent = date;
+
 } else {
 selectedChildSchoolEvent_lastPost.textContent = ''
 }
@@ -274,7 +282,9 @@ selectedChildSchoolEvent_button_href.textContent = '{{ path('note_browse') }}'
 let selectedChildHealthEvent = document.getElementById('selectedChildHealthEvent');
 
 if (data.lastHealthbook.created_at !== undefined) {
-selectedChildHealthEvent.textContent = data.lastHealthbook.created_at.date;
+let date = data.lastHealthbook.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildHealthEvent.textContent = date;
 } else {
 selectedChildHealthEvent.textContent = '';
 }
@@ -315,7 +325,11 @@ selectedChildLastFamilyPicture_title.textContent = 'Aucune photo récente posté
 let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedChildLastFamilyPicture_lastPost');
 
 if (data.lastFamilyPicture.created_at !== undefined) {
-selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
+
+let date = data.lastFamilyPicture.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastFamilyPicture_lastPost.textContent = date;
+
 } else {
 selectedChildLastFamilyPicture_lastPost.textContent = '';
 }
@@ -358,7 +372,11 @@ selectedChildLastEvent_type.textContent = ''
 let selectedChildLastEvent_lastPost = document.getElementById('selectedChildLastEvent_lastPost');
 
 if (data.lastFamilyEvent.created_at !== undefined) {
-	selectedChildLastEvent_lastPost.textContent = data.lastFamilyEvent.created_at.date
+
+let date = data.lastFamilyEvent.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_lastPost.textContent = date;
+
 }
 
 {# EVENT- BEGIN AT #}
@@ -368,7 +386,11 @@ let selectedChildLastEvent_img = document.getElementById('selectedChildLastEvent
 let selectedChildLastEvent_img_src = selectedChildLastEvent_img.attributes[1];
 
 if (data.lastFamilyEvent.begin_at !== undefined) {
-selectedChildLastEvent_beginAt.textContent = data.lastFamilyEvent.begin_at.date
+
+let date = data.lastFamilyEvent.begin_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_beginAt.textContent = date;
+
 selectedChildLastEvent_img_src.value = '';
 }
 
@@ -382,7 +404,11 @@ selectedChildLastEvent_img_src.value = '';
 let selectedChildLastEvent_endAt = document.getElementById('selectedChildLastEvent_endAt')
 
 if (data.lastFamilyEvent.end_at !== undefined) {
-selectedChildLastEvent_endAt.textContent = data.lastFamilyEvent.end_at.date
+
+let date = data.lastFamilyEvent.end_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_endAt.textContent = date;
+
 }
 
 else {
@@ -417,7 +443,10 @@ let selectedChildSchoolEvent_lastPost = document.getElementById('selectedChildSc
 
 if (data.lastSchoolEventArray.created_at !== undefined) {
 
-selectedChildSchoolEvent_lastPost.textContent = data.lastSchoolEventArray.created_at.dateTime;
+let date = data.lastSchoolEventArray.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');
+selectedChildSchoolEvent_lastPost.textContent = date;
+
 } else {
 selectedChildSchoolEvent_lastPost.textContent = ''
 }
@@ -459,7 +488,11 @@ selectedChildSchoolEvent_button_href.textContent = '{{ path('note_browse') }}'
 let selectedChildHealthEvent = document.getElementById('selectedChildHealthEvent');
 
 if (data.lastHealthbook.created_at !== undefined) {
-selectedChildHealthEvent.textContent = data.lastHealthbook.created_at.date;
+
+let date = data.lastHealthbook.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildHealthEvent.textContent = date;
+
 } else {
 selectedChildHealthEvent.textContent = '';
 }
@@ -501,7 +534,11 @@ selectedChildLastFamilyPicture_title.textContent = 'Aucune photo récente posté
 let selectedChildLastFamilyPicture_lastPost = document.getElementById('selectedChildLastFamilyPicture_lastPost');
 
 if (data.lastFamilyPicture.created_at !== undefined) {
-selectedChildLastFamilyPicture_lastPost.textContent = data.lastFamilyPicture.created_at.date;
+
+let date = data.lastFamilyPicture.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastFamilyPicture_lastPost.textContent = date;
+
 } else {
 selectedChildLastFamilyPicture_lastPost.textContent = '';
 }
@@ -535,7 +572,10 @@ selectedChildLastEvent_name.textContent = 'Aucune entrée dans le calendrier'
 let selectedChildLastEvent_lastPost = document.getElementById('selectedChildLastEvent_lastPost');
 
 if (data.lastFamilyEvent.created_at !== undefined) {
-	selectedChildLastEvent_lastPost.textContent = data.lastFamilyEvent.created_at.date
+
+let date = data.lastFamilyEvent.created_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_lastPost.textContent = date;
 }
 
 {# EVENT- TYPE #}
@@ -554,7 +594,11 @@ let selectedChildLastEvent_img = document.getElementById('selectedChildLastEvent
 let selectedChildLastEvent_img_src = selectedChildLastEvent_img.attributes[1];
 
 if (data.lastFamilyEvent.begin_at !== undefined) {
-selectedChildLastEvent_beginAt.textContent = data.lastFamilyEvent.begin_at.date
+
+let date = data.lastFamilyEvent.begin_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_beginAt.textContent = date;
+
 selectedChildLastEvent_img_src.value = '';
 }
 
@@ -568,7 +612,11 @@ selectedChildLastEvent_img_src.value = '';
 let selectedChildLastEvent_endAt = document.getElementById('selectedChildLastEvent_endAt')
 
 if (data.lastFamilyEvent.end_at !== undefined) {
-selectedChildLastEvent_endAt.textContent = data.lastFamilyEvent.end_at.date
+
+let date = data.lastFamilyEvent.end_at.date;
+date = moment(date).format('dddd DD MMMM YYYY HH:mm');	
+selectedChildLastEvent_endAt.textContent = date;
+
 }
 
 else {

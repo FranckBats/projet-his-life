@@ -9,6 +9,9 @@ use App\Repository\PeopleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -67,7 +70,7 @@ class PeopleController extends AbstractController
     /**
      * @Route("/mon-profil/{id}", name="people_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
-    public function delete(Request $request, People $people, $id): Response
+    public function delete(Request $request, People $people, $id, NotifierInterface $notifier): Response
     {
 
         $currentUserId = $this->getUser()->getId();
@@ -85,13 +88,17 @@ class PeopleController extends AbstractController
             $em->flush();
 
             $request->getSession()->clear();
-
-            $this->addFlash('success', 'Profil supprimé.');
+            
         }
-        }
+    }
+    
+        $notification = (new Notification('Suppression de profil', ['email']))->content('Votre profil à bien été supprimé :' . $people->getFirstname() .' '. $people->getLastname().'!');
 
-        
-        
+        $user = $people->getEmail(); 
+        $recipient = new Recipient($user);
+        $notifier->send($notification, $recipient);
+    
+        $this->addFlash('success', 'Profil supprimé!');
         return $this->redirectToRoute('home');
     }
 }

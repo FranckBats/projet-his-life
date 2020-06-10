@@ -18,16 +18,6 @@ use Symfony\Component\Notifier\Recipient\Recipient;
 
 class GradeController extends AbstractController
 {
-    /**
-     * @Route("/bulletins", name="grade")
-     */
-    public function index()
-    {
-        return $this->render('grade/index.html.twig', [
-            'controller_name' => 'GradeController',
-        ]);
-    }
-
     /** 
      * @Route("/bulletins/index", name="grade_browse")
      */
@@ -37,7 +27,11 @@ class GradeController extends AbstractController
         $gradesArray = array();
 
         foreach ($families as $family) {
-            $children = $family->getChildren();
+            $children = $family->getChildren()->getValues();
+
+            if (empty($children)) {
+                $this->addFlash('danger', 'Vous n\'avez pas ajouté d\'enfant à la famille '.$family.'. Veuillez le faire dans votre profil, section Profil Enfant, avant d\'ajouter un document');
+            }
 
             foreach ($children as $child) {
                 $grades = $child->getGrades()->getValues();
@@ -162,7 +156,6 @@ class GradeController extends AbstractController
             
             $family = $form->getData()->getChild()->getFamilies()->first();
 
-            
             $people = $family->getPeople()->getValues();
             $peopleMails = array();
 
@@ -179,6 +172,7 @@ class GradeController extends AbstractController
 
             return $this->redirectToRoute('grade_browse');
         }
+
 
         return $this->render('grade/add.html.twig', [
             'controller_name' => 'GradeController',

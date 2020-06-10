@@ -34,7 +34,7 @@ class PostType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Message',
-                'required' => false
+                'required' => true
             ])
             //->add('people')
             ->add('family', EntityType::class, [

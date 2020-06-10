@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
+http://getbootstrap.com/javascript/#modals@import url("https://fonts.googleapis.com/css?family=Roboto:300,500");
 
 
 html {
@@ -152,4 +152,17 @@ button.large-button-blanc.white-color {
   color: #838bc5;
   background-color: white;
   line-height: normal;
+}
+
+/* CSS pour la carte Message */
+
+.message {
+  text-align: center;
+}
+
+.message-button {
+  margin: auto;
+}
+.message-background {
+  padding-bottom: 20px;
 }

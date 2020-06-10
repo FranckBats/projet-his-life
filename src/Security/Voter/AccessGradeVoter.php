@@ -54,7 +54,6 @@ class AccessGradeVoter extends Voter
             }
             }
         }
-
         return false;
     }
 }

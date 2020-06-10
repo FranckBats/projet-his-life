@@ -36,7 +36,7 @@ class RegisterType extends AbstractType
             ])
             ->add('birthdate',  DateType::class, [
                 // renders it as a single text box
-                'label' => 'Date Anniversaire',
+                'label' => 'Date de Naissance (18 ans minimum)',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],

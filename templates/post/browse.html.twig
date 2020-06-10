@@ -28,11 +28,9 @@
 		<!-- /.container -->
 
 
-{% for post in posts %}
-			<div class="photo-card">
-
-				<div class="photo-background" style=""></div>
-				<div class="col-md-4">
+{# {% for post in posts %} #}
+			{# <div class="photo-card message">
+				<div class="col-md-12 message-background">
 				<div class="project-info"></br>
 				<h3 class="project-title">{{ post.title }}</h3>
 			</br>
@@ -44,7 +42,7 @@
 		{{ post.content }}</p>
 				<div class="p-t-10">
 					<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
-						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+						<button class="large-button-blanc white-color message-button" type="submit">Modifier</button>
 					</a>
 
 					</div>
@@ -57,10 +55,27 @@
 
 
 			</div>
-			<!-- /.col-md-12 -->
-             {% endfor %}
+			<!-- /.col-md-12 --> #}
+
+
+<div class="col-md-4">
+				
+						{% for post in posts %} 
+						<div class="last-post clearfix">
+							<div class="thumb pull-left">
+								<h3 class="titre-message">{{ post.title }}</h3>
+							</div></br>
+							<div class="content">
+								<span>{{post.createdAt|date('d-m-Y')}}</span>
+								<span>de {{post.people.firstname}}</span>
+								<span>dans {{post.family}}</span>
+								<h4>{{ post.content }}</h4>
+							</div>
+						</div> <!-- /.last-post -->
+
+				{% endfor %} 
 		</div>
 		<!-- /.row -->
 
 
-	{% endblock %}
+ 	{% endblock %}

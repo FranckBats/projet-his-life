@@ -23,7 +23,11 @@ class HealthbookController extends AbstractController
         $healthbooksArray = array();
 
         foreach ($families as $family) {
-            $children = $family->getChildren();
+            $children = $family->getChildren()->getValues();
+
+            if (empty($children)) {
+                $this->addFlash('danger', 'Vous n\'avez pas ajouté d\'enfant à la famille '.$family.'. Veuillez le faire dans votre profil, section Profil Enfant, avant d\'ajouter un document');
+            }
 
             foreach ($children as $child) {
                 $healthbooks = $child->getHealthbooks()->getValues();

@@ -25,11 +25,10 @@ class AccessChildVoter extends Voter
             return false;
         }
 
-        $families = $user->getFamilies($user);
-
+        $families = $user->getFamilies()->getValues();
+        
         foreach ($families as $familyRow) {
             $children = $familyRow->getChildren()->getValues();
-
             foreach ($children as $childrenRow) {
                 if ($childrenRow === $child) {
                     // ... (check conditions and return true to grant permission) ...
@@ -49,8 +48,8 @@ class AccessChildVoter extends Voter
                     }
                 }
             }
-            return false;
         }
+        return false;
     }  
             
     

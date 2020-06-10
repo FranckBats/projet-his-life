@@ -14,19 +14,22 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class NoteController extends AbstractController
 {
-    
 
     /** 
      * @Route("/mots-des-profs", name="note_browse")
      */
-    public function browse (NoteRepository $noteRepository)
-    {
+    public function browse ()
+    {        
         $families = $this->getUser()->getFamilies();
         $notesArray = array();
-
+        
         foreach ($families as $family) {
-            $children = $family->getChildren();
+            $children = $family->getChildren()->getValues();
 
+            if (empty($children)) {
+                $this->addFlash('danger', 'Vous n\'avez pas ajouté d\'enfant à la famille '.$family.'. Veuillez le faire dans votre profil, section Profil Enfant, avant d\'ajouter un document');
+            }
+            
             foreach ($children as $child) {
                 $notes = $child->getNotes()->getValues();
 

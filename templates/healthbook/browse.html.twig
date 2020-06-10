@@ -19,6 +19,11 @@
 				<div class="section-header">
 					<h2 class="section-title">Santé</h2>
 					<a href="{{ path('healthbook_add') }}" class="large-button green-color">Ajouter</a>
+{% for message in app.flashes('danger') %}
+	<div class="alert alert-danger">
+	{{ message }}
+	</div>
+{% endfor %}
 				</div>
 				<!-- /.section-header -->
 			</div>

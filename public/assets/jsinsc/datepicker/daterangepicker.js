@@ -30,13 +30,27 @@
 }(this, function(moment, $) {
     var DateRangePicker = function(element, options, cb) {
 
+        if (element[0].id === 'register_birthdate') {
+            startDatum = moment().max(moment().subtract(18, 'years'));
+            endDatum = moment().endOf('day');
+            minDatum = moment().max(moment().subtract(100, 'years'));
+            maxDatum = moment().max(moment().subtract(18, 'years'));
+        }
+
+        else {
+            startDatum = moment().startOf('day');
+            endDatum = moment().endOf('day');
+            minDatum = moment().startOf('day');
+            maxDatum = false;
+        }
+
         //default settings for options
         this.parentEl = 'body';
         this.element = $(element);
-        this.startDate = moment().startOf('day');
-        this.endDate = moment().endOf('day');
-        this.minDate = false;
-        this.maxDate = false;
+        this.startDate = startDatum;
+        this.endDate = endDatum;
+        this.minDate = minDatum;
+        this.maxDate = maxDatum;
         this.dateLimit = false;
         this.autoApply = false;
         this.singleDatePicker = false;
@@ -44,8 +58,8 @@
         this.showWeekNumbers = false;
         this.showISOWeekNumbers = false;
         this.showCustomRangeLabel = true;
-        this.timePicker = false;
-        this.timePicker24Hour = false;
+        this.timePicker = true;
+        this.timePicker24Hour = true;
         this.timePickerIncrement = 1;
         this.timePickerSeconds = false;
         this.linkedCalendars = true;
@@ -73,9 +87,30 @@
             cancelLabel: 'Cancel',
             weekLabel: 'W',
             customRangeLabel: 'Custom Range',
-            daysOfWeek: moment.weekdaysMin(),
-            monthNames: moment.monthsShort(),
-            firstDay: moment.localeData().firstDayOfWeek()
+            daysOfWeek: [
+                "Di",
+                "Lu",
+                "Ma",
+                "Me",
+                "Je",
+                "Ve",
+                "Sa"
+            ],
+            monthNames: [
+                "Janvier",
+                "Février",
+                "Mars",
+                "Avril",
+                "Mai",
+                "Juin",
+                "Juillet",
+                "Aout",
+                "Septembre",
+                "Octobre",
+                "Novembre",
+                "Decembre"
+            ],
+            firstDay: 1
         };
 
         this.callback = function() { };

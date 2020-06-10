@@ -3,21 +3,26 @@
 
 {% block body %}
 
+
+
+<section class="light-content our-team">
+
 {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
 {% endfor %}
-
-<section class="light-content our-team">
-
-
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="section-header">
 						<h2 class="section-title">Bulletin de Note</h2>
 						<a href="{{ path('grade_add') }}" class="large-button green-color">Ajouter</a>
+{% for message in app.flashes('danger') %}
+	<div class="alert alert-danger">
+		{{ message }}
+	</div>
+{% endfor %}
 					</div>
 					<!-- /.section-header -->
 				</div>

@@ -44,11 +44,9 @@ class AccessFamilyVoter extends Voter
                     
                     return true;
                     break;
-
-                
                 }
             }
-            return false;
         }
+        return false;
     }
 }

@@ -2,6 +2,7 @@
 
 {% block body %}
 
+
 				<section class="light-content our-team">
 		<div class="container">
 			<div class="row">
@@ -37,6 +38,11 @@
 							{{ message }}
 						</div>
 					{% endfor %}
+					{% for message in app.flashes('danger') %}
+						<div class="alert alert-danger">
+							{{ message }}
+						</div>
+					{% endfor %}
 
 					<div class="col-md-6 col-sm-4 center-block">
 						<div class="team-member">
@@ -60,8 +66,6 @@
 						<!-- /.team-member -->
 					</div>
 					<!-- /.col-md-4 -->
-
-					
 
 					<div class="col-md-6 col-sm-4 center-block">
 						<div class="team-member">
@@ -131,6 +135,5 @@
 		<!-- /.team-members -->
 	</section>
 	<!-- /.our-team -->
-
 
 {% endblock %}

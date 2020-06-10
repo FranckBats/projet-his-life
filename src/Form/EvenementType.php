@@ -13,7 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class EvenementType extends AbstractType
 {
@@ -41,23 +43,23 @@ class EvenementType extends AbstractType
                     'Scolaire' => 'Scolaire',
                     'Autre' => 'Autre',
                 ],
-               
+
             ])
-            ->add('beginAt',  DateType::class, [
+            ->add('beginAt',  DateTimeType::class, [
                 // renders it as a single text box
                 'label' => 'Commence le:',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
-                'format' =>  'dd/MM/yyyy'
+                // 'input_format' =>  'dd/MM/yyyy H:i'
             ])
-            ->add('endAt',  DateType::class, [
+            ->add('endAt',  DateTimeType::class, [
                 // renders it as a single text box
                 'label' => 'Fini le:',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
-                'format' =>  'dd/MM/yyyy'
+                // 'input_format' =>  'dd/MM/yyyy H:i'
             ])
             //->add('people')
             ->add('family', EntityType::class, [

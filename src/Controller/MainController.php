@@ -22,189 +22,182 @@ class MainController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/tableau-de-bord-je-sais-c-est-moche-en-francais", name="dashboard")
+     /**
+     * @Route("/a-propos", name="about")
      */
-    public function dashboard(GradeRepository $gradeRepository)
+    public function about(){
+
+        return $this->render('about.html.twig');
+    }
+
+    /**
+     * @Route("/nous-contacter", name="contact_us")
+     */
+    public function contactUs(){
+
+        return $this->render('contact-us.html.twig');
+    }
+
+    /**
+     * @Route("/comment-on-pourrait-appeler-cet-url-hein-je-vous-le-demande", name="dashboard")
+     */
+    public function dashboard()
     {
         $familiesOfUser = $this->getUser()->getFamilies();
 
-        // $childrenArray = array();
-
-
-        // foreach($familiesOfUser as $family) {
-        //     $childrenCollection = $family->getChildren();
-
-        //         foreach ($childrenCollection as $children) {   
-        //             array_push($childrenArray, $children);
-        //         }
-        //     }
-
-        // $lastGrade = $gradeRepository->getLastUploaded();
-        // $people = $this->getUser();
+        if ($familiesOfUser->isEmpty() === true) {
+            $this->addFlash('danger', 'Vous n\'avez pas ajouter de famille. Vous pouvez le faire dans votre profil, Section Famille');
+        }
 
         return $this->render('home/dashboard.html.twig', [
-            'controller_name' => 'TestController',
             'families' => $familiesOfUser
-            // 'lastGrade' => $lastGrade,
-            // 'families' => $families,
-            // 'lastNote' => $lastNote
         ]);
     }
 
-/**
-* @Route("/ajax", name="ajax_action")
-*/
-public function ajaxAction(Request $request)
-{
-    if ($this->getUser() !== false) {
-        $familiesOfUser = $this->getUser()->getFamilies();
-        $childrenArray = array();
-        
-        foreach ($familiesOfUser as $family) {
+    /**
+     * @Route("tableau-de-bord/a-propos", name="dashboard_about")
+     */
+    public function aboutDashboard(){
 
-            // ### LAST CHILD FAMILY PICTURE ### 
-            $lastFamilyPictureArray = [];
+        return $this->render('about_dashboard.html.twig');
+    }
 
-            if ($family->getPictures()->last() != false) {
-                $lastFamilyPicture = $family->getPictures()->last();
-                $lastFamilyPictureArray = [
-                    'id' => $lastFamilyPicture->getId(),
-                    'title' => $lastFamilyPicture->getTitle(),
-                    'description' => $lastFamilyPicture->getDescription(),
-                    'file' => $lastFamilyPicture->getFile(),
-                    'created_at' => $lastFamilyPicture->getCreatedAt()
-                ];
-            }
 
-            // ### LAST CHILD FAMILY EVENT ### 
-            $lastFamilyEventArray = [];
+    /**
+    * @Route("/ajax", name="ajax_action")
+    */
+    public function ajaxAction(Request $request)
+    {
+        if ($this->getUser() !== false) {
+            $familiesOfUser = $this->getUser()->getFamilies();
+            $childrenArray = array();
+            
+            foreach ($familiesOfUser as $family) {
 
-            if ($family->getEvenements()->last() != false) {
-                $lastFamilyEvent = $family->getEvenements()->last();
-                $lastFamilyEventArray = [
-                    'id' => $lastFamilyEvent->getId(),
-                    'name' => $lastFamilyEvent->getName(),
-                    'type' => $lastFamilyEvent->getType(),
-                    'created_at' => $lastFamilyEvent->getCreatedAt(),
-                    'begin_at' => $lastFamilyEvent->getBeginAt(),
-                    'end_at' => $lastFamilyEvent->getEndAt()
-                ];
-            }
+                // ### LAST CHILD FAMILY PICTURE ### 
+                $lastFamilyPictureArray = [];
 
-            if(!empty($family->getChildren()->getValues())) {
-                $childObject = $family->getChildren()->getValues();
-                foreach ($childObject as $child) {
-                    // ### GRADES && NOTE ###
-                    $lastGrade = $child->getGrades()->last();
-                    $lastGradeArray = [];
-                    $lastNote = $child->getNotes()->last();
-                    $lastNoteArray = [];
-                    $lastSchoolEventArray = [];
-                    
-                    if ($lastGrade != false) {
-                        $lastGradeArray = [
-                            'id' => $lastGrade->getId(),
-                            'name' => $lastGrade->getName(),
-                            'file' => $lastGrade->getFile(),
-                            'created_at' => $lastGrade->getCreatedAt(),
-                            'type' => 'grade'
-                        ];
-                    }
-                    
-                    if ($lastNote != false) {
-                        $lastNoteArray = [
-                            'id' => $lastNote->getId(),
-                            'name' => $lastNote->getName(),
-                            'file' => $lastNote->getFile(),
-                            'created_at' => $lastNote->getCreatedAt(),
-                            'type' => 'note'
-                        ];
-                    }
-                    
-                    if ($lastGradeArray && $lastNoteArray != false) {
-                        if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
+                if ($family->getPictures()->last() != false) {
+                    $lastFamilyPicture = $family->getPictures()->last();
+                    $lastFamilyPictureArray = [
+                        'id' => $lastFamilyPicture->getId(),
+                        'title' => $lastFamilyPicture->getTitle(),
+                        'description' => $lastFamilyPicture->getDescription(),
+                        'file' => $lastFamilyPicture->getFile(),
+                        'created_at' => $lastFamilyPicture->getCreatedAt()
+                    ];
+                }
+
+                // ### LAST CHILD FAMILY EVENT ### 
+                $lastFamilyEventArray = [];
+
+                if ($family->getEvenements()->last() != false) {
+                    $lastFamilyEvent = $family->getEvenements()->last();
+                    $lastFamilyEventArray = [
+                        'id' => $lastFamilyEvent->getId(),
+                        'name' => $lastFamilyEvent->getName(),
+                        'type' => $lastFamilyEvent->getType(),
+                        'created_at' => $lastFamilyEvent->getCreatedAt(),
+                        'begin_at' => $lastFamilyEvent->getBeginAt(),
+                        'end_at' => $lastFamilyEvent->getEndAt()
+                    ];
+                }
+
+                if(!empty($family->getChildren()->getValues())) {
+                    $childObject = $family->getChildren()->getValues();
+                    foreach ($childObject as $child) {
+                        // ### GRADES && NOTE ###
+                        $lastGrade = $child->getGrades()->last();
+                        $lastGradeArray = [];
+                        $lastNote = $child->getNotes()->last();
+                        $lastNoteArray = [];
+                        $lastSchoolEventArray = [];
+                        
+                        if ($lastGrade != false) {
+                            $lastGradeArray = [
+                                'id' => $lastGrade->getId(),
+                                'name' => $lastGrade->getName(),
+                                'file' => $lastGrade->getFile(),
+                                'created_at' => $lastGrade->getCreatedAt(),
+                                'type' => 'grade'
+                            ];
+                        }
+                        
+                        if ($lastNote != false) {
+                            $lastNoteArray = [
+                                'id' => $lastNote->getId(),
+                                'name' => $lastNote->getName(),
+                                'file' => $lastNote->getFile(),
+                                'created_at' => $lastNote->getCreatedAt(),
+                                'type' => 'note'
+                            ];
+                        }
+                        
+                        if ($lastGradeArray && $lastNoteArray != false) {
+                            if ($lastGradeArray['created_at'] > $lastNoteArray['created_at']) {
+                                $lastSchoolEventArray = $lastGradeArray;
+                            }
+                            else {
+                                $lastSchoolEventArray = $lastNoteArray;
+                            }
+                        }
+                        else if ($lastGradeArray != false) {
                             $lastSchoolEventArray = $lastGradeArray;
                         }
                         else {
                             $lastSchoolEventArray = $lastNoteArray;
                         }
-                    }
-                    else if ($lastGradeArray != false) {
-                        $lastSchoolEventArray = $lastGradeArray;
-                    }
-                    else {
-                        $lastSchoolEventArray = $lastNoteArray;
-                    }
-                    
-                    
-                    // ### HEALTHBOOK ###
-                    $lastHealthbook = $child->getHealthbooks()->last();
-                    $lastHealthbookArray = [];
-                    
-                    if ($lastHealthbook != false) {
-                        $lastHealthbookArray = [
-                            'id' => $lastHealthbook->getId(),
-                            'name' => $lastHealthbook->getName(),
-                            'file' => $lastHealthbook->getFile(),
-                            'created_at' => $lastHealthbook->getCreatedAt()
+                        
+                        
+                        // ### HEALTHBOOK ###
+                        $lastHealthbook = $child->getHealthbooks()->last();
+                        $lastHealthbookArray = [];
+                        
+                        if ($lastHealthbook != false) {
+                            $lastHealthbookArray = [
+                                'id' => $lastHealthbook->getId(),
+                                'name' => $lastHealthbook->getName(),
+                                'file' => $lastHealthbook->getFile(),
+                                'created_at' => $lastHealthbook->getCreatedAt()
+                            ];
+                        }
+                        
+                        $childrenArray [$child->getId()] = [
+                            'firstname' => $child->getFirstname(),
+                            'lastname' => $child->getLastname(),
+                            'gender' => $child->getGender(),
+                            'birthdate' => $child->getBirthdate(),
+                            'lastSchoolEventArray' => $lastSchoolEventArray,
+                            'lastHealthbook' => $lastHealthbookArray,
+                            'lastFamilyPicture' => $lastFamilyPictureArray,
+                            'lastFamilyEvent' => $lastFamilyEventArray
                         ];
-                    }
-                    
-                    $childrenArray [$child->getId()] = [
-                        'firstname' => $child->getFirstname(),
-                        'lastname' => $child->getLastname(),
-                        'gender' => $child->getGender(),
-                        'birthdate' => $child->getBirthdate(),
-                        'lastSchoolEventArray' => $lastSchoolEventArray,
-                        'lastHealthbook' => $lastHealthbookArray,
-                        'lastFamilyPicture' => $lastFamilyPictureArray,
-                        'lastFamilyEvent' => $lastFamilyEventArray
-                    ];
-                }                
+                    }                
+                }
             }
-        }
-        ;
-        /* on récupère la valeur envoyée */
-        $idSelect = $request->request->get('idSelect');
+            ;
+            /* on récupère la valeur envoyée */
+            $idSelect = $request->request->get('idSelect');
 
-        if ($idSelect == 0) {
-            $selectChild = array_shift($childrenArray);
-        }
+            if ($idSelect == 0) {
+                $selectChild = array_shift($childrenArray);
+            }
 
-        else {
-            $selectChild = $childrenArray[$idSelect];
-        }
+            else {
+                $selectChild = $childrenArray[$idSelect];
+            }
 
-        $response = new Response(json_encode($selectChild));
-        
-        /* On renvoie une réponse encodée en JSON */
-        // $response = new Response(json_encode(array($childrenArray)));
-        // dd($response);
-        
-        $response->headers->set('Content-Type', 'application/json');
-        
-        return $response;
+            $response = new Response(json_encode($selectChild));
+            
+            /* On renvoie une réponse encodée en JSON */
+            // $response = new Response(json_encode(array($childrenArray)));
+            // dd($response);
+            
+            $response->headers->set('Content-Type', 'application/json');
+            
+            return $response;
+        }
     }
-}
+
     
-    /**
-     * @Route("/dashboard/school", name="school")
-     */
-    public function schoolHome()
-    {
-        return $this->render('home/school.html.twig', [
-            'controller_name' => 'TestController',
-        ]);
-    }
-
-    // /**
-    //  * @Route("/test", name="test")
-    //  */
-    // public function test()
-    // {
-    //     return $this->render('test.html.twig', [
-    //         'controller_name' => 'TestController',
-    //     ]);
-    // }
 }

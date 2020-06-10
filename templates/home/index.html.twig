@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
+{# <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -64,9 +65,14 @@
 			</div> <!-- /.row -->
 
 		</div> <!-- /.container -->
-	</header> <!-- /.site-header -->
-
+	</header> <!-- /.site-header --> #}
+{% block body %}
 	<section id="homeIntro" class="parallax first-widget">
+		{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
 	    <div class="parallax-overlay">
 		    <div class="container home-intro-content">
 		        <div class="row">
@@ -148,7 +154,7 @@
 		</div> <!-- /.team-members -->
 	</section> <!-- /.our-team -->
 	
-	<section id="blogPosts" class="parallax">
+	{# <section id="blogPosts" class="parallax">
 	    <div class="parallax-overlay">
 		    <div class="container">
 		        <div class="row">
@@ -207,9 +213,9 @@
 		        </div> <!-- /.row -->
 		    </div> <!-- /.container -->
 	    </div> <!-- /.parallax-overlay -->
-	</section> <!-- /#blogPosts -->
+	</section> <!-- /#blogPosts --> #}
 
-	<footer class="site-footer">
+	{# <footer class="site-footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -229,7 +235,7 @@
 				</div> <!-- /.col-md-12 -->
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->
-	</footer> <!-- /.site-footer -->
+	</footer> <!-- /.site-footer --> #}
 
 
 
@@ -237,13 +243,13 @@
 
 			
 
-{% block body %}{% endblock %}
+{% endblock %}
 		
 		{# ------>container #}
-
+{# 
 		{% block javascripts %}{% endblock %}
 		<!-- Scripts -->
 	<script src="js/min/plugins.min.js"></script>
-	<script src="js/min/medigo-custom.min.js"></script>
-	</body>
-</html>
+	<script src="js/min/medigo-custom.min.js"></script> #}
+
+

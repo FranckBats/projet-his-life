@@ -18,7 +18,9 @@
 			<!-- /.row -->
 		</div>
 
-    <div id="calendar-holder"></div>
+    <div id="calendar-holder">
+    </div>
+    
 
 
 {% block stylesheets %}
@@ -29,9 +31,12 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/locales/fr.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> 
+    
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
@@ -40,6 +45,12 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 defaultView: 'dayGridMonth',
                 editable: true,
+                eventLimit: true, // for all non-TimeGrid views
+                        views: {
+                            timeGrid: {
+                                eventLimit: 1 // adjust to 6 only for timeGridWeek/timeGridDay
+                                        }
+                                },   
                 eventSources: [
                     {
                         url: "{{ path('fc_load_events') }}",
@@ -52,28 +63,35 @@
                         },
                     },
                 ],
+                eventTimeFormat: { // like '14:30:00'
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                        },
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
+                locale: 'fr',
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+                editable: true, // https://fullcalendar.io/docs/plugin-index
                 timeZone: 'UTC',
             });
             calendar.render();
         });
     </script>
-
-        <h1>Liste des événéments du calendrier</h1>
+</br>
+        <h1>Liste des événéments du calendrier</h1></br>
 <div class="col-10">
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Type</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>actions</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -84,13 +102,13 @@
                 <td>{{ evenement.beginAt ? evenement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ evenement.endAt ? evenement.endAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}" class="large-button green-color">Détails</a>
+                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}" class="large-button green-color">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucune entrées dans le Calendrier</td>
             </tr>
         {% endfor %}
         </tbody>
