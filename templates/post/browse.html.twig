@@ -3,25 +3,53 @@
 
 {% block body %}
 
-<div class="row">
-     {% for post in posts %}
-		<div class="col-md-12">
-			<div id="blog-comments" class="blog-post-comments">
-				<h3>{{post.title}}</h3>
-				<div class="blog-comments-content">
-					<div class="media">
-						<div class="pull-left">
-							<img class="media-object" src="" alt="">
-						</div>
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
 
-						<div class="media-body">
-							<div class="media-heading">
-								<h4>{{post.people}}</h4>
-								    <span>{{post.createdAt|date('d-m-Y')}}</span>
-								</div>
-								<p>{{post.content}}</p>
-								
-						</div>
+<section class="light-content our-team">
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-header">
+						<h2 class="section-title">Mes Messages</h2>
+						<a href="{{ path('post_add') }}" class="large-button green-color">Ajouter</a>
+					</div>
+					<!-- /.section-header -->
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+
+
+{% for post in posts %}
+			<div class="photo-card">
+
+				<div class="photo-background" style=""></div>
+				<div class="col-md-4">
+				<div class="project-info"></br>
+				<h3 class="project-title">{{ post.title }}</h3>
+			</br>
+			<span class="date">Posté le:
+				{{post.createdAt|date('d-m-Y')}}</span>
+		</br>
+	</br>
+	<p class="description">
+		{{ post.content }}</p>
+				<div class="p-t-10">
+					<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+					</div>
+
+
 					<!-- /.blog-comments-content -->
 
 				</div>

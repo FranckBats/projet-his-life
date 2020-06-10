@@ -86,7 +86,7 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
+            return $this->redirectToRoute('post_browse');
         }
         return $this->render('post/edit.html.twig', [
         'form' => $form->createView(), 
