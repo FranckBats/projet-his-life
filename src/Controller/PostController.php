@@ -38,6 +38,9 @@ class PostController extends AbstractController
      */
     public function read(Post $post, Request $request)
     {
+
+        $this->denyAccessUnlessGranted('read', $post);
+
         return $this->render('post/read.html.twig', [
             'controller_name' => 'PostController',
             'post' => $post
@@ -76,6 +79,8 @@ class PostController extends AbstractController
      */
     public function edit(Post $post, Request $request)
     {
+        $this->denyAccessUnlessGranted('edit', $post);
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -93,6 +98,9 @@ class PostController extends AbstractController
      */
     public function delete(Post $post, Request $request): Response
     {
+
+        $this->denyAccessUnlessGranted('delete', $post);
+
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($post);

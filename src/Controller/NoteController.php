@@ -46,6 +46,8 @@ class NoteController extends AbstractController
      */
     public function read (note $note)
     {
+        $this->denyAccessUnlessGranted('read', $note);
+        
         return $this->render('note/read.html.twig', [
             'note' => $note,
         ]);
@@ -55,6 +57,8 @@ class NoteController extends AbstractController
      * @Route("/mots-des-profs/modifier/{id}", name="note_edit", requirements= {"id": "\d+"})
      */
     public function edit(Note $note, Request $request){
+
+        $this->denyAccessUnlessGranted('edit', $note);
 
         $form =$this->createForm(UploadEditType::class, $note);
 
@@ -160,6 +164,9 @@ class NoteController extends AbstractController
      */
     public function delete (Request $request, Note $note)
     {
+
+        $this->denyAccessUnlessGranted('delete', $note);
+
         if ($this->isCsrfTokenValid('delete'.$note->getId(), $request->request->get('_token'))) {
             
             $em = $this->getDoctrine()->getManager();

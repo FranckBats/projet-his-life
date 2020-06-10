@@ -43,6 +43,7 @@ class HealthbookController extends AbstractController
      */
     public function read(Healthbook $healthbook)
     {
+        $this->denyAccessUnlessGranted('read', $healthbook);
         return $this->render('healthbook/read.html.twig', [
             'healthbook' => $healthbook,
         ]);
@@ -107,6 +108,7 @@ class HealthbookController extends AbstractController
      */
     public function delete (Request $request, Healthbook $healthbook, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('delete', $healthbook);
         if ($this->isCsrfTokenValid('delete'.$healthbook->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($healthbook);
@@ -123,6 +125,8 @@ class HealthbookController extends AbstractController
      */
     public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('edit', $healthbook);
+        
         $form = $this->createForm(UploadEditType::class, $healthbook);
 
         $form->handleRequest($request);
