@@ -47,7 +47,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/comment-on-pourrait-appeler-cet-url-hein-je-vous-le-demande", name="dashboard")
+     * @Route("/tableaudebord", name="dashboard")
      */
     public function dashboard()
     {

@@ -18,11 +18,20 @@ class PictureController extends AbstractController
      */
     public function browse(PictureRepository $pictureRepository)
     {
-        $pictures = $pictureRepository->findPictureByPeopleId($this->getUser()->getId());
+        $families = $this->getUser()->getFamilies();
+      
+        $picturesArray = array();
+
+        foreach ($families as $family) {
+            $pictures = $family->getPictures()->getValues();
+            foreach ($pictures as $picture){
+                array_push ($picturesArray, $picture);
+            }
+        }
 
         return $this->render('picture/browse.html.twig', [
             'controller_name' => 'PictureController',
-            'pictures' => $pictures
+            'pictures' => $picturesArray
         ]);
     }
 

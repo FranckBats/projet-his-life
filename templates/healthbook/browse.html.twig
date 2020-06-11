@@ -40,14 +40,15 @@
 
 			<div class="col-md-4">
 				<div class="project-info"></br>
+				<a href="{{ path('healthbook_read', {'id': healthbook.id}) }}">
 				<h3 class="project-title">{{ healthbook.name }}</h3>
+				</a>
 			</br>
 			<span class="date">Posté le:
 				{{healthbook.createdAt|date('d-m-Y')}}</span>
 		</br>
 	</br>
-	<p class="description">Description:
-		{{ healthbook.description }}</p>
+	
 
 <div class="p-t-10">
 					<a href="{{ path('healthbook_edit', {'id': healthbook.id}) }}" class="large-button-blanc white-color">

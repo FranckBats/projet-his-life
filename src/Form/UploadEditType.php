@@ -46,6 +46,7 @@ class UploadEditType extends AbstractType
                 'mapped' => false,
             ])
             ->add('child', EntityType::class, [
+                'label' => 'Enfant',
                 'class' => Child::class,
                 'choices' => $children,
             ])

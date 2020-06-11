@@ -46,7 +46,7 @@ class AccessHealthbookVoter extends Voter
                         // logic to determine if the user can VIEW
                         return true;
                         break;
-                    case 'edit':
+                    case 'delete':
                         // logic to determine if the user can VIEW
                         return true;
                         break;

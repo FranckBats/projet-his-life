@@ -15,7 +15,7 @@
                             {{ form_row(register.firstname, { 'attr': {'class': 'input--style-3'}}) }}
 							{{ form_row(register.birthdate) }}
 							{{ form_row(register.role) }}
-							{{ form_row(register.email, { 'attr': {'class': 'input--style-3'}}) }}
+							{{ form_widget(register.email, {'attr': {'pattern': '^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'}}) }}
 							{{ form_row(register.password, { 'attr': {'class': 'input--style-3'}}) }}
 							{{ form_row(register.agreeTerms) }}
 

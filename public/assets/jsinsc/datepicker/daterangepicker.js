@@ -40,8 +40,8 @@
         else {
             startDatum = moment().startOf('day');
             endDatum = moment().endOf('day');
-            minDatum = moment().startOf('day');
-            maxDatum = false;
+            minDatum = moment().max(moment().subtract(18, 'years'));;
+            maxDatum = moment().endOf('day');
         }
 
         //default settings for options
@@ -58,8 +58,8 @@
         this.showWeekNumbers = false;
         this.showISOWeekNumbers = false;
         this.showCustomRangeLabel = true;
-        this.timePicker = true;
-        this.timePicker24Hour = true;
+        this.timePicker = false;
+        this.timePicker24Hour = false;
         this.timePickerIncrement = 1;
         this.timePickerSeconds = false;
         this.linkedCalendars = true;
@@ -83,9 +83,9 @@
             direction: 'ltr',
             format: moment.localeData().longDateFormat('L'),
             separator: ' - ',
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
-            weekLabel: 'W',
+            applyLabel: 'Confirmer',
+            cancelLabel: 'Annuler',
+            weekLabel: 'S',
             customRangeLabel: 'Custom Range',
             daysOfWeek: [
                 "Di",

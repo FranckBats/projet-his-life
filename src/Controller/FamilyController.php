@@ -70,7 +70,7 @@ class FamilyController extends AbstractController
             $token = bin2hex(random_bytes(32));
             $family->setToken($token);
 
-            $link = 'localhost:8080/register?token='.$token;
+            $link = 'localhost:8080/inscription?token='.$token;
             
             $em->persist($family);
             $em->flush();

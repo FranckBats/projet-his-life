@@ -151,13 +151,12 @@ class GradeController extends AbstractController
             
             $em->flush();
             
-            $notification = (new Notification('Nouveau bulletin ajouté', ['email']))
-            ->content('Un nouveau bulletin a été ajouté : ' .$grade->getName());
+            $notification = (new Notification('Nouveau bulletin de note ajouté ajouté sur le site His Life', ['email']))
+            ->content('Un nouveau bulletin de note a été ajouté concernant '.$grade->getChild()->getFirstname().' : ' .$grade->getName());
             
             $family = $form->getData()->getChild()->getFamilies()->first();
 
             $people = $family->getPeople()->getValues();
-            $peopleMails = array();
 
             foreach ($people as $person) {
                 if ($person != $this->getUser()) {
@@ -173,6 +172,7 @@ class GradeController extends AbstractController
             return $this->redirectToRoute('grade_browse');
         }
 
+        $this->addFlash('success', 'Le bulletin de note a bien été ajouté');
 
         return $this->render('grade/add.html.twig', [
             'controller_name' => 'GradeController',

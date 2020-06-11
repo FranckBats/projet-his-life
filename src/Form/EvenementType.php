@@ -48,18 +48,22 @@ class EvenementType extends AbstractType
             ->add('beginAt',  DateTimeType::class, [
                 // renders it as a single text box
                 'label' => 'Commence le:',
-                'widget' => 'single_text',
+                'date_widget' => 'choice',
+                'time_widget' => 'choice',
                 'html5' => false,
-                'attr' => ['class' => 'js-datepicker'],
-                // 'input_format' =>  'dd/MM/yyyy H:i'
+                // 'attr' => ['class' => 'js-datepicker'],
+                'input_format' =>  'dd/MM/yyyy H:i',
+                'years' => ['2020', '2021', '2022', '2023', '2024', '2025'],
             ])
             ->add('endAt',  DateTimeType::class, [
                 // renders it as a single text box
                 'label' => 'Fini le:',
-                'widget' => 'single_text',
+                'date_widget' => 'choice',
+                'time_widget' => 'choice',
                 'html5' => false,
-                'attr' => ['class' => 'js-datepicker'],
-                // 'input_format' =>  'dd/MM/yyyy H:i'
+                // 'attr' => ['class' => 'js-datepicker'],
+                'input_format' =>  'dd/MM/yyyy H:i',
+                'years' => ['2020', '2021', '2022', '2023', '2024', '2025'],
             ])
             //->add('people')
             ->add('family', EntityType::class, [

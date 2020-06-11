@@ -8,16 +8,19 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
@@ -42,7 +45,6 @@ class RegisterType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'format' =>  'dd/MM/yyyy'
             ])
-           
             ->add('role', ChoiceType::class, [
                 'label' => 'Rôle',
                 'choices' => [
@@ -50,14 +52,20 @@ class RegisterType extends AbstractType
                     'Mère' => 'Mère',
                 ],
             ])
-            
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'label' => 'entrer votre email ',
+                'constraints' => [
+                    new NotBlank,
+                    
+                    /* new Regex ('[0-9]{3,}[a-zA-Z]{7,}') */
+                    
+            ]])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les conditions',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous avez pas accepté les conditions',
+                        'message' => 'Vous n\'avez pas accepté les conditions',
                     ]),
                 ],
             ])

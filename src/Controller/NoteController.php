@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 
 class NoteController extends AbstractController
 {
@@ -112,7 +115,7 @@ class NoteController extends AbstractController
     /**
      * @Route("/mots-des-profs/ajouter", name="note_add")
      */
-    public function add(Request $request, EntityManagerInterface $em)
+    public function add(Request $request, EntityManagerInterface $em, NotifierInterface $notifier)
     {
         $note = new Note;
 
@@ -152,6 +155,24 @@ class NoteController extends AbstractController
             $file->move($directory, $fileName.'.jpg');
 
             $em->flush();
+
+            $notification = (new Notification('Nouveau mot de professeur ajouté sur le site His Life', ['email']))
+            ->content('Un nouveau mot de professeur a été ajouté concernant '.$note->getChild()->getFirstname().' : ' .$note->getName());
+            
+            $family = $form->getData()->getChild()->getFamilies()->first();
+
+            $people = $family->getPeople()->getValues();
+
+            foreach ($people as $person) {
+                if ($person != $this->getUser()) {
+                    $user = $person->getEmail();
+                    
+                    $recipient = new Recipient(
+                        $user,
+                    );
+                    $notifier->send($notification, $recipient);
+                }    
+            }
 
             return $this->redirectToRoute('note_browse');
         }

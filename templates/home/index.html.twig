@@ -1,71 +1,5 @@
 {% extends 'base.html.twig' %}
-{# <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-		<title>
-			{% block title %}His Life
-			{% endblock %}
-		</title>
-	
-		<!-- Stylesheets -->
-	<link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/misc.css">
-	<link rel="stylesheet" href="assets/css/blue-scheme.css">
-	
-	<!-- JavaScripts -->
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/jquery-migrate-1.2.1.min.js"></script>
 
-	
-		
-	</head>
-	<body>
-	<div class="responsive_menu">
-        <ul class="main_menu">
-            <li><a href="{{path('app_register')}}">S'inscrire</a></li>
-            <li><a href="#">Connexion <i class="icon-button fa fa-user"></i></a></li>
-        </ul> <!-- /.main_menu -->
-    </div> <!-- /.responsive_menu -->
-
-	<header class="site-header clearfix">
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-md-12">
-
-					<div class="pull-left logo">
-						<a href="{{path('home')}}">
-							<img src="assets/images/includes/logo.png" alt="">
-						</a>
-					</div>	<!-- /.logo -->
-
-					<div class="main-navigation pull-right">
-
-						<nav class="main-nav visible-md visible-lg">
-							<ul class="sf-menu">
-								<li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-            					<li><a href="{{ path('app_login') }}">Connexion <i class="icon-button fa fa-user"></i> </a></li>
-							</ul> <!-- /.sf-menu -->
-						</nav> <!-- /.main-nav -->
-
-						<!-- This one in here is responsive menu for tablet and mobiles -->
-					    <div class="responsive-navigation visible-sm visible-xs">
-					        <a href="#nogo" class="menu-toggle-btn">
-					            <i class="fa fa-bars"></i>
-					        </a>
-					    </div> <!-- /responsive_navigation -->
-
-					</div> <!-- /.main-navigation -->
-
-				</div> <!-- /.col-md-12 -->
-
-			</div> <!-- /.row -->
-
-		</div> <!-- /.container -->
-	</header> <!-- /.site-header --> #}
 {% block body %}
 	<section id="homeIntro" class="parallax first-widget">
 		{% for message in app.flashes('success') %}
@@ -78,7 +12,7 @@
 		        <div class="row">
 		        	<div class="col-md-12">
 		        		<h2>HIS LIFE</h2>
-		        		<p>Description</p>
+		        		<p>Parents éloignés par le travail, séparés ou autre... soyez toujours au courant de ce qu'il ce passe dans la vie de vos enfants.</p> 
 		        		<a href="{{ path('app_register') }}" class="large-button white-color">Inscrivez-vous</a>
 		        	</div> <!-- /.col-md-12 -->
 		        </div> <!-- /.row -->
@@ -91,8 +25,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="section-header">
-						<h2 class="section-title">Ce que nous proposons</h2>
-						<p class="section-desc">Medigo is the automated way to keep track of what everyone is working on.</p>
+						<h2 class="section-title">Ce que His Life vous propose</h2>
+						<p class="section-desc">Soyez toujours proche de vos enfants quelques soit la distance</p>
 					</div> <!-- /.section-header -->
 				</div> <!-- /.col-md-12 -->
 			</div> <!-- /.row -->
@@ -108,7 +42,7 @@
 							</div>
 							<div class="member-content">
 								<h4 class="member-name">Santé</h4>
-								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla. </p>
+								<p>Plus besoin d'avoir le carnet de santé sous la main, His Life se charge de ça pour vous.</p>
 							</div>
 						</div> <!-- /.team-member -->
 					</div> <!-- /.col-md-4 -->
@@ -120,7 +54,7 @@
 							</div>
 							<div class="member-content">
 								<h4 class="member-name">Vie Scolaire</h4>
-								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla. </p>
+								<p>Soyez toujours au courant de ce qu'il ce passe à l'école de votre enfant.</p>
 							</div>
 						</div> <!-- /.team-member -->
 					</div> <!-- /.col-md-4 -->
@@ -132,7 +66,7 @@
 							</div>
 							<div class="member-content">
 								<h4 class="member-name">Galerie Photo</h4>
-								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla. </p>
+								<p>Partagez avec vos proches vos photos souvenir.</p>
 							</div>
 						</div> <!-- /.team-member -->
 					</div> <!-- /.col-md-4 -->
@@ -144,7 +78,7 @@
 							</div>
 							<div class="member-content">
 								<h4 class="member-name">Calendrier</h4>
-								<p>Duis vitae consequat neque. Nulla pharetra eleifend nulla. </p>
+								<p>Ne ratez plus aucun rendez-vous concernant votre enfant.</p>
 							</div>
 						</div> <!-- /.team-member -->
 					</div> <!-- /.col-md-4 -->

@@ -43,10 +43,10 @@ class EvenementController extends AbstractController
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         
+        
         $form->handleRequest($request);        
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($event);
             $evenement->addPerson($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($evenement);

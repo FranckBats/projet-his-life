@@ -46,6 +46,7 @@ class UploadType extends AbstractType
                 'required' => true,
             ])
             ->add('child', EntityType::class, [
+                'label' => 'Enfant',
                 'class' => Child::class,
                 'choices' => $children,
             ])

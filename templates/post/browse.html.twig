@@ -28,49 +28,28 @@
 		<!-- /.container -->
 
 
-{# {% for post in posts %} #}
-			{# <div class="photo-card message">
-				<div class="col-md-12 message-background">
-				<div class="project-info"></br>
-				<h3 class="project-title">{{ post.title }}</h3>
-			</br>
-			<span class="date">Posté le:
-				{{post.createdAt|date('d-m-Y')}}</span>
-		</br>
-	</br>
-	<p class="description">
-		{{ post.content }}</p>
-				<div class="p-t-10">
-					<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
-						<button class="large-button-blanc white-color message-button" type="submit">Modifier</button>
-					</a>
-
-					</div>
-
-
-					<!-- /.blog-comments-content -->
-
-				</div>
-				<!-- /.blog-post-comments -->
-
-
-			</div>
-			<!-- /.col-md-12 --> #}
-
-
 <div class="col-md-4">
 				
 						{% for post in posts %} 
 						<div class="last-post clearfix">
 							<div class="thumb pull-left">
+							<a href="{{ path('post_read', {'id': post.id}) }}">
 								<h3 class="titre-message">{{ post.title }}</h3>
+									</a>
 							</div></br>
 							<div class="content">
 								<span>{{post.createdAt|date('d-m-Y')}}</span>
 								<span>de {{post.people.firstname}}</span>
-								<span>dans {{post.family}}</span>
+								<span>dans la famille {{post.family}}</span>
 								<h4>{{ post.content }}</h4>
 							</div>
+
+							<div class="p-t-10">
+					<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
+						<button class="large-button-blanc white-color" type="submit">Modifier</button>
+					</a>
+
+</div>
 						</div> <!-- /.last-post -->
 
 				{% endfor %} 

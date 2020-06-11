@@ -97,8 +97,10 @@
         <p style="color:white">{{ people.email }}</p></br>
         <h1 style="color:#65C8D0; font-size: 30px;">Mes familles:</h1>
 				{% for family in people.families %}
-					    <p style="color:white; font-style: italic;">{{ family }}, 
-                        <span style="color:black">www.localhost:8080/register?token={{ family.token }}</span></p></br>
+					    <p style="color:white; font-style: italic;">{{ family }}</p>
+                        <p style="color:white;">Lien d'invitation pour cette famille :</p>
+                        <p style="color:black">www.localhost:8080/inscription?token={{ family.token }}</p>
+                        <hr>
 					 {% endfor %} 
         <h1 style="color:#65C8D0; font-size: 30px;">Mes enfants:</h1>
                     {% for family in people.families %}

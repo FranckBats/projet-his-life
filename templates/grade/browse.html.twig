@@ -6,23 +6,23 @@
 
 
 <section class="light-content our-team">
-
 {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
 {% endfor %}
+{% for message in app.flashes('danger') %}
+	<div class="alert alert-danger">
+		{{ message }}
+	</div>
+{% endfor %}
+
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="section-header">
 						<h2 class="section-title">Bulletin de Note</h2>
 						<a href="{{ path('grade_add') }}" class="large-button green-color">Ajouter</a>
-{% for message in app.flashes('danger') %}
-	<div class="alert alert-danger">
-		{{ message }}
-	</div>
-{% endfor %}
 					</div>
 					<!-- /.section-header -->
 				</div>
@@ -38,14 +38,15 @@
 				<div class="photo-background" style="background-image:url('{{asset(grade.file)}}'); "></div>
 				<div class="col-md-4">
 				<div class="project-info"></br>
+				<a href="{{ path('grade_read', {'id': grade.id}) }}">
 				<h3 class="project-title">{{ grade.name }}</h3>
+				</a>
 			</br>
 			<span class="date">Posté le:
 				{{grade.createdAt|date('d-m-Y')}}</span>
 		</br>
 	</br>
-	<p class="description">Description:
-		{{ grade.description }}</p>
+	
 				<div class="p-t-10">
 					<a href="{{ path('grade_edit', {'id': grade.id}) }}" class="large-button-blanc white-color">
 						<button class="large-button-blanc white-color" type="submit">Modifier</button>
