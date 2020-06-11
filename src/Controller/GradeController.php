@@ -151,7 +151,7 @@ class GradeController extends AbstractController
             
             $em->flush();
             
-            $notification = (new Notification('Nouveau bulletin de note ajouté ajouté sur le site His Life', ['email']))
+            $notification = (new Notification('Nouveau bulletin de note  ajouté sur le site His Life', ['email']))
             ->content('Un nouveau bulletin de note a été ajouté concernant '.$grade->getChild()->getFirstname().' : ' .$grade->getName());
             
             $family = $form->getData()->getChild()->getFamilies()->first();
@@ -193,7 +193,7 @@ class GradeController extends AbstractController
         $em->remove($grade);
         $em->flush();
         
-        $this->addFlash('success', 'bulletin de note supprimé.');
+        $this->addFlash('danger', 'bulletin de note supprimé.');
         }
         return $this->redirectToRoute('grade_browse');
     }

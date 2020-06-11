@@ -66,32 +66,7 @@
 
 <div class="photo-card">
 <div class="photo-details ">
-{# <dl class="row">
-    <dt class="col-3">Prénom d'utilisateur</dt>
-    <dd class="col-9">{{ people.firstname }}</dd>
-    <dt class="col-3">Adresse e-mail</dt>
-    <dd class="col-9">{{ people.email }}</dd>
-   
-    <dt class="col-12">Liste de familles</dt>
-    {% for family in people.families %}
-    <dd class="col-3"> {{ family }} </li> </dd>
-    <dt class="col-2">Lien d'invitation:</dt>
-    <dd class="col-7">www.localhost:8080/register?token={{ family.token }}</dd> 
-    {% endfor %}
-    <dt class="col-12">Liste des enfants</dt>
-    {% for family in people.families %}
-    {% for child in family.children %}
-    <dd class="col-3"> {{ child }} </dd>
-    {% endfor %}
-    {% endfor %}
-
-</dl>
-    <td><a href="{{path('people_edit')}}" class="large-button-blanc white-color"></a><button class="large-button-blanc white-color" type="submit">Modifier</button></td>
-
-
-	<div class="card-btn">
-          {{ include('people/_delete_form.html.twig')}}
-        </div> #}
+{
 
         <h1 style="color:#65C8D0; font-size: 30px;">{{ people.firstname }}</h1>
         <p style="color:white">{{ people.email }}</p></br>
@@ -99,7 +74,7 @@
 				{% for family in people.families %}
 					    <p style="color:white; font-style: italic;">{{ family }}</p>
                         <p style="color:white;">Lien d'invitation pour cette famille :</p>
-                        <p style="color:black">www.localhost:8080/inscription?token={{ family.token }}</p>
+                        <p style="color:black">http://ec2-34-227-161-244.compute-1.amazonaws.com/inscription?token={{ family.token }}</p>
                         <hr>
 					 {% endfor %} 
         <h1 style="color:#65C8D0; font-size: 30px;">Mes enfants:</h1>
@@ -116,34 +91,6 @@
 	</div>
 
 		
-			{# <div class="photo-card">
-            
-				{% if people.picture is not null %}
-				 <div class="photo-background" style="background-image:url('{{ asset(family.picture) }}'); "></div>
-				{% else %}
-                <div class="photo-background" style="background-image:url('{{ asset('assets/images/famillebase.jpg') }}'); "></div>
-			    {% endif %} 
-				<div class="photo-details ">
-					<h1 class="">{{ people.firstname }}</h1>
-					<h1 class="">{{ people.email }}</h1>
-				</br>
-				<h1>Mes familles:</h1></br>
-				{% for family in people.families %}
-					<h1>{{ family }}</h1>
-					 {% endfor %}
-				<div class="p-t-10">
-					<a class="photo-background" href="{{ path('people_edit', {'id': people.id}) }}" class="large-button-blanc white-color">
-						<button class="large-button-blanc white-color" type="submit">Editer Le Profil</button>
-					</a>
-
-
-				</div>
-			</div>
-
-		</div>
-	 #}
-
-
 
 
 </section>

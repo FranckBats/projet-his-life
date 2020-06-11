@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Notifier\Notification\Notification;
 
 class PostController extends AbstractController
 {
@@ -63,11 +64,14 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
 
-            $this->addFlash('success', 'bravo Jannot, t\'as bien envoyé ton message');
+            $this->addFlash('success', 'Votre message a bien été posté');
 
             //return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
             return $this->redirectToRoute('post_browse');
         }
+
+        // $notification = (new Notification ('Vous avez un nouveau message sur le site HisLife ', ['email']))
+        // ->content('Vous avez reçu un nouveau message ! ');
 
         return $this->render('post/add.html.twig', [
             'form' => $form->createView(),
@@ -88,6 +92,11 @@ class PostController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('post_browse');
         }
+
+        
+
+
+
         return $this->render('post/edit.html.twig', [
             'form' => $form->createView(),
             'post' => $post, 

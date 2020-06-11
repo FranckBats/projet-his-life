@@ -95,6 +95,7 @@ class NoteController extends AbstractController
                 
                 $newFile->move($this->getParameter('notes_directory'), $fileName.'.jpg');
 
+                
             }
 
             $em = $this->getDoctrine()->getManager();
