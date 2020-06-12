@@ -21,7 +21,7 @@ class PeopleController extends AbstractController
     
     
     /**
-     * @Route("/mon-profil", name="people_profile")
+     * @Route("/mon-profil/details", name="people_profile")
      */
     public function profile()
     {
@@ -33,7 +33,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route("/mon-profil/modifier/", name="people_edit")
+     * @Route("/mon-profil", name="people_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {

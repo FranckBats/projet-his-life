@@ -37,7 +37,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/galerie/{id}", name="picture_read", requirements= {"id": "\d+"})
+     * @Route("/galerie/details/{id}", name="picture_read", requirements= {"id": "\d+"})
      */
     public function read(Picture $picture)
     {
@@ -50,7 +50,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/galerie/modifier/{id}", name="picture_edit", requirements={"id": "\d+"})
+     * @Route("/galerie/{id}", name="picture_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Picture $picture, Request $request, EntityManagerInterface $em)
     {

@@ -48,7 +48,7 @@ class NoteController extends AbstractController
     }
 
     /** 
-     * @Route("/mots-des-profs/{id}", name="note_read", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/details/{id}", name="note_read", requirements= {"id": "\d+"})
      */
     public function read (note $note)
     {
@@ -60,7 +60,7 @@ class NoteController extends AbstractController
     }
 
     /**
-     * @Route("/mots-des-profs/modifier/{id}", name="note_edit", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/{id}", name="note_edit", requirements= {"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Note $note, Request $request){
 

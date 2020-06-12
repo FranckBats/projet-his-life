@@ -46,7 +46,7 @@ class HealthbookController extends AbstractController
     }
 
     /** 
-     * @Route("/sante/{id}", name="healthbook_read", requirements= {"id": "\d+"})
+     * @Route("/sante/details/{id}", name="healthbook_read", requirements= {"id": "\d+"})
      */
     public function read(Healthbook $healthbook)
     {
@@ -146,7 +146,7 @@ class HealthbookController extends AbstractController
     }
 
     /**
-     * @Route("/sante/modifier/{id}", name="healthbook_edit", requirements={"id": "\d+"})
+     * @Route("/sante/{id}", name="healthbook_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
     {

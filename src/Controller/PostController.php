@@ -35,7 +35,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route ("/messages/{id}", name="post_read", requirements={"id": "\d+"})
+     * @Route ("/messages/voir/{id}", name="post_read", requirements={"id": "\d+"})
      */
     public function read(Post $post, Request $request)
     {
@@ -79,7 +79,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route ("/message/modifier/{id}", name="post_edit", requirements={"id": "\d+"})
+     * @Route ("/message/{id}", name="post_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Post $post, Request $request)
     {
