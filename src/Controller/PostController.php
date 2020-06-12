@@ -66,27 +66,23 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
 
-            
+            $notification = (new Notification ('Vous avez un nouveau message sur le site HisLife ', ['email']))
+                    ->content('Vous avez reçu un nouveau message ! ');
 
-            // $notification = (new Notification ('Vous avez un nouveau message sur le site HisLife ', ['email']))
-            //         ->content('Vous avez reçu un nouveau message ! ');
+            $family = $this->getUser()->getFamilies()->first();
 
-            // $family = $form->getData()->getFamilies();
+            $people = $family->getPeople()->getValues();
 
-            // $people = $family->getPoeple()->getValues();
-
-            // foreach ($people as $person) {
-            //     if ($person != $this->getUser()) {
-            //         $user = $person->getEmail();
+            foreach ($people as $person) {
+                if ($person != $this->getUser()) {
+                    $user = $person->getEmail();
                     
-            //         $recipient = new Recipient(
-            //             $user,
-            //         );
-            //         $notifier->send($notification, $recipient);
-            //     }    
-            // }        
-
-            //return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
+                    $recipient = new Recipient(
+                        $user,
+                    );
+                    $notifier->send($notification, $recipient);
+                }    
+            }        
             return $this->redirectToRoute('post_browse');
         }
 
