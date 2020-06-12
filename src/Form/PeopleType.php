@@ -4,10 +4,12 @@ namespace App\Form;
 
 use App\Entity\People;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -28,7 +30,12 @@ class PeopleType extends AbstractType
         $people = $this->security->getUser();
 
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse e-mail',
+                'constraints' => [
+                    new Email,
+                    new NotBlank,
+            ]])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'label' => 'Mot de passe',
