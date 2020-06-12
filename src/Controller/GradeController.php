@@ -47,7 +47,7 @@ class GradeController extends AbstractController
     }
 
     /** 
-     * @Route("/bulletins/{id}", name="grade_read", requirements={"id": "\d+"})
+     * @Route("/bulletins/details/{id}", name="grade_read", requirements={"id": "\d+"})
      */
     public function read(Grade $grade)
     {
@@ -59,7 +59,7 @@ class GradeController extends AbstractController
     }
 
     /**
-     * @Route("/bulletins/modifier/{id}", name="grade_edit", requirements={"id": "\d+"})
+     * @Route("/bulletins/{id}", name="grade_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Grade $grade, Request $request, EntityManagerInterface $em)
     {
@@ -181,7 +181,7 @@ class GradeController extends AbstractController
     }
 
     /** 
-     * @Route("/bulletins/supprimer/{id}", name="grade_delete", requirements= {"id": "\d+"})
+     * @Route("/bulletins/{id}", name="grade_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
     public function delete (Request $request, Grade $grade, EntityManagerInterface $em)
     {

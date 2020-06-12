@@ -7,6 +7,7 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -26,11 +27,26 @@ class ContactType extends AbstractType
        $families = $people->getFamilies($people);
 
         $builder
-            ->add('name')
-            ->add('job')
-            ->add('address')
-            ->add('phone')
-            ->add('email')
+            ->add('name', null, [
+                'label' => 'Nom *',
+                'constraints' => new NotBlank,
+            ])
+            ->add('job', null, [
+                'label' => 'Métier',
+                'required' => false,
+            ])
+            ->add('address', null, [
+                'label' => 'Adresse',
+                'required' => false,
+            ])
+            ->add('phone', null, [
+                'label' => 'Télephone',
+                'required' => false,
+            ])
+            ->add('email', null, [
+                'label' => 'Email',
+                'required' => false,
+            ])
             ->add('family', EntityType::class, [
                 'label' => 'Famille',
                 'class' => Family::class,

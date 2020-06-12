@@ -25,14 +25,15 @@
                     <div class="card-body">
                     <h2 class="title">Ajout d'un Enfant </h2>
 						{{ form_start(form) }}
-						{{ form_row(form.lastname, { 'attr': {'class': 'input--style-3'}}) }}
-						{{ form_row(form.firstname, { 'attr': {'class': 'input--style-3'}}) }}
-						{{ form_row(form.gender, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.lastname) }}
+						{{ form_row(form.firstname) }}
+						{{ form_row(form.gender) }}
 						{{ form_row(form.birthdate) }}
 						{{ form_row(form.picture) }}
 						{{ form_row(form.families) }}
 						
 						<div class="p-t-10">
+						 <span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 
 						</div>
@@ -42,24 +43,5 @@
 			</div>
 			{{ form_end(form) }}
 		</section>
-
-	
-
-			<script>
-				$(document).ready(function () {
-$(".js-datepicker").datepicker({
-viewMode: "years",
-weekStart: 1,
-daysOfWeekHighlighted: "6,0",
-autoclose: true,
-todayHighlight: true,
-startDate: '-30y',
-endDate: '+0d',
-format: 'dd/MM/yyyy'
-});
-
-$('.js-datepicker').datepicker("setDate", new Date());
-});
-			</script>
 
 {% endblock %}

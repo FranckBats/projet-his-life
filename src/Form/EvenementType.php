@@ -47,8 +47,9 @@ class EvenementType extends AbstractType
             ])
             ->add('beginAt',  DateTimeType::class, [
                 // renders it as a single text box
-                'label' => 'Commence le:',
+                'date_label' => 'Le',
                 'date_widget' => 'choice',
+                'time_label' => 'à',
                 'time_widget' => 'choice',
                 'html5' => false,
                 // 'attr' => ['class' => 'js-datepicker'],
@@ -57,8 +58,9 @@ class EvenementType extends AbstractType
             ])
             ->add('endAt',  DateTimeType::class, [
                 // renders it as a single text box
-                'label' => 'Fini le:',
+                'date_label' => 'Le',
                 'date_widget' => 'choice',
+                'time_label' => 'à',
                 'time_widget' => 'choice',
                 'html5' => false,
                 // 'attr' => ['class' => 'js-datepicker'],

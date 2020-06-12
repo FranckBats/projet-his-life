@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 
-class PictureType extends AbstractType
+class PictureEditType extends AbstractType
 {
     private $security;
 
@@ -45,11 +45,8 @@ class PictureType extends AbstractType
             ->add('file', FileType::class, [
                 'label' => 'Photo *',
                 'data_class' => null,
-                'constraints' => [
-                    new Image([
-                        // on peut mettre une taille max ou min
-                        ])
-                ],
+                'required' => false,
+                'mapped' => false,
             ])
             ->add('family', EntityType::class, [
                 'label' => 'Famille *',

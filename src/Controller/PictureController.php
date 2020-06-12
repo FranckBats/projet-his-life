@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Form\PictureType;
+use App\Form\PictureEditType;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,22 +52,42 @@ class PictureController extends AbstractController
     /**
      * @Route("/galerie/modifier/{id}", name="picture_edit", requirements={"id": "\d+"})
      */
-    public function edit(Picture $picture, Request $request)
+    public function edit(Picture $picture, Request $request, EntityManagerInterface $em)
     {
         $this->denyAccessUnlessGranted('edit', $picture);
 
-        $form = $this->createForm(PictureType::class, $picture);
+        $form = $this->createForm(PictureEditType::class, $picture);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $em = $this->getDoctrine()->getManager();
+            $newFile = $form['file']->getData();
+            
+            if ($newFile != null) {
+                function generateRandomString($length = 10)
+                {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $maxLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $maxLength - 1)];
+                    }
+                    return $randomString;
+                }
+                
+                $fileName = generateRandomString();
+                
+                $directory = 'assets/files/pictures/';
+                
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $picture->setFile($finalDirectory);
+                
+                $newFile->move($this->getParameter('pictures_directory'), $fileName.'.jpg');
 
+            }
             $em->persist($picture);
-
             $em->flush();
-
             return $this->redirectToRoute('picture');
         }
 
@@ -144,7 +165,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/galerie/supprimer/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
+     * @Route("/galerie/{id}", name="picture_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
 
     public function delete(Request $request, Picture $picture): Response 

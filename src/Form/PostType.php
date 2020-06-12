@@ -29,16 +29,16 @@ class PostType extends AbstractType
         
         $builder
             ->add('title', null, [
-                'label' => 'Titre',
+                'label' => 'Titre *',
                
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Message',
+                'label' => 'Message *',
                 'required' => true
             ])
             //->add('people')
             ->add('family', EntityType::class, [
-                'label' => 'Famille',
+                'label' => 'Famille *',
                 'class' => Family::class,
                 'choices' => $families,
             ])

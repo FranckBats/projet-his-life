@@ -70,7 +70,7 @@ class FamilyController extends AbstractController
             $token = bin2hex(random_bytes(32));
             $family->setToken($token);
 
-            $link = 'localhost:8080/inscription?token='.$token;
+            $link = 'http://ec2-34-227-161-244.compute-1.amazonaws.com/inscription?token='.$token;
             
             $em->persist($family);
             $em->flush();
@@ -118,7 +118,7 @@ class FamilyController extends AbstractController
     }
 
     /**
-     *  @Route ("/famille/modifier/{id}", name="family_edit", requirements={"id": "\d+"})
+     *  @Route ("/famille/{id}", name="family_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Family $family, Request $request)
     {

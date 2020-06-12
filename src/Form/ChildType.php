@@ -37,15 +37,15 @@ class ChildType extends AbstractType
 
         $builder
             ->add('lastname', null, [
-                'label' => 'Nom',
+                'label' => 'Nom *',
                 'constraints' => new NotBlank,
             ])
             ->add('firstname', null, [
-                'label' => 'Prénom',
+                'label' => 'Prénom *',
                 'constraints' => new NotBlank,
             ])
             ->add('gender', ChoiceType::class, [
-                'label' => 'Sexe',
+                'label' => 'Sexe *',
                 'choices' => [
                     'Fille' => 'Fille',
                     'Garçon' => 'Garçon',
@@ -55,7 +55,7 @@ class ChildType extends AbstractType
             ])
             ->add('birthdate',  DateType::class, [
                 // renders it as a single text box
-                'label' => 'Date Anniversaire',
+                'label' => 'Date Anniversaire *',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
@@ -72,7 +72,7 @@ class ChildType extends AbstractType
                 'required' => false
             ])
             ->add('families', EntityType::class, [
-                'label' => 'Famille',
+                'label' => 'Famille *',
                 'class' => Family::class,
                 'choices' => $families,
                 'multiple' => true

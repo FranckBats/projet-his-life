@@ -38,7 +38,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/repertoire/modifiercontact/{id}", name="contact_edit", requirements={"id": "\d+"})
+     * @Route("/repertoire/{id}", name="contact_edit", requirements={"id": "\d+"}, methods = {"GET", "POST"})
      */
     public function edit(Contact $contact, Request $request)
     {
@@ -69,7 +69,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/repertoire/ajoutercontact", name="contact_add")
+     * @Route("/repertoire/ajouter-contact", name="contact_add")
      */
     public function add(Request $request)
     {
@@ -102,7 +102,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/repertoire/supprimer/{id}", name="contact_delete", requirements={"id": "\d+"})
+     * @Route("/repertoire/{id}", name="contact_delete", methods={"DELETE"}, requirements={"id": "\d+"})
      */
     public function delete( Request $request, Contact $contact, EntityManagerInterface $em): Response
     {

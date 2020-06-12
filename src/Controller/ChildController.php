@@ -149,7 +149,7 @@ class ChildController extends AbstractController
     }
 
     /**
-     *  @Route ("/enfant/modifier/{id}", name="child_edit", requirements={"id": "\d+"})
+     *  @Route ("/enfant/{id}", name="child_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Child $child, Request $request)
     {

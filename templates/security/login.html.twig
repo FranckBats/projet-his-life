@@ -25,14 +25,15 @@
 									</div>
 								{% endif %}
 								<div class="input-group">
-									<input class="input--style-3" type="email" value="{{ last_username }}" id="inputEmail" placeholder="Email" name="email">
+									<input class="" type="email" value="{{ last_username }}" id="inputEmail" placeholder="Email *" name="email">
 								</div>
 								<div class="input-group">
-									<input class="input--style-3" type="password" id="inputPassword" placeholder="Mot de passe" name="password">
+									<input class="" type="password" id="inputPassword" placeholder="Mot de passe *" name="password">
 								</div>
 								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 								<div class="btn-login">
 									<div class="p-t-10">
+									<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 										<button class="large-button white-color" type="submit">Valider</button>
 									</div>
 								</form>

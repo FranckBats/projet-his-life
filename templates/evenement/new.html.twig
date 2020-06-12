@@ -25,13 +25,15 @@
 						<h2 class="title">Ajouter
 						</h2>
 					{{ form_start(form) }}
-					{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
-					{{ form_row(form.type, { 'attr': {'class': 'input--style-3'}}) }}
-					{{ form_row(form.beginAt) }}
-					{{ form_row(form.endAt) }}
+					{{ form_row(form.name) }}
+					{{ form_row(form.type) }}
+					{{ form_row(form.beginAt.date) }}
+					{{ form_row(form.beginAt.time) }}
+					{{ form_row(form.endAt.date) }}
+					{{ form_row(form.endAt.time) }}
 					{{ form_row(form.family)}}
-	
 	<div class="p-t-10">
+	<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 					</div>
 					{{ form_end(form) }} 

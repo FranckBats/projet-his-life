@@ -185,7 +185,7 @@ class NoteController extends AbstractController
     }
 
     /** 
-     * @Route("/mots-des-profs/supprimer/{id}", name="note_delete", requirements= {"id": "\d+"})
+     * @Route("/mots-des-profs/{id}", name="note_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
     public function delete (Request $request, Note $note)
     {

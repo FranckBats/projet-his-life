@@ -20,6 +20,46 @@
      #GRID
      ========================================================================== */
   
+  #evenement_beginAt_time{
+    display: flex;
+    color:white;
+  }
+
+  #evenement_endAt_time{
+    display: flex;
+    color:white;
+  }
+
+  #evenement_beginAt_date{
+    display: flex;
+  }
+
+  #evenement_endAt_date{
+    display: flex;
+  }
+
+#evenement_beginAt_time_hour{
+  margin-right: 5px;
+}
+ 
+#evenement_endAt_time_hour{
+  margin-right: 5px;
+}
+
+#evenement_beginAt_time_minute{
+  margin-left: 5px;
+}
+
+#evenement_endAt_time_minute{
+  margin-left: 5px;
+}
+
+
+  .col-form-label.required{
+    color:white;
+    border: none;
+   }
+
   .row-space {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;

@@ -25,12 +25,12 @@
                     <div class="card-body">
                     <h2 class="title">Modifier un Contact</h2>
 						{{ form_start(form) }}
-						{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
-						{{ form_row(form.job, { 'attr': {'class': 'input--style-3'}}) }}
-                        {{ form_row(form.address, { 'attr': {'class': 'input--style-3'}}) }}
-                        {{ form_row(form.phone, { 'attr': {'class': 'input--style-3'}}) }}
-                        {{ form_row(form.email, { 'attr': {'class': 'input--style-3'}}) }}
-                        {{ form_row(form.family, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.name) }}
+						{{ form_row(form.job) }}
+                        {{ form_row(form.address) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.family) }}
 						
                         <div class="p-t-10">
 						<button class="large-button white-color" type="submit">Modifier</button>

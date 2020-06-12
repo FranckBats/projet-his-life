@@ -28,10 +28,11 @@
 						<h2 class="title">Modifier
 						</h2>
 						{{ form_start(form) }}
-						{{ form_row(form.title, { 'attr': {'class': 'input--style-3'}}) }}
-						{{ form_row(form.content, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.title) }}
+						{{ form_row(form.content) }}
 						
 						<div class="p-t-10">
+						<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 					</div>
 

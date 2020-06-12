@@ -8,8 +8,8 @@
 						<div class="card-heading"></div>
 						<div class="card-body">
 							{{ form_start(register) }}
-                            {{ form_row(register.lastname, { 'attr': {'class': 'input--style-3'}}) }}
-                            {{ form_row(register.firstname, { 'attr': {'class': 'input--style-3'}}) }}
+                            {{ form_row(register.lastname) }}
+                            {{ form_row(register.firstname) }}
 							{{ form_row(register.birthdate) }}
 							{{ form_row(register.role) }}
 							{% for message in app.flashes('danger') %}
@@ -18,7 +18,7 @@
 								</div>
 							{% endfor %}
 							{{ form_row(register.email) }}
-							{{ form_row(register.password, { 'attr': {'class': 'input--style-3'}}) }}
+							{{ form_row(register.password) }}
 							{{ form_row(register.agreeTerms) }}
 
 							<div class="p-t-10">

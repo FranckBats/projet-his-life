@@ -129,7 +129,7 @@ class HealthbookController extends AbstractController
     }
 
     /** 
-     * @Route("/sante/supprimer/{id}", name="healthbook_delete", requirements= {"id": "\d+"})
+     * @Route("/sante/{id}", name="healthbook_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
     public function delete (Request $request, Healthbook $healthbook, EntityManagerInterface $em)
     {

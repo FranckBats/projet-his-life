@@ -27,13 +27,14 @@
                     <div class="card-body">
                     <h2 class="title">Ajout d'un bulletin</h2>
 						{{ form_start(form) }}
-						{{ form_row(form.name, { 'attr': {'class': 'input--style-3'}}) }}
-						{{ form_row(form.description, { 'attr': {'class': 'input--style-3'}}) }}
+						{{ form_row(form.name) }}
+						{{ form_row(form.description) }}
 						{{ form_row(form.child) }}
 						{{ form_row(form.file) }}
 
 
 						<div class="p-t-10">
+						<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 
 						</div>

@@ -38,15 +38,15 @@ class UploadType extends AbstractType
         
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Titre *'
             ])
             ->add('file', FileType::class, [
-                'label' => 'Photo',
+                'label' => 'Photo *',
                 'data_class' => null,
                 'required' => true,
             ])
             ->add('child', EntityType::class, [
-                'label' => 'Enfant',
+                'label' => 'Enfant *',
                 'class' => Child::class,
                 'choices' => $children,
             ])

@@ -37,21 +37,21 @@ class UploadEditType extends AbstractType
         
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom *'
             ])
             ->add('file', FileType::class, [
-                'label' => 'Photo',
+                'label' => 'Photo *',
                 'data_class' => null,
                 'required' => false,
                 'mapped' => false,
             ])
             ->add('child', EntityType::class, [
-                'label' => 'Enfant',
+                'label' => 'Enfant *',
                 'class' => Child::class,
                 'choices' => $children,
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Description *',
                 'required' => false
             ])
             

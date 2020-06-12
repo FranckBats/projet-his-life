@@ -62,7 +62,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="evenement_show", requirements= {"id": "\d+"}, methods={"GET"})
+     * @Route("/details/{id}", name="evenement_show", requirements= {"id": "\d+"}, methods={"GET"})
      */
     public function show(Evenement $evenement): Response
     {
@@ -74,7 +74,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/modifier", name="evenement_edit", requirements= {"id": "\d+"}, methods={"GET","POST"})
+     * @Route("/{id}", name="evenement_edit", requirements= {"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
@@ -97,7 +97,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/supprimer", name="evenement_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
+     * @Route("/{id}", name="evenement_delete", requirements= {"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(Request $request, Evenement $evenement): Response
     {

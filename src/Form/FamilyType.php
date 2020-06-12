@@ -18,7 +18,7 @@ class FamilyType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Nom de la famille',
+                'label' => 'Nom de la famille *',
                 'constraints' => new NotBlank,
             ])
             ->add('picture', FileType::class, array(
