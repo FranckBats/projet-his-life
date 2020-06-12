@@ -54,6 +54,7 @@ class EvenementController extends AbstractController
 
             return $this->redirectToRoute('evenement_index');
         }
+        $this->addFlash('success', 'Evenement ajouté');
 
         return $this->render('evenement/new.html.twig', [
             'evenement' => $evenement,
@@ -108,6 +109,7 @@ class EvenementController extends AbstractController
             $entityManager->remove($evenement);
             $entityManager->flush();
         }
+        $this->addFlash('danger', 'Evenement supprimé');
 
         return $this->redirectToRoute('evenement_index');
     }

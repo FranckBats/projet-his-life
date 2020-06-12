@@ -95,6 +95,7 @@ class ContactController extends AbstractController
 
 
         }
+        $this->addFlash('success', 'Contact ajouté');
 
         return $this->render('contact/add.html.twig', [
             'form' => $form->createView(),
@@ -114,7 +115,7 @@ class ContactController extends AbstractController
             $em->remove($contact);
             $em->flush();
 
-            $this->addFlash('success', 'contact supprimé.');
+            $this->addFlash('danger', 'Contact supprimé');
         }
 
         return $this->redirectToRoute('contact_browse');

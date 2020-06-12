@@ -100,7 +100,7 @@ class GradeController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('grade_browse');
         }
-            
+        
             
         return $this->render('grade/edit.html.twig', [
             'form' => $form->createView(),
@@ -172,7 +172,7 @@ class GradeController extends AbstractController
             return $this->redirectToRoute('grade_browse');
         }
 
-        $this->addFlash('success', 'Le bulletin de note a bien été ajouté');
+        $this->addFlash('success', 'Bulletin de note ajouté');
 
         return $this->render('grade/add.html.twig', [
             'controller_name' => 'GradeController',
@@ -193,7 +193,7 @@ class GradeController extends AbstractController
         $em->remove($grade);
         $em->flush();
         
-        $this->addFlash('danger', 'bulletin de note supprimé.');
+        $this->addFlash('danger', 'bulletin de note supprimé');
         }
         return $this->redirectToRoute('grade_browse');
     }

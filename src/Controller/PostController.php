@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 
 class PostController extends AbstractController
 {
@@ -51,7 +53,7 @@ class PostController extends AbstractController
     /**
      * @Route("/message/ajouter", name="post_add")
      */
-    public function add(Request $request)
+    public function add(Request $request, NotifierInterface $notifier)
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
@@ -64,14 +66,33 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
 
-            $this->addFlash('success', 'Votre message a bien été posté');
+            
+
+            // $notification = (new Notification ('Vous avez un nouveau message sur le site HisLife ', ['email']))
+            //         ->content('Vous avez reçu un nouveau message ! ');
+
+            // $family = $form->getData()->getFamilies();
+
+            // $people = $family->getPoeple()->getValues();
+
+            // foreach ($people as $person) {
+            //     if ($person != $this->getUser()) {
+            //         $user = $person->getEmail();
+                    
+            //         $recipient = new Recipient(
+            //             $user,
+            //         );
+            //         $notifier->send($notification, $recipient);
+            //     }    
+            // }        
 
             //return $this->redirectToRoute('post_read', ['id' => $post->getId()]);
             return $this->redirectToRoute('post_browse');
         }
 
-        // $notification = (new Notification ('Vous avez un nouveau message sur le site HisLife ', ['email']))
-        // ->content('Vous avez reçu un nouveau message ! ');
+        $this->addFlash('success', 'Votre message a bien été posté');
+
+
 
         return $this->render('post/add.html.twig', [
             'form' => $form->createView(),
@@ -116,7 +137,7 @@ class PostController extends AbstractController
             $em->remove($post);
             $em->flush();
 
-            $this->addFlash('success', 'Post supprimé');
+            $this->addFlash('danger', 'Message supprimé');
         }
         
         return $this->redirectToRoute('post_browse');

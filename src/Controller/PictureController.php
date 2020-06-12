@@ -157,6 +157,7 @@ class PictureController extends AbstractController
             return $this->redirectToRoute('picture');
         }
 
+        $this->addFlash('success', 'Photo ajouté'); 
 
         return $this->render('picture/add.html.twig', [
             'controller_name' => 'PictureController',
@@ -177,7 +178,7 @@ class PictureController extends AbstractController
             $em->remove($picture);
             $em->flush();
             
-            $this->addFlash('success', 'Photo supprimée');
+            $this->addFlash('danger', 'Photo supprimée');
         }
         
         return $this->redirectToRoute('picture');
