@@ -40,7 +40,8 @@
 			
 				{% endif %} 
 				<div class="photo-details ">
-					<h1 class="title">{{ child.lastname }}</h1>
+				<a href="{{ path('child_read', {'id': child.id}) }}">
+					<h1 class="title">{{ child.lastname }}</h1></a>
                     <h2 class="title">{{ child.firstname }}</h2>
                    
 				</br>

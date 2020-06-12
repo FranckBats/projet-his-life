@@ -71,18 +71,21 @@
 
 
         <h1 style="color:#65C8D0; font-size: 30px;">{{ people.firstname }}</h1>
+        <h1 style="color:#65C8D0; font-size: 30px;">{{ people.lastname }}</h1>
+        <h2 style="color:#65C8D0; font-size: 15px;">né le {{ people.birthdate|date("d/m/Y") }}</h2>  
         <p style="color:white">{{ people.email }}</p></br>
         <h1 style="color:#65C8D0; font-size: 30px;">Mes familles:</h1>
 				{% for family in people.families %}
-					    <p style="color:white; font-style: italic;">{{ family }}</p>
+					    <p style="color:white; font-style: italic;">{{ family }} </p>
                         <p style="color:white;">Lien d'invitation pour cette famille :</p>
                         <p style="color:black">http://ec2-34-227-161-244.compute-1.amazonaws.com/inscription?token={{ family.token }}</p>
-                        <hr>
+                        </br>
 					 {% endfor %} 
         <h1 style="color:#65C8D0; font-size: 30px;">Mes enfants:</h1>
                     {% for family in people.families %}
                     {% for child in family.children %}
-                        <p style="color:white; font-style: italic;" class="col-3"> {{ child }} </p>
+                    <a href="{{ path('child_read', {'id': child.id}) }}">
+                        <p style="color:white; font-style: italic;" class="col-3"> {{ child }} </p></a>
     {% endfor %}
     {% endfor %}  
 </br>

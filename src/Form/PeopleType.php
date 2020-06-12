@@ -28,7 +28,7 @@ class PeopleType extends AbstractType
         $people = $this->security->getUser();
 
         $builder
-            ->add('email *')
+            ->add('email')
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'label' => 'Mot de passe *',

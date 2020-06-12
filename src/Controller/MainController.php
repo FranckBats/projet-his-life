@@ -50,16 +50,21 @@ class MainController extends AbstractController
      * @Route("/tableaudebord", name="dashboard")
      */
     public function dashboard()
-    {
-        $familiesOfUser = $this->getUser()->getFamilies();
+    {   
+        if ($this->getUser() !== null) {
 
-        if ($familiesOfUser->isEmpty() === true) {
-            $this->addFlash('danger', 'Vous n\'avez pas ajouter de famille. Vous pouvez le faire dans votre profil, Section Famille');
+            $familiesOfUser = $this->getUser()->getFamilies();
+
+            if ($familiesOfUser->isEmpty() === true) {
+                $this->addFlash('danger', 'Vous n\'avez pas ajouter de famille. Vous pouvez le faire dans votre profil, Section Famille');
+            }
+
+            return $this->render('home/dashboard.html.twig', [
+                'families' => $familiesOfUser
+            ]);
         }
 
-        return $this->render('home/dashboard.html.twig', [
-            'families' => $familiesOfUser
-        ]);
+        return $this->render('home/index.html.twig');
     }
 
     /**
