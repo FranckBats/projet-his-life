@@ -747,6 +747,9 @@
 
 
 /* =========================
-fenetre modal image
+Message d'erreur
 =========================== */
 
+.message-flash{
+  text-align: center;
+}

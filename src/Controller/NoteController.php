@@ -178,6 +178,8 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('note_browse');
         }
 
+        $this->addFlash('success', 'Message des professeurs ajouté');
+
         return $this->render('note/add.html.twig', [
             'controller_name' => 'noteController',
             'form' => $form->createView(),
@@ -198,7 +200,7 @@ class NoteController extends AbstractController
             $em->remove($note);
             $em->flush();
 
-            $this->addFlash('success', 'Message supprimé.');
+            $this->addFlash('danger', 'Message du professeur supprimé');
         }
         return $this->redirectToRoute('note_browse');
     }

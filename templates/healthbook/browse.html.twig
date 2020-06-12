@@ -3,15 +3,16 @@
 
 {% block body %}
 
-{% for message in app.flashes('success') %}
-	<div class="alert alert-success">
-		{{ message }}
-	</div>
-{% endfor %}
 
 
 <section class="light-content our-team">
-
+{% for label, messages in app.flashes(['success', 'danger']) %}
+        {% for message in messages %}
+            <div class="alert-{{ label }} message-flash">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
 	<div class="container">
 		<div class="row">

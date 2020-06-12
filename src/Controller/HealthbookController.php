@@ -120,6 +120,7 @@ class HealthbookController extends AbstractController
 
             return $this->redirectToRoute('healthbook_browse');
         }
+        $this->addFlash('success', 'Carnet de Santé ajouté');
 
         return $this->render('healthbook/add.html.twig', [
             'controller_name' => 'HealthbookController',
@@ -139,9 +140,10 @@ class HealthbookController extends AbstractController
             $em->remove($healthbook);
             $em->flush();
 
-            $this->addFlash('success', 'Carnet de Santé bien supprimé.');
+            
         }
-        
+        $this->addFlash('danger', 'Carnet de Santé supprimé');
+
         return $this->redirectToRoute('healthbook_browse');
     }
 
@@ -187,7 +189,8 @@ class HealthbookController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('healthbook_browse');
         }
-            
+         
+        
             
         return $this->render('healthbook/edit.html.twig', [
             'form' => $form->createView(),

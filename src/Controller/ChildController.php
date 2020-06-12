@@ -109,6 +109,7 @@ class ChildController extends AbstractController
 
             return $this->redirectToRoute('child_profile');
         }
+        $this->addFlash('success', 'Profil enfant créé');
 
         return $this->render('child/create.html.twig', [
             'controller_name' => 'ChildController',
@@ -142,7 +143,7 @@ class ChildController extends AbstractController
             $em->remove($child);
             $em->flush();
 
-            $this->addFlash('success', 'Profil enfant supprimé.');
+            $this->addFlash('danger', 'Profil enfant supprimé');
         }
         
         return $this->redirectToRoute('child_profile');

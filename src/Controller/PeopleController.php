@@ -98,7 +98,7 @@ class PeopleController extends AbstractController
         $recipient = new Recipient($user);
         $notifier->send($notification, $recipient);
     
-        $this->addFlash('success', 'Profil supprimé!');
+        $this->addFlash('danger', 'Profil supprimé');
         return $this->redirectToRoute('home');
     }
 }

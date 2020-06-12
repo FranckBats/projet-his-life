@@ -111,7 +111,7 @@ class FamilyController extends AbstractController
             $em->remove($family);
             $em->flush();
 
-            $this->addFlash('success', 'Famille supprimé.');
+            $this->addFlash('danger', 'Famille supprimé');
         }
         
         return $this->redirectToRoute('family_profile');
