@@ -90,7 +90,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/a-propos", name="dashboard_about")
+     * @Route("tableaudebord/a-propos", name="dashboard_about")
      */
     public function aboutDashboard(){
 
@@ -98,7 +98,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/nous-contacter", name="dashboard_contact_us")
+     * @Route("tableaudebord/nous-contacter", name="dashboard_contact_us")
      */
     public function contactUsDashboard(Request $request, MailerInterface $mailer){
 
@@ -131,7 +131,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/mentions-legales", name="dashboard_mentions_legales")
+     * @Route("tableaudebord/mentions-legales", name="dashboard_mentions_legales")
      */
     public function mentionsLegalesDashboard(){
 
