@@ -3,7 +3,7 @@
 {% block body %}
 	<section id="homeIntro" class="parallax first-widget">
 		{% for message in app.flashes('danger') %}
-				<div class="alert alert-danger">
+				<div class="alert alert-danger message-flash">
 					{{ message }}
 				</div>
 			{% endfor %}

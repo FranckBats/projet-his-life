@@ -63,7 +63,7 @@ class RegisterType extends AbstractType
             ]])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'Accepter les conditions ',
+                'label' => 'Accepter les conditions',
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,

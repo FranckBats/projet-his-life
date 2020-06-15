@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 
+use App\Form\ContactUsType;
 use App\Repository\GradeRepository;
 use App\Repository\NoteRepository;;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class MainController extends AbstractController
 {
@@ -33,9 +36,33 @@ class MainController extends AbstractController
     /**
      * @Route("/nous-contacter", name="contact_us")
      */
-    public function contactUs(){
+    public function contactUs(Request $request, MailerInterface $mailer){
 
-        return $this->render('contact-us.html.twig');
+        $form = $this->createForm(ContactUsType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $email = $form['email']->getData();
+            $objet = $form['objet']->getData();
+            $message = $form['message']->getData();
+
+            $email = (new Email())
+                    ->to('hislife.contact@gmail.com')
+                    ->subject($objet)
+                    ->html('<h1>Message de '.$email.'<p>: '.$message.'</p>');
+
+                    $mailer->send($email);
+
+                    $this->addFlash('success', 'Votre demande à bien été envoyé ');
+
+                    return $this->redirectToRoute('contact_us');
+        }
+
+        return $this->render('contact-us.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -86,9 +113,34 @@ class MainController extends AbstractController
     /**
      * @Route("tableaudebord/nous-contacter", name="dashboard_contact_us")
      */
-    public function contactUsDashboard(){
+    public function contactUsDashboard(Request $request, MailerInterface $mailer){
 
-        return $this->render('contact_us_dashboard.html.twig');
+        $form = $this->createForm(ContactUsType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $email = $form['email']->getData();
+            $objet = $form['objet']->getData();
+            $message = $form['message']->getData();
+
+            $email = (new Email())
+                    ->to('hislife.contact@gmail.com')
+                    ->subject($objet)
+                    ->html('<h1>Message de '.$email.'<p>: '.$message.'</p>');
+
+                    $mailer->send($email);
+
+                    $this->addFlash('success', 'Votre demande à bien été envoyé ');
+
+                    return $this->redirectToRoute('dashboard');
+
+        }
+
+        return $this->render('contact_us_dashboard.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

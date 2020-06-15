@@ -45,6 +45,19 @@ html {
   border-top-right-radius: 10px;
   min-height: 250px;
 }
+
+.background-event{
+  padding-bottom: 10px;
+}
+
+.background-event .project-title{
+  text-align: center;
+}
+
+.background-event .button-show-event{
+  
+  text-align: center;
+}
 @media screen and (min-width: 700px) {
   .photo-background {
     border-top-left-radius: 10px;
