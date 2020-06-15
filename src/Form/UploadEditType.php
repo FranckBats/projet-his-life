@@ -51,7 +51,7 @@ class UploadEditType extends AbstractType
                 'choices' => $children,
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description *',
+                'label' => 'Description ',
                 'required' => false
             ])
             

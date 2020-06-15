@@ -83,12 +83,9 @@ class PostController extends AbstractController
                     $notifier->send($notification, $recipient);
                 }    
             }        
+            $this->addFlash('success', 'Votre message a bien été posté');
             return $this->redirectToRoute('post_browse');
         }
-
-        $this->addFlash('success', 'Votre message a bien été posté');
-
-
 
         return $this->render('post/add.html.twig', [
             'form' => $form->createView(),

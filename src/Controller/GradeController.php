@@ -169,10 +169,9 @@ class GradeController extends AbstractController
                 }    
             }
 
+            $this->addFlash('success', 'Bulletin de note ajouté');
             return $this->redirectToRoute('grade_browse');
         }
-
-        $this->addFlash('success', 'Bulletin de note ajouté');
 
         return $this->render('grade/add.html.twig', [
             'controller_name' => 'GradeController',

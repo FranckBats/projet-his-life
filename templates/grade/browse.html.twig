@@ -30,14 +30,13 @@
 
 		{% for grade in grades %}
 			<div class="photo-card">
-
 				<div class="photo-background" style="background-image:url('{{asset(grade.file)}}'); "></div>
-				<div class="col-md-4">
+				<div class="col-md-6">
 				<div class="project-info"></br>
 				<a href="{{ path('grade_read', {'id': grade.id}) }}">
-				<h3 class="project-title">{{ grade.name }}</h3>
-				</a>
-			</br>
+					<h3 class="project-title">{{ grade.name }}</h3></br>
+				<span style="color:white;">Appartient à : {{ grade.child }}</span>
+				</br>
 			<span class="date">Posté le:
 				{{grade.createdAt|date('d-m-Y')}}</span>
 		</br>

@@ -117,10 +117,9 @@ class HealthbookController extends AbstractController
                     $notifier->send($notification, $recipient);
                 }    
             }
-
+            $this->addFlash('success', 'Carnet de Santé ajouté');
             return $this->redirectToRoute('healthbook_browse');
         }
-        $this->addFlash('success', 'Carnet de Santé ajouté');
 
         return $this->render('healthbook/add.html.twig', [
             'controller_name' => 'HealthbookController',
@@ -139,8 +138,6 @@ class HealthbookController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($healthbook);
             $em->flush();
-
-            
         }
         $this->addFlash('danger', 'Carnet de Santé supprimé');
 

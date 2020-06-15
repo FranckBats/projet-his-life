@@ -174,11 +174,10 @@ class NoteController extends AbstractController
                     $notifier->send($notification, $recipient);
                 }    
             }
-
+            $this->addFlash('success', 'Message des professeurs ajouté');
             return $this->redirectToRoute('note_browse');
         }
 
-        $this->addFlash('success', 'Message des professeurs ajouté');
 
         return $this->render('note/add.html.twig', [
             'controller_name' => 'noteController',

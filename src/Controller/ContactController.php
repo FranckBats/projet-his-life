@@ -73,9 +73,6 @@ class ContactController extends AbstractController
      */
     public function add(Request $request)
     {
-
-        
-
         $contact = New Contact();
         //$this->denyAccessUnlessGranted('create', $contact);
 
@@ -91,11 +88,9 @@ class ContactController extends AbstractController
 
             $em->flush();
 
+            $this->addFlash('success', 'Contact ajouté');
             return $this->redirectToRoute('contact_browse');
-
-
         }
-        $this->addFlash('success', 'Contact ajouté');
 
         return $this->render('contact/add.html.twig', [
             'form' => $form->createView(),

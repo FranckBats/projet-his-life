@@ -80,6 +80,7 @@ class ChildType extends AbstractType
                             
             
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -9,8 +9,12 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Email;
 
 class ContactType extends AbstractType
 {
@@ -32,23 +36,30 @@ class ContactType extends AbstractType
                 'constraints' => new NotBlank,
             ])
             ->add('job', null, [
-                'label' => 'Métier',
+                'label' => 'Métier *',
                 'required' => false,
             ])
             ->add('address', null, [
                 'label' => 'Adresse',
                 'required' => false,
             ])
-            ->add('phone', null, [
+            ->add('phone', TelType::class, [
                 'label' => 'Télephone',
                 'required' => false,
-            ])
-            ->add('email', null, [
+                'constraints' => new Assert\Length([
+                    'min' => 10,
+                    'max' => 10,
+                    'charsetMessage' => 'Le numéro de téléphone doit contenir 10 chiffres'
+            ])])
+            ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'constraints' => [
+                    new Email()
+                ],
                 'required' => false,
             ])
             ->add('family', EntityType::class, [
-                'label' => 'Famille',
+                'label' => 'Famille *',
                 'class' => Family::class,
                 'choices' => $families,
             ])

@@ -42,8 +42,7 @@ class EvenementController extends AbstractController
     {
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
-        
-        
+
         $form->handleRequest($request);        
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,9 +51,9 @@ class EvenementController extends AbstractController
             $entityManager->persist($evenement);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Evenement ajouté');
             return $this->redirectToRoute('evenement_index');
         }
-        $this->addFlash('success', 'Evenement ajouté');
 
         return $this->render('evenement/new.html.twig', [
             'evenement' => $evenement,
@@ -79,7 +78,6 @@ class EvenementController extends AbstractController
      */
     public function edit(Request $request, Evenement $evenement): Response
     {
-
         $this->denyAccessUnlessGranted('edit', $evenement);
 
         $form = $this->createForm(EvenementType::class, $evenement);

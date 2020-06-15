@@ -33,23 +33,22 @@ class EvenementType extends AbstractType
 
         $builder
             ->add('name', null, [
-                'label' => 'Nom',
+                'label' => 'Nom *',
                 'constraints' => new NotBlank,
             ])
             ->add('type', ChoiceType::class, [
-                'label' => 'Type',
+                'label' => 'Type *',
                 'choices' => [
                     'Medical' => 'Médical',
                     'Scolaire' => 'Scolaire',
                     'Autre' => 'Autre',
                 ],
-
             ])
             ->add('beginAt',  DateTimeType::class, [
                 // renders it as a single text box
-                'date_label' => 'Le',
+                'date_label' => 'Le *',
                 'date_widget' => 'choice',
-                'time_label' => 'à',
+                'time_label' => 'à *',
                 'time_widget' => 'choice',
                 'html5' => false,
                 // 'attr' => ['class' => 'js-datepicker'],
@@ -58,9 +57,9 @@ class EvenementType extends AbstractType
             ])
             ->add('endAt',  DateTimeType::class, [
                 // renders it as a single text box
-                'date_label' => 'Le',
+                'date_label' => 'Le *',
                 'date_widget' => 'choice',
-                'time_label' => 'à',
+                'time_label' => 'à *',
                 'time_widget' => 'choice',
                 'html5' => false,
                 // 'attr' => ['class' => 'js-datepicker'],
@@ -69,7 +68,7 @@ class EvenementType extends AbstractType
             ])
             //->add('people')
             ->add('family', EntityType::class, [
-                'label' => 'Famille',
+                'label' => 'Famille *',
                 'class' => Family::class,
                 'choices' => $families,
                 //'multiple' => true

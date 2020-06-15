@@ -1,9 +1,7 @@
 {% extends 'basedashboard.html.twig' %}
 
-
 {% block body %}
-
-
+ 
 	<section class="light-content our-team">
 
 		<div class="container">
@@ -19,25 +17,28 @@
 			<!-- /.row -->
 		</div>
 		<!-- /.container -->
-
-		<div class="font-poppinsdeux">
+<div class="font-poppinsdeux">
 			<div class="wrapper wrapper--w780">
 				<div class="card card-15">
 					<div class="card-heading"></div>
 					<div class="card-body">
-						<h2 class="title">Modifier
+						<h2 class="title">Ajouter
 						</h2>
-						{{ form_start(form) }}
-						{{ form_row(form.name) }}
-						{{ form_row(form.type) }}
-						
-
-						<div class="p-t-10">
+					{{ form_start(form) }}
+					{{ form_row(form.name) }}
+					{{ form_row(form.type) }}
+					{{ form_row(form.beginAt.date) }}
+					{{ form_row(form.beginAt.time) }}
+					{{ form_row(form.endAt.date) }}
+					{{ form_row(form.endAt.time) }}
+					{{ form_row(form.family)}}
+	<div class="p-t-10">
+	<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 					</div>
-					{{ form_end(form) }}
+					{{ form_end(form) }} 
 					</br>
-					{{ include('evenement/_delete_form.html.twig')}}
+					
 						</div>
 					</br>
 
@@ -47,5 +48,10 @@
 		
 	</section>
 
+	
+	
+
+	
+	
 
 {% endblock %}

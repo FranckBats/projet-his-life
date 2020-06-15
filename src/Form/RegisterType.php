@@ -58,7 +58,7 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Adresse e-mail *',
                 'constraints' => [
-                    new Email,
+                    new Email(),
                     new NotBlank,
             ]])
             ->add('agreeTerms', CheckboxType::class, [

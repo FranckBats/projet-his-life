@@ -26,8 +26,10 @@
 						<h2 class="title">Modifier
 						</h2>
 						{{ form_start(form) }}
-
+						{{ form_row(form.email)}}
+						{{ form_row(form.password)}}
 					<div class="p-t-10">
+					<span style="color: #ffffff;">* Ces champs sont obligatoires</span>
 							<button class="large-button white-color" type="submit">Valider</button>
 					</div>
 					{{ form_end(form) }}

@@ -107,9 +107,9 @@ class ChildController extends AbstractController
             $em->persist($child);
             $em->flush();
 
+            $this->addFlash('success', 'Profil enfant créé');
             return $this->redirectToRoute('child_profile');
         }
-        $this->addFlash('success', 'Profil enfant créé');
 
         return $this->render('child/create.html.twig', [
             'controller_name' => 'ChildController',

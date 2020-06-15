@@ -47,6 +47,14 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/cgu", name="cgu")
+     */
+    public function cgu(){
+
+        return $this->render('cgu.html.twig');
+    }
+
+    /**
      * @Route("/tableaudebord", name="dashboard")
      */
     public function dashboard()
@@ -68,7 +76,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/a-propos", name="dashboard_about")
+     * @Route("tableaudebord/a-propos", name="dashboard_about")
      */
     public function aboutDashboard(){
 
@@ -76,7 +84,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/nous-contacter", name="dashboard_contact_us")
+     * @Route("tableaudebord/nous-contacter", name="dashboard_contact_us")
      */
     public function contactUsDashboard(){
 
@@ -84,13 +92,20 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableau-de-bord/mentions-legales", name="dashboard_mentions_legales")
+     * @Route("tableaudebord/mentions-legales", name="dashboard_mentions_legales")
      */
     public function mentionsLegalesDashboard(){
 
         return $this->render('mentions_legales_dashboard.html.twig');
     }
 
+    /**
+     * @Route("tableaudebord/cgu", name="dashboard_cgu")
+     */
+    public function cguDashboard(){
+
+        return $this->render('cgu_dashboard.html.twig');
+    }
 
     /**
     * @Route("/ajax", name="ajax_action")
