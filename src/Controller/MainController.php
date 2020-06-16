@@ -26,7 +26,7 @@ class MainController extends AbstractController
     }
 
      /**
-     * @Route("/a-propos", name="about")
+     * @Route("notre-equipe", name="about")
      */
     public function about(){
 
@@ -103,7 +103,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("tableaudebord/a-propos", name="dashboard_about")
+     * @Route("tableaudebord/notre-equipe", name="dashboard_about")
      */
     public function aboutDashboard(){
 
