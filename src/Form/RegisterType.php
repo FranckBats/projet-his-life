@@ -42,11 +42,17 @@ class RegisterType extends AbstractType
             ])
             ->add('birthdate',  DateType::class, [
                 // renders it as a single text box
-                'label' => 'Date de Naissance *(18 ans minimum)',
+                'label' => 'Date de Naissance * (18 ans minimum)',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
                 'format' =>  'dd/MM/yyyy'
+            ])
+            ->add('file', FileType::class, [
+                'label' => 'Photo ',
+                'data_class' => null,
+                'required' => false,
+                'mapped' => false,
             ])
             ->add('role', ChoiceType::class, [
                 'label' => 'Rôle *',

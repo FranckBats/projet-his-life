@@ -42,23 +42,48 @@ class PeopleController extends AbstractController
         $form = $this->createForm(PeopleType::class, $people);
 
         $form->handleRequest($request);
-        //dd ($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form->get('password')->getData();
-            //dd($password);
+
+            $newFile = $form['picture']->getData();
+
+            if ($newFile != null) {
+                function generateRandomString($length = 10)
+                {
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $maxLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $maxLength - 1)];
+                    }
+                    return $randomString;
+                }
+                
+                $fileName = generateRandomString();
+                
+                $directory = 'assets/files/profile_picture/';
+                
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $people->setPicture($finalDirectory);
+            
+                $newFile->move($this->getParameter('profile_picture_directory'), $fileName.'.jpg');
+            }
+
+            else {
+                $people->setPicture($people->getPicture());
+            }
+
             if ($password !== null) {
                 $people->setPassword($passwordEncoder->encodePassword($people, $password));
-            
-
-                $em = $this->getDoctrine()->getManager();
-
-                $em->persist($people);
-
-                $em->flush();
-
-                return $this->redirectToRoute('people_profile');
             }
+            $em = $this->getDoctrine()->getManager();
+    
+            $em->persist($people);
+    
+            $em->flush();
+    
+            return $this->redirectToRoute('people_profile');
         }
 
         return $this->render('people/edit.html.twig', [

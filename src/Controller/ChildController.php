@@ -22,7 +22,6 @@ class ChildController extends AbstractController
      */
     public function profile(ChildRepository $childRepository, FamilyRepository $familyRepository)
     {
-
         // #############################################
         // Pour l'instant je l'écris en français car ça m'arrange fortement (et puis l'anglais c'est de la merde !!!)
         // Ce bloc de code fait :
@@ -126,7 +125,7 @@ class ChildController extends AbstractController
 
         return $this->render('child/read.html.twig', [
             'controller_name' => 'ChildController',
-            'child' => $child
+            'child' => $child,
         ]);
     }
 

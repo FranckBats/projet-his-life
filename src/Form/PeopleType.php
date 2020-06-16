@@ -10,7 +10,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -36,6 +38,12 @@ class PeopleType extends AbstractType
                     new Email,
                     new NotBlank,
             ]])
+            ->add('picture', FileType::class, [
+                'label' => 'Photo',
+                'data_class' => null,
+                'required' => false,
+                'mapped' => false,
+            ])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'label' => 'Mot de passe *',

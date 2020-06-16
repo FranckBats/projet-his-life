@@ -15,10 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
-
-
-
-
 class RegistrationController extends AbstractController
 {
     /**
@@ -26,7 +22,6 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FamilyRepository $familyRepository, MailerInterface $mailer): Response
     {
-    
         $families = $familyRepository->findAll();
         
         $familiesByToken = array();
@@ -44,27 +39,49 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
             
-            if ($form->isSubmitted() && $form->isValid()) {
-                  
-                $token = $request->query->get('token');
-                
-                if (array_key_exists($token, $familiesByToken)) {
-                    $family = $familiesByToken[$token];
-                    $user->addFamily($family);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $picture = $form['file']->getData();
+
+            function generateRandomString($length = 10)
+            {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $maxLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $maxLength - 1)];
                 }
-                // encode the plain password
-                $user->setPassword(
-                    $passwordEncoder->encodePassword(
-                        $user,
-                        $form->get('password')->getData()
-                        )
-                    );
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($user);
-                    $entityManager->flush();
+                return $randomString;
+            }
+
+            $fileName = generateRandomString();
+
+            $directory = 'assets/files/profile_picture/';
+
+            if ($picture != null) {
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $user->setPicture($finalDirectory);
+                $picture->move($this->getParameter('profile_picture_directory'), $fileName.'.jpg');
+            }
+                  
+            $token = $request->query->get('token');
+                
+            if (array_key_exists($token, $familiesByToken)) {
+                $family = $familiesByToken[$token];
+                $user->addFamily($family);
+            }
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
                     
-                    // do anything else you need here, like send an email
-                    $email = (new TemplatedEmail())
+            // do anything else you need here, like send an email
+            $email = (new TemplatedEmail())
                     ->from('hislife.contact@gmail.com')
                     ->to($user->getEmail())
                     ->subject('Inscription sur le site His Life')
@@ -74,15 +91,15 @@ class RegistrationController extends AbstractController
                         'lastname' => $user->getLastname(),
                         ]);
                         
-                        $mailer->send($email);
+            $mailer->send($email);
 
-                        $this->addFlash('success', 'Vous êtes inscrit, vous pouvez vous connecter');
+            $this->addFlash('success', 'Vous êtes inscrit, vous pouvez vous connecter');
 
-                        return $this->redirectToRoute('app_login');
-                    }
-                    
-                    return $this->render('registration/register.html.twig', [
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('registration/register.html.twig', [
                         'register' => $form->createView(),
                         ]);
-                    }
-                }
+    }
+}

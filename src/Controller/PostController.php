@@ -25,11 +25,10 @@ class PostController extends AbstractController
 
         foreach ($families as $family) {
             $posts = $family->getPosts()->getValues();
-            foreach ($posts as $post){
+            foreach ($posts as $post) {
                 array_push ($postsArray, $post);
             }
         }
-        // $posts = $postRepository->findBy(['createdAt' => 'DESC']);
         
         return $this->render('post/browse.html.twig', [
             'posts' => $postsArray,

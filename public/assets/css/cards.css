@@ -77,6 +77,12 @@ html {
     width: 50%;
   }
 }
+
+.photo-details.boum{
+  width:100%;
+
+}
+
 .photo-details h1,
 .photo-details h4 {
   color: #fff;
@@ -92,6 +98,10 @@ html {
   font-size: 62.5%;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.photo-details.profile-picture{
+  width: 75%;
 }
 
 .photo-author {
@@ -167,6 +177,17 @@ button.large-button-blanc.white-color {
   line-height: normal;
 }
 
+/* Bouton dans messages */
+
+button.large-button.purple {
+  padding: 15px;
+  width: 100px;
+  color:white;
+  background-color: #838bc5 ;
+  line-height: normal;
+  float:right;
+}
+
 /* CSS pour la carte Message */
 
 .message {
@@ -178,4 +199,24 @@ button.large-button-blanc.white-color {
 }
 .message-background {
   padding-bottom: 20px;
+}
+
+.last-post.clearfix {
+  width: 100%;
+  
+}
+
+.family-name{
+  color: #65c8d0;
+  font-weight: 900;
+}
+
+.profile{
+  display: flex;
+}
+
+.profile-picture{
+  margin-left: 190px;
+  flex-direction: row-reverse;
+  float: right;
 }

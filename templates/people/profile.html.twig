@@ -1,4 +1,4 @@
-{# {% extends 'basedashboard.html.twig' %}
+{# {% extends 'basedashboard.html.twig' coucou tata ca va tonton ? ouiiiiiii tes bien et toi ? la pataaaaaaate !!!! %}
 
 
 {% block body %}
@@ -56,7 +56,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="section-header">
-						<h2 class="section-title">Mon Profil</h2>
+						<h2 class="section-title">Mon Profil </h2>
 					</div>
 					<!-- /.section-header -->
 				</div>
@@ -67,13 +67,22 @@
 		<!-- /.container -->
 
 <div class="photo-card">
-<div class="photo-details ">
-
-
-        <h1 style="color:#65C8D0; font-size: 30px;">{{ people.firstname }}</h1>
-        <h1 style="color:#65C8D0; font-size: 30px;">{{ people.lastname }}</h1>
-        <h2 style="color:#65C8D0; font-size: 15px;">né le {{ people.birthdate|date("d/m/Y") }}</h2>  
-        <p style="color:white">{{ people.email }}</p></br>
+<div class="photo-details boum">
+        <div class="" style="display:flex;">
+            <div>
+                <h1 style="color:#65C8D0; font-size: 30px;">{{ people.firstname }}</h1>
+                <h1 style="color:#65C8D0; font-size: 30px;">{{ people.lastname }}</h1>
+                <h2 style="color:#65C8D0; font-size: 15px;">né le {{ people.birthdate|date("d/m/Y") }}</h2>  
+                <p style="color:white">{{ people.email }}</p></br>
+            </div>
+            <div class="thumb-post profile-picture">
+            {% if (people.picture is null) %}
+                <img src="{{ asset('/../assets/images/profile.svg')}}" alt="" class="img-circle">
+            {% else %}
+                <img src="{{ asset(people.picture)}}" alt="" class="img-circle">
+            {% endif %}
+            </div>
+        </div>
         <h1 style="color:#65C8D0; font-size: 30px;">Mes familles:</h1>
 				{% for family in people.families %}
 					    <p style="color:white; font-style: italic;">{{ family }} </p>
@@ -90,10 +99,10 @@
     {% endfor %}  
 </br>
                     <a class="photo-background" href="{{ path('people_edit', {'id': people.id}) }}" class="large-button-blanc white-color">
-						<button class="large-button-blanc white-color" type="submit" style="margin-left: 90%;">Editer Le Profil</button>
+						<button class="large-button-blanc white-color" type="submit" style="margin-left:42% ;">Editer Le Profil</button>
 					</a>
 </div>
-	</div>
+</div>
 
 		
 

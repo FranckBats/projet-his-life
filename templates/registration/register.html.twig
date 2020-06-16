@@ -14,6 +14,7 @@
                             {{ form_row(register.lastname) }}
                             {{ form_row(register.firstname) }}
 							{{ form_row(register.birthdate) }}
+              {{ form_row(register.file)}}
 							{{ form_row(register.role) }}
 							{% for message in app.flashes('danger') %}
 								<div class="alert alert-danger">

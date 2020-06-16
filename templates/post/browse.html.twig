@@ -4,15 +4,14 @@
 {% block body %}
 
 
-
-<section class="light-content our-team">
-{% for label, messages in app.flashes(['success', 'danger']) %}
-        {% for message in messages %}
-            <div class="alert-{{ label }} message-flash">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+	<section class="light-content our-team">
+		{% for label, messages in app.flashes(['success', 'danger']) %}
+			{% for message in messages %}
+				<div class="alert-{{ label }} message-flash">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 
 		<div class="container">
 			<div class="row">
@@ -23,40 +22,44 @@
 					</div>
 					<!-- /.section-header -->
 				</div>
-				<!-- /.col-md-12 -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-
-
-<div class="col-md-4">
+			</div><!-- /.row -->
+		
 				
-						{% for post in posts %} 
+			<div class="col-md"><!-- /.col-md-12 -->
+
+				
+
+
+					{% for post in posts %}
 						<div class="last-post clearfix">
-							<div class="thumb pull-left">
-							<a href="{{ path('post_read', {'id': post.id}) }}">
-								<h3 class="titre-message">{{ post.title }}</h3>
+								<div class="thumb pull-left">
+									<a href="{{ path('post_read', {'id': post.id}) }}">
+										<h3 class="titre-message">{{ post.title }}</h3>
 									</a>
-							</div></br>
-							<div class="content">
-								<span>{{post.createdAt|date('d-m-Y')}}</span>
-								<span>de {{post.people.firstname}}</span>
-								<span>dans la famille {{post.family}}</span>
-								<h4>{{ post.content }}</h4>
-							</div>
+								</div>
+							</br>
+								<div class="content">
+									<span>{{post.createdAt|date('d-m-Y')}}</span>
+									<span>de
+										<strong class="family-name">{{post.people.firstname}}</strong></span>
+									<span>dans la famille
+										<strong class="family-name">{{post.family}}</strong></span>
+									<h4>{{ post.content }}</h4>
+								</div>
 
-							<div class="p-t-10">
-					<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
-						<button class="large-button-blanc white-color" type="submit">Modifier</button>
-					</a>
+								<div class="p-t-10">
+									<a href="{{ path('post_edit', {'id': post.id}) }}" class="large-button-blanc white-color">
+										<button class="large-button purple" type="submit">Modifier</button>
+									</a>
 
-</div>
-						</div> <!-- /.last-post -->
+								</div>
 
-				{% endfor %} 
-		</div>
-		<!-- /.row -->
+							</div><!-- /.last-post -->
+					{% endfor %}
+			</div>
+				
+				
+		</div>	<!-- /.container -->
 
 
- 	{% endblock %}
+		{% endblock %}
