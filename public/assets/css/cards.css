@@ -220,3 +220,20 @@ button.large-button.purple {
   flex-direction: row-reverse;
   float: right;
 }
+
+/* list of calendar */
+
+.table{
+  text-align: center;
+ 
+}
+
+.table th{
+  text-align: center;
+  
+}
+
+.add-event {
+  text-align: center;
+  padding-top: 75px;
+}

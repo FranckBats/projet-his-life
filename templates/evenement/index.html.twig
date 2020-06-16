@@ -90,9 +90,14 @@
         });
     </script>
 </br>
-        <h1>Liste des événéments du calendrier</h1></br>
+        
 <div class="col-10">
+<div class="add-event section-header">
+    <h1 class="section-title">Liste des événéments du calendrier</h1>
+        <a href="{{ path('evenement_new') }}" class="large-button green-color ">Ajouter un événement</a>
+        </div>
     <table class="table">
+    
         <thead>
             <tr>
                 <th>Nom</th>
@@ -116,7 +121,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">Aucune entrées dans le Calendrier</td>
+                <td colspan="8">Aucun événement dans le Calendrier</td>
             </tr>
         {% endfor %}
         </tbody>
