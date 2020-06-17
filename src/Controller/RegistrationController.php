@@ -93,8 +93,6 @@ class RegistrationController extends AbstractController
                         
             $mailer->send($email);
 
-            $this->addFlash('success', 'Vous êtes inscrit, vous pouvez vous connecter');
-
             return $this->redirectToRoute('app_login');
         }
 
