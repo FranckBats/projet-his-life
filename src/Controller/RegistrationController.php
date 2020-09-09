@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\People;
 use App\Form\RegisterType;
 use App\Repository\FamilyRepository;
+use App\Utils\StringGenerator;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -42,18 +43,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $picture = $form['file']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++) {
-                    $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $directory = 'assets/files/profile_picture/';
 

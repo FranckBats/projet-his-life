@@ -40,7 +40,6 @@ class PostController extends AbstractController
      */
     public function read(Post $post, Request $request)
     {
-
         $this->denyAccessUnlessGranted('read', $post);
 
         return $this->render('post/read.html.twig', [
@@ -58,7 +57,7 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $post->setPeople($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
@@ -84,7 +83,7 @@ class PostController extends AbstractController
             }        
             $this->addFlash('success', 'Votre message a bien été posté');
             return $this->redirectToRoute('post_browse');
-        }
+        };
 
         return $this->render('post/add.html.twig', [
             'form' => $form->createView(),
@@ -101,15 +100,12 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {  
             $this->getDoctrine()->getManager()->flush();
+            
             return $this->redirectToRoute('post_browse');
-        }
-
-        
-
-
-
+        };
+    
         return $this->render('post/edit.html.twig', [
             'form' => $form->createView(),
             'post' => $post, 
@@ -130,7 +126,7 @@ class PostController extends AbstractController
             $em->flush();
 
             $this->addFlash('danger', 'Message supprimé');
-        }
+        };
         
         return $this->redirectToRoute('post_browse');
     }

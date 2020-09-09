@@ -6,6 +6,7 @@ use App\Entity\Picture;
 use App\Form\PictureType;
 use App\Form\PictureEditType;
 use App\Repository\PictureRepository;
+use App\Utils\StringGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,18 +66,7 @@ class PictureController extends AbstractController
             $newFile = $form['file']->getData();
             
             if ($newFile != null) {
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
+                $fileName = StringGenerator::generateRandomString();
                 
                 $directory = 'assets/files/pictures/';
                 
@@ -116,19 +106,7 @@ class PictureController extends AbstractController
             
             $file = $form['file']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++)
-                {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $picture->setTitle($title);
 

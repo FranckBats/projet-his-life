@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\Family;
 use App\Form\FamilyType;
 use App\Repository\FamilyRepository;
+use App\Utils\StringGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class FamilyController extends AbstractController
@@ -42,19 +42,7 @@ class FamilyController extends AbstractController
 
             $picture = $form['picture']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++)
-                {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $directory = 'assets/files/family_picture/';
 
@@ -133,18 +121,7 @@ class FamilyController extends AbstractController
             $newFile = $form['picture']->getData();
 
             if ($newFile != null){
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
+                $fileName = StringGenerator::generateRandomString();
                 
                 $directory = 'assets/files/family_picture/';
                 

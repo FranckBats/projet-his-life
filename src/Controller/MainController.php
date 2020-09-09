@@ -4,8 +4,6 @@ namespace App\Controller;
 
 
 use App\Form\ContactUsType;
-use App\Repository\GradeRepository;
-use App\Repository\NoteRepository;;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,12 +22,10 @@ class MainController extends AbstractController
             'controller_name' => 'TestController',
         ]);
     }
-
      /**
      * @Route("notre-equipe", name="about")
      */
     public function about(){
-
         return $this->render('about.html.twig');
     }
 

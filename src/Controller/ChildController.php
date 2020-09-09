@@ -4,10 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Child;
 use App\Form\ChildType;
-use App\Form\UploadEditType;
 use App\Repository\ChildRepository;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Repository\FamilyRepository;
+use App\Utils\StringGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,14 +15,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ChildController extends AbstractController
 {
-
     /**
      * @Route("/enfant/profil", name="child_profile")
      */
     public function profile(ChildRepository $childRepository, FamilyRepository $familyRepository)
     {
         // #############################################
-        // Pour l'instant je l'écris en français car ça m'arrange fortement (et puis l'anglais c'est de la merde !!!)
+        // (En Français : )
         // Ce bloc de code fait :
 
         // Ici nous récupérons toutes les Entity Family de l'utilisateur connecté
@@ -50,13 +48,12 @@ class ChildController extends AbstractController
                 foreach ($childrenCollection as $children) {   
                     array_push($childrenArray, $children);
                 }
-            }
+        }
         
         // Ensuite il n'y a plus qu'à passer notre tableau
         // dans le render du controleur pour l'exploiter dans le twig
         // #############################################
         
-
         return $this->render('child/profile.html.twig', [
             'controller_name' => 'ChildController',
             'children' => $childrenArray
@@ -78,19 +75,7 @@ class ChildController extends AbstractController
 
             $picture = $form['picture']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++)
-                {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $directory = 'assets/files/child_picture/';
 
@@ -165,18 +150,7 @@ class ChildController extends AbstractController
             $newFile = $form['picture']->getData();
 
             if ($newFile != null){
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
+                $fileName = StringGenerator::generateRandomString();
                 
                 $directory = 'assets/files/child_picture/';
                 

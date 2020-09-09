@@ -5,10 +5,9 @@ namespace App\Controller;
 use App\Entity\Healthbook;
 use App\Form\UploadType;
 use App\Form\UploadEditType;
-use App\Repository\HealthbookRepository;
+use App\Utils\StringGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Notifier\Notification\Notification;
@@ -55,6 +54,45 @@ class HealthbookController extends AbstractController
             'healthbook' => $healthbook,
         ]);
     }
+    
+    /**
+     * @Route("/sante/{id}", name="healthbook_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     */
+    public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
+    {
+        $this->denyAccessUnlessGranted('edit', $healthbook);
+        
+        $form = $this->createForm(UploadEditType::class, $healthbook);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+            
+            $newFile = $form['file']->getData();
+            
+            if ($newFile != null) {
+                $fileName = StringGenerator::generateRandomString();
+                
+                $directory = 'assets/files/healthbooks/';
+                
+                $finalDirectory = $directory.$fileName.'.jpg';
+                $healthbook->setFile($finalDirectory);
+                
+                $newFile->move($this->getParameter('healthbooks_directory'), $fileName.'.jpg');
+            }
+            
+            $em->persist($healthbook);
+            $em->flush();
+            return $this->redirectToRoute('healthbook_browse');
+        }
+         
+        
+            
+        return $this->render('healthbook/edit.html.twig', [
+            'form' => $form->createView(),
+            'healthbook' => $healthbook,
+        ]);
+    }
 
     /**
      * @Route("/sante/ajouter", name="healthbook_add")
@@ -72,19 +110,7 @@ class HealthbookController extends AbstractController
             $name = $form->getData()->getName();
             $file = $form['file']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++)
-                {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $healthbook->setName($name);
 
@@ -144,56 +170,4 @@ class HealthbookController extends AbstractController
         return $this->redirectToRoute('healthbook_browse');
     }
 
-    /**
-     * @Route("/sante/{id}", name="healthbook_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
-     */
-    public function edit(Healthbook $healthbook, Request $request, EntityManagerInterface $em)
-    {
-        $this->denyAccessUnlessGranted('edit', $healthbook);
-        
-        $form = $this->createForm(UploadEditType::class, $healthbook);
-
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()){
-            
-            $newFile = $form['file']->getData();
-            
-            if ($newFile != null) {
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
-                
-                $directory = 'assets/files/healthbooks/';
-                
-                $finalDirectory = $directory.$fileName.'.jpg';
-                $healthbook->setFile($finalDirectory);
-                
-                $newFile->move($this->getParameter('healthbooks_directory'), $fileName.'.jpg');
-
-            }
-            
-            $em->persist($healthbook);
-            $em->flush();
-            return $this->redirectToRoute('healthbook_browse');
-        }
-         
-        
-            
-        return $this->render('healthbook/edit.html.twig', [
-            'form' => $form->createView(),
-            'healthbook' => $healthbook,
-        ]);
-
-
-    }
 }

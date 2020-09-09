@@ -5,10 +5,9 @@ namespace App\Controller;
 use App\Entity\Note;
 use App\Form\UploadEditType;
 use App\Form\UploadType;
-use App\Repository\NoteRepository;
+use App\Utils\StringGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Notifier\Notification\Notification;
@@ -75,18 +74,7 @@ class NoteController extends AbstractController
             $newFile = $form['file']->getData();
             
             if ($newFile != null) {
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
+                $fileName = StringGenerator::generateRandomString();
                 
                 $directory = 'assets/files/notes/';
                 
@@ -94,8 +82,6 @@ class NoteController extends AbstractController
                 $note->setFile($finalDirectory);
                 
                 $newFile->move($this->getParameter('notes_directory'), $fileName.'.jpg');
-
-                
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -129,19 +115,7 @@ class NoteController extends AbstractController
             $name = $form->getData()->getName();
             $file = $form['file']->getData();
 
-            function generateRandomString($length = 10)
-            {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $maxLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++)
-                {
-                $randomString .= $characters[rand(0, $maxLength - 1)];
-                }
-                return $randomString;
-            }
-
-            $fileName = generateRandomString();
+            $fileName = StringGenerator::generateRandomString();
 
             $note->setName($name);
 

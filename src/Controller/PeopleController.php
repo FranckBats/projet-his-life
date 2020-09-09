@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use App\Entity\People;
 use App\Form\PeopleType;
-use App\Form\RegisterType;
-use App\Repository\PeopleRepository;
+use App\Utils\StringGenerator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -49,18 +48,7 @@ class PeopleController extends AbstractController
             $newFile = $form['picture']->getData();
 
             if ($newFile != null) {
-                function generateRandomString($length = 10)
-                {
-                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    $maxLength = strlen($characters);
-                    $randomString = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $randomString .= $characters[rand(0, $maxLength - 1)];
-                    }
-                    return $randomString;
-                }
-                
-                $fileName = generateRandomString();
+                $fileName = StringGenerator::generateRandomString();
                 
                 $directory = 'assets/files/profile_picture/';
                 
@@ -97,25 +85,22 @@ class PeopleController extends AbstractController
      */
     public function delete(Request $request, People $people, $id, NotifierInterface $notifier): Response
     {
-
         $currentUserId = $this->getUser()->getId();
-        if ($currentUserId == $id)
-        {
-          $session = $this->get('session');
-          $session = new Session();
-          $session->invalidate();
-       
 
+        if ($currentUserId == $id) {
+            $session = $this->get('session');
+            $session = new Session();
+            $session->invalidate();
 
-        if ($this->isCsrfTokenValid('delete'.$people->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($people);
-            $em->flush();
+            if ($this->isCsrfTokenValid('delete'.$people->getId(), $request->request->get('_token'))) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($people);
+                $em->flush();
 
-            $request->getSession()->clear();
-            
+                $request->getSession()->clear();
+                
+            }
         }
-    }
     
         $notification = (new Notification('Suppression de profil', ['email']))->content('Votre profil à bien été supprimé :' . $people->getFirstname() .' '. $people->getLastname().'!');
 
