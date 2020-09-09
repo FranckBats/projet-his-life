@@ -97,7 +97,11 @@
         "version": "2.2.3"
     },
     "php": {
+<<<<<<< HEAD
         "version": "7.3"
+=======
+        "version": "7.4"
+>>>>>>> refs/remotes/origin/master
     },
     "phpdocumentor/reflection-common": {
         "version": "2.1.0"

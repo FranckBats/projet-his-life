@@ -80,7 +80,6 @@ class RegistrationController extends AbstractController
                         'firstname' => $user->getFirstname(),
                         'lastname' => $user->getLastname(),
                         ]);
-
             try {
                 $mailer->send($email);
             } catch (TransportExceptionInterface $e) {
