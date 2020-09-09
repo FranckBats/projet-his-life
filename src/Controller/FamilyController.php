@@ -78,7 +78,6 @@ class FamilyController extends AbstractController
      */
     public function read(Family $family)
     {
-
         $this->denyAccessUnlessGranted('view', $family);
 
         return $this->render('family/read.html.twig', [
